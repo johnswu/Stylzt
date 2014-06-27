@@ -1,0 +1,16 @@
+/*
+ Theme Name:   ProjectTheme Child
+ Theme URI:    http://sitemile.com/products/wordpress-project-freelancer-theme/
+ Description:  ProjectTheme Child Theme
+ Author:       John Wu
+ Author URI:   http://sitemile.com
+ Template:     ProjectTheme
+ Version:      1.0.0
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  projecttheme-child
+*/
+
+@import url("../ProjectTheme/style.css");
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
