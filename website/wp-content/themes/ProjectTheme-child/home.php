@@ -52,7 +52,10 @@ Template Name: Home
               <ul class="nav navbar-nav">
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_advanced_search_page_id')); ?>"><?php _e('Project Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_provider_search_page_id')); ?>"><?php _e('Provider Search','ProjectTheme'); ?></a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php echo __("Post New",'ProjectTheme'); ?></a></li>
+	<?php if(get_option('projectTheme_enable_blog') == "yes") { ?>
+                <li><a href="<?php echo projectTheme_blog_link(); ?>"><?php echo __("Blog",'ProjectTheme'); ?></a></li>
+	<?php } ?>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -84,7 +87,7 @@ Template Name: Home
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/header.jpg" alt="First slide">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/header1.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Find paying jobs from reviewed professionals</h1>
@@ -95,7 +98,7 @@ Template Name: Home
           </div>
         </div>
         <div class="item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/conference-hall.jpg" alt="Second slide">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/header2.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Crowdsource your next photo shoot</h1>
@@ -106,7 +109,7 @@ Template Name: Home
           </div>
         </div>
         <div class="item">
-          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/header-3.jpg" alt="Third slide">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/header3.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Get visibility for your business or career</h1>
@@ -132,20 +135,20 @@ Template Name: Home
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon01.png" alt="Generic placeholder image">
+          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon04.png" alt="Generic placeholder image">
           <h2>Find Work</h2>
           <p>Ready to put your skills to work? Find the right jobs for you in your area.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon02.png" alt="Generic placeholder image">
+          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon01.png" alt="Generic placeholder image">
           <h2>Find Talent</h2>
           <p>Do you have a project that needs just the right person to make it happen?  Search our reviewed talent pool.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon04.png" alt="Generic placeholder image">
-          <h2>Post a Job</h2>
+          <img class="img-circle" src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon02.png" alt="Generic placeholder image">
+          <h2>Grow Your Business</h2>
           <p>Bring the power of crowdsourcing to your photoshoot. Post the work you need done and have reviewed professionals bid on it.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
