@@ -90,6 +90,7 @@ function ProjectTheme_do_login_scr()
 		  
 				
 		?>
+		
 				<div class="my_box3">
             	<div class="padd10">
             
@@ -137,7 +138,6 @@ function ProjectTheme_do_login_scr()
                 </div>
                 </div>
                 </div>
-                
 		<?php
 				
 		
@@ -383,12 +383,11 @@ function ProjectTheme_do_login_scr()
 				
 				
 		?>
-					
-            <div class="my_box3">
-            <div class="padd10">
-            
-            	<div class="box_title"><?php _e("Login",$current_theme_locale_name); ?> - <?php echo  get_bloginfo('name'); ?></div>
-                <div class="box_content">
+			
+            <div class="col-lg-12">
+				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
+					<div class="box_title"><?php _e("Login",$current_theme_locale_name); ?></div>
+					<div class="box_content">
                 
            		<?php
 				if(isset($_GET['checkemail']) && $_GET['checkemail'] == "confirm"):
@@ -429,11 +428,6 @@ function ProjectTheme_do_login_scr()
 				<input class="do_input" name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="3" /> 
 				<?php _e('Keep me logged in',$current_theme_locale_name); ?>
                 </p>
-							
-							 
-                <?php do_action('login_form'); ?>
-                             
-                             
 				<p><label>&nbsp;</label>
 				<input type="submit" class="submit_bottom" name="submits" id="submits" value="<?php _e('Sign in',$current_theme_locale_name); ?>" tabindex="4" />
 				<input type="hidden" name="redirect_to" value="<?php echo wp_specialchars($redirect_to); ?>" />
@@ -442,12 +436,12 @@ function ProjectTheme_do_login_scr()
                 </form>
 				
                 <ul id="logins">
-							<li><a class="green_btn" href="<?php bloginfo('home'); ?>/" 
+							<li><a href="<?php bloginfo('home'); ?>/" 
                             title="<?php _e('Are you lost?',$current_theme_locale_name) ?>">&laquo; <?php _e('Home',$current_theme_locale_name) ?></a></li>
 						  <?php if (get_settings('users_can_register')) : ?>
-							<li><a class="green_btn" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a></li>
+							<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a></li>
 						  <?php endif; ?>
-							<li><a class="green_btn" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword" 
+							<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword" 
                             title="<?php _e('Password Lost and Found',$current_theme_locale_name) ?>"><?php _e('Lost your password?',$current_theme_locale_name) ?></a></li>
               	</ul>
 						
@@ -455,10 +449,12 @@ function ProjectTheme_do_login_scr()
 				</div>
 		                
             
+					</div>
+				</div>
+				<div class="col-md-4 belowCenterHeader">
+					<?php do_action('login_form'); ?>
+				</div>
             </div>
-            </div>
-            </div>
-		
 		
 		<?php
 
