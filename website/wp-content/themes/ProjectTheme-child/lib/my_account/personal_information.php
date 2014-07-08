@@ -20,7 +20,14 @@ function ProjectTheme_my_account_personal_info_function()
 		$uid = $current_user->ID;
 	
 ?>
-    	<div id="content">
+
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content">
+          <div class="portfolio-wrapper">
+		  
+	<div id="content" >
         	
            <?php
 				

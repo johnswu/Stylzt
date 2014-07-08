@@ -186,15 +186,101 @@ function ProjectTheme_advanced_search_area_main_function()
 //===============*********=======================
 	
 ?>
+
+			  <!-- Start filtering form controls -->
+              <form class="navbar-form" role="search" id="searchForm">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" value="" name="term" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="ref-search" onclick="$('#searchForm').submit();"><span class="fa fa-search"></span></button>
+                  </span>
+                </div><!-- end input group -->
+
+				<ul class="nav navbar-nav filter-portfolio">
+					<li class="title">
+						<?php _e('Filter Options','ProjectTheme'); ?>
+					</li>
+					<li>
+						<?php _e('Price',"ProjectTheme"); ?>:<br/>
+						<?php echo ProjecTheme_get_budgets_dropdown($_GET['budgets'], 'form-control filterDropDown', 1); ?>
+					</li>
+					<li>
+						<?php _e('Location',"ProjectTheme"); ?>:<br/>
+						<?php echo ProjectTheme_get_categories_slug("project_location", $_GET['project_location_cat'],__("Select Location","ProjectTheme"), 'form-control filterDropDown'); ?>
+					</li>
+					<li>
+						<?php _e('Category',"ProjectTheme"); ?>:<br/>
+						<?php echo ProjectTheme_get_categories_slug("project_cat", $_GET['project_cat_cat'],__("Select Category","ProjectTheme") , 'form-control filterDropDown'); ?>
+					</li>
+					<li style="text-align:center;">
+						<br/>
+						<input type="submit" value="<?php _e("Refine Search","ProjectTheme"); ?>" name="ref-search" class="btn btn-primary" />
+					</li>
+				</ul>
+			  </form>
+				<div style="float:left;width:100%">
+                    <?php
+					
+						$ge = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&meta_key=budgets&orderby=meta_value_num';
+						foreach($_GET as $key => $value)
+						{
+							if($key != 'meta_key' && $key != 'orderby' && $key != 'order')
+							{
+								$ge .= '&'.$key."=".$value;	
+							}
+						}
+					
+					//------------------------
+						
+						$ge2 = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&orderby=title';
+						foreach($_GET as $key => $value)
+						{
+							if( $key != 'orderby' && $key != 'order')
+							{
+								$ge2 .= '&'.$key."=".$value;	
+							}
+						}
+					//------------------------
+						
+						$ge3 = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&meta_key=views&orderby=meta_value_num';
+						foreach($_GET as $key => $value)
+						{
+							if($key != 'meta_key' && $key != 'orderby' && $key != 'order')
+							{
+								$ge3 .= '&'.$key."=".$value;	
+							}
+						}
+					
+					
+					?>
+                    
+                    <?php _e("Order by:","ProjectTheme"); 
+					
+					$ProjectTheme_advanced_search_page_id = get_option('ProjectTheme_advanced_search_page_id');
+					if(ProjectTheme_using_permalinks())
+					{
+						$adv = get_permalink($ProjectTheme_advanced_search_page_id)."?";	
+					}
+					else
+					{
+						$adv = get_permalink($ProjectTheme_advanced_search_page_id)."&";
+					}
+					
+					?> 
+                    <a href="<?php echo $adv; echo $ge; ?>"><?php _e("Price","ProjectTheme"); ?></a> | 
+                    <a href="<?php echo $adv; echo $ge2; ?>"><?php _e("Name","ProjectTheme"); ?></a> | 
+                    <a href="<?php echo $adv; echo $ge2; ?>"><?php _e("Visits","ProjectTheme"); ?></a>
+				</div>
+			  
+			  <!-- End filtering form controls -->
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content">
+          <div class="portfolio-wrapper">
+		  
 	<div id="content" >
         	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Project Search", "ProjectTheme"); ?></div>
-                <div class="box_content"> 
-
-
 <?php
 	
 		
@@ -267,7 +353,7 @@ function ProjectTheme_advanced_search_area_main_function()
 		
 		for($i = $start; $i <= $end; $i ++) {
 			if ($i == $pj) {
-				echo '<a class="bighi" id="activees" href="#">'.$i.'</a>';
+				echo '<a class="bighi" id="activees" href="#">'.$i.'TESTTESTTEST</a>';
 			} else {
 				
 			 
@@ -306,115 +392,6 @@ function ProjectTheme_advanced_search_area_main_function()
             
 					 
 		?>
-
-	</div>
-    </div>
-    </div>
-
-</div>
-
-
-<div id="right-sidebar">
-	<li class="">
-    	<h3 class="widget-title"><?php _e('Filter Options','ProjectTheme'); ?></h3>
-    	
-        <form method="get">
-                   <table>
-                  
-                   <tr>
-                   <td><?php _e('Keyword',"ProjectTheme"); ?>:</td>
-                   <td><input size="20" class="" value="<?php echo $_GET['term']; ?>" name="term" /></td>
-                   </tr>
-                   
-                   <tr>
-                   <td><?php _e('Price',"ProjectTheme"); ?>:</td>
-                   <td><?php echo ProjecTheme_get_budgets_dropdown($_GET['budgets'], 'budgets_advanced_search', 1); ?></td>
-                   </tr>
-                   
-                    <tr>
-                   <td><?php _e('Location',"ProjectTheme"); ?>:</td>
-                   <td><?php	echo ProjectTheme_get_categories_slug("project_location", $_GET['project_location_cat'],__("Select Location","ProjectTheme"), 'categ_advanced_search'); ?></td>
-                   </tr>
-                   
-                    <tr>
-                   <td><?php _e('Category',"ProjectTheme"); ?>:</td>
-                   <td><?php	echo ProjectTheme_get_categories_slug("project_cat", $_GET['project_cat_cat'],__("Select Category","ProjectTheme") , 'categ_advanced_search'); ?></td>
-                   </tr>
-                   
-                   
-                   <tr>
-                   <td><?php _e('Featured?',"ProjectTheme"); ?>:</td>
-                   <td><input type="checkbox" name="featured" value="1" <?php if(isset($_GET['featured'])) echo 'checked="checked"'; ?> /></td>
-                   </tr>
-                   
-                   <?php do_action('ProjectTheme_adv_search_add_to_form'); ?>
-                   
-                    <tr>
-                   <td></td>
-                   <td><input type="submit" value="<?php _e("Refine Search","ProjectTheme"); ?>" name="ref-search" class="big-search-submit2" /></td>
-                   </tr>
-                   </table>
-                   
-                   </form> 
-                    
-                    <div class="clear10"></div>
-                    <div style="float:left;width:100%">
-                    <?php
-					
-						$ge = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&meta_key=budgets&orderby=meta_value_num';
-						foreach($_GET as $key => $value)
-						{
-							if($key != 'meta_key' && $key != 'orderby' && $key != 'order')
-							{
-								$ge .= '&'.$key."=".$value;	
-							}
-						}
-					
-					//------------------------
-						
-						$ge2 = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&orderby=title';
-						foreach($_GET as $key => $value)
-						{
-							if( $key != 'orderby' && $key != 'order')
-							{
-								$ge2 .= '&'.$key."=".$value;	
-							}
-						}
-					//------------------------
-						
-						$ge3 = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&meta_key=views&orderby=meta_value_num';
-						foreach($_GET as $key => $value)
-						{
-							if($key != 'meta_key' && $key != 'orderby' && $key != 'order')
-							{
-								$ge3 .= '&'.$key."=".$value;	
-							}
-						}
-					
-					
-					?>
-                    
-                    <?php _e("Order by:","ProjectTheme"); 
-					
-					$ProjectTheme_advanced_search_page_id = get_option('ProjectTheme_advanced_search_page_id');
-					if(ProjectTheme_using_permalinks())
-					{
-						$adv = get_permalink($ProjectTheme_advanced_search_page_id)."?";	
-					}
-					else
-					{
-						$adv = get_permalink($ProjectTheme_advanced_search_page_id)."&";
-					}
-					
-					?> 
-                    <a href="<?php echo $adv; echo $ge; ?>"><?php _e("Price","ProjectTheme"); ?></a> | 
-                    <a href="<?php echo $adv; echo $ge2; ?>"><?php _e("Name","ProjectTheme"); ?></a> | 
-                    <a href="<?php echo $adv; echo $ge2; ?>"><?php _e("Visits","ProjectTheme"); ?></a>
-                    </div>
-    
-    </li>
-    
-	<?php dynamic_sidebar( 'other-page-area' ); ?>
 
 </div>
 

@@ -112,10 +112,10 @@
 			$u = $current_user;
 	?>
                 <li class="dropdown">
-                  <a href="<?php echo projectTheme_my_account_link(); ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $u->user_login." - ".__("MyAccount",'ProjectTheme'); ?> <b class="caret"></b></a>
+                  <a href="<?php echo projectTheme_my_account_link(); ?>" class="dropdown-toggle" data-toggle="dropdown">WELCOME, <?php echo $u->user_login; ?> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="<?php echo wp_logout_url(); ?>"><?php echo __("Log Out",'ProjectTheme'); ?></a></li>
-                    <li><a href="#">Another action</a></li>
+                    <li><a href="<?php echo projectTheme_my_account_link(); ?>"><?php echo __("MyAccount",'ProjectTheme'); ?></a></li>
                     <li><a href="#">Something else here</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Nav header</li>
