@@ -14,8 +14,8 @@
 	load_theme_textdomain( 'ProjectTheme',  TEMPLATEPATH . '/languages' );
 	// load the theme template for translation
 	
-	DEFINE("PROJECTTHEME_VERSION", "1.4.2b");
-	DEFINE("PROJECTTHEME_RELEASE", "22 May 2014");
+	DEFINE("PROJECTTHEME_VERSION", "2.0.1");
+	DEFINE("PROJECTTHEME_RELEASE", "2 July 2014");
 	
 	//----------------------------------------------------------
 	
@@ -38,7 +38,14 @@
 	$projects_url_nm 	= "projects"; 
 	$cc = get_option('projectTheme_projects_slug_link');
 	if(!empty($cc) && ProjectTheme_using_permalinks()) $projects_url_nm = $cc;
-
+	
+	//------------
+	
+	global $width_widget_categories, $height_widget_categories;
+	$width_widget_categories = 190;
+	$height_widget_categories = 65;
+	add_image_size( 'my_category_image_thing', $width_widget_categories, $height_widget_categories, true ); //category images in the widget
+	
 //------------------ file includes -----------------------------
 	
 	include('lib/first_run.php');
@@ -65,6 +72,7 @@
 	include('lib/widgets/featured-projects.php');
 	include('lib/widgets/ending-soonest.php');
 	include('lib/widgets/latest-posted-projects.php');
+	include('lib/widgets/category-with-images.php');
 	
 	//---------------
 	
@@ -171,7 +179,94 @@ function PT_foo_modify_query_for_stuff( $query ) {
    }
 }
 
+function projecttheme_search_box_thing()
+{ return '';
+?>	
 
+
+ <?php if(!projecttheme_is_home()): ?>
+            
+            <script>
+			
+			jQuery(function(){
+
+				jQuery("ul.dropdown li").hover(function(){
+				
+					jQuery(this).addClass("hover");
+					jQuery('ul:first',this).css('visibility', 'visible');
+				
+				}, function(){
+				
+					jQuery(this).removeClass("hover");
+					jQuery('ul:first',this).css('visibility', 'hidden');
+				
+				});
+				
+				jQuery("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
+			
+			});
+			
+			
+			</script>
+            
+			
+			<div class="middle-header-bg">
+				<div class="middle-header wrapper">
+						
+					<div class="near_search_links">
+                    	 <ul class="dropdown">
+        					<li><a href="#" class="main-browse-by-cat"><?php _e('Browse By Category','ProjectTheme') ?></a>
+                        	<?php
+							
+								$terms_cats = get_terms('project_cat','hide_empty=false');
+								if(count($terms_cats) > 0):
+							?>	
+                                <ul class="sub_menu">
+                                		<?php
+                                        
+											foreach($terms_cats as $ct)
+											{
+												echo '<li><a href="'.get_term_link($ct->slug, 'project_cat').'">'.$ct->name.'</a></li>';	
+											}
+										
+										?>
+                                </ul>      
+                                               
+                            <?php endif; ?>       
+                        	</li>	
+                    	</ul>
+                    </div>	 
+                     
+	       
+        <div class="my_placeholder_4_suggest">
+        <div id="suggest" >
+                    <form method="get" action="<?php echo projectTheme_advanced_search_link(); ?>">
+						<input type="text" onfocus="this.value=''" id="big-search" name="term" autocomplete="off" onkeyup="suggest(this.value);" onblur="fill();"  value="<?php if(isset($_GET['term'])) echo $_GET['term']; 
+						else echo $default_search; ?>" />
+					
+				<?php	//echo sitemile_get_categories_slug("project_cat", $_GET["project_cat_cat"], 1, "big-search-select"); 
+				?>
+		
+					
+					<input type="submit" id="big-search-submit" name="search_me" value="<?php _e("Start Search","ProjectTheme"); ?>" />
+					</form>
+                    
+                    <div class="suggestionsBox" id="suggestions" style="z-index:999;display: none;"> <img src="<?php echo get_bloginfo('template_url');?>/images/arrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
+        <div class="suggestionList" id="suggestionsList"> &nbsp; </div>
+      </div></div>
+                    
+
+                        
+                        <!-- ###### -->
+				</div>
+                </div>
+				
+			</div> <!-- middle-header-bg -->
+		
+			<?php endif; ?>
+
+<?php	
+}
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function
@@ -528,8 +623,65 @@ function ProjectTheme_add_max_nr_of_images()
 		var maxNrImages_PT = <?php echo $projectTheme_nr_max_of_images; ?>;
 	
 	</script>
+    <?php
+    if ( is_singular( 'project' ) ):
+	
+	$get_bidding_panel = 'get_bidding_panel';
+	$get_bidding_panel = apply_filters('ProjectTheme_get_bidding_panel_string', $get_bidding_panel) ;
+	
+	?>
+	
+    <!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
     
-    <?php	
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    
+    
+    <script>
+	jQuery( document ).ready(function() {
+		
+	 	var pid = jQuery("#submit-proposal-id").attr('rel');		
+		jQuery("#submit-proposal-id").fancybox({
+			 
+				'scrolling'         : 'no',
+				'padding'           : 0,
+				'centerOnScroll'    : true,
+				'href'              : '<?php bloginfo('siteurl') ?>/?<?php echo $get_bidding_panel ?>=1&pid=' + pid,
+				'type'              : 'ajax'
+			 
+		});
+		
+		
+		var pid = jQuery('.message_brd_cls').attr('rel');
+		jQuery(".message_brd_cls").fancybox({
+			 
+				'scrolling'         : 'no',
+				'padding'           : 0,
+				'centerOnScroll'    : true,
+				'href'              : '<?php bloginfo('siteurl') ?>/?get_message_board=' + pid,
+				'type'              : 'ajax'
+			 
+		});
+ 
+		
+		jQuery('.image_gal1').fancybox();
+		
+		});
+	
+	</script>
+    
+    <?php
+	endif;  
 	
 }
 /*************************************************************
@@ -2183,6 +2335,7 @@ function projectTheme_my_account_link()
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function
+
 *
 **************************************************************/
 
@@ -2212,6 +2365,42 @@ function projectTheme_advanced_search_link2()
 	if($perm) return get_permalink($opt). "?";
 	
 	return get_permalink($opt). "&pg=".$subpage."&";
+}
+
+
+function projectTheme_get_the_search_box()
+{
+	?>
+    
+    <div class="search-ttl-form">
+    <form method="post">
+        	<div class="search-ttl-form-inner">
+            	
+                <div class="drpdown-wrapper">
+                   <div id="dd" class="wrapper-dropdown-3" tabindex="1">
+						<span>Projects</span>
+						<ul class="dropdown">
+							<li><a href="#">Freelancers</a></li> 
+						</ul>
+					</div>
+                </div>
+            
+            	<div class="input_text_serch-wrapper">
+            	<input type="text" placeholder="<?php _e('What do you need?','ProjectTheme') ?>" id="my-top-search-input"	name="input_text_serch" />
+                </div>
+                
+                
+                <div class="input_submit_serch-wrapper">
+            	<input type="submit" id="my-top-submit-input" value=" " name="input_submit" />
+                </div>
+                
+            </div>
+           </form> 
+        </div>
+    
+    
+    <?php	
+	
 }
 
 /*************************************************************
@@ -2281,6 +2470,59 @@ function ProjectTheme_add_js_coin_slider()
 	
 	</script>	
 	<?php endif; endif;
+	
+	if(!ProjectTheme_is_home()):
+	?>
+	<script type="text/javascript" src="<?php bloginfo('template_url') ?>/js/modernizr.custom.79639.js"></script>
+    <script type="text/javascript">
+			
+			function DropDown(el) {
+				this.dd = el;
+				this.placeholder = this.dd.children('span');
+				this.opts = this.dd.find('ul.dropdown > li');
+				this.val = '';
+				this.index = -1;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						return false;
+					});
+
+					obj.opts.on('click',function(){
+						var opt = $(this);
+						obj.val = opt.text();
+						obj.index = opt.index();
+						obj.placeholder.text(obj.val);
+					});
+				},
+				getValue : function() {
+					return this.val;
+				},
+				getIndex : function() {
+					return this.index;
+				}
+			}
+
+			jQuery(function() {
+
+				var dd = new DropDown( jQuery('#dd') );
+
+				jQuery(document).click(function() {
+					// all dropdowns
+					jQuery('.wrapper-dropdown-3').removeClass('active');
+				});
+
+			});
+
+		</script>
+    
+    <?php
+	endif;
 }
 /*************************************************************
 *
@@ -2438,7 +2680,7 @@ function ProjectTheme_get_users_links()
 		 
 	?>
     
-	<div id="right-sidebar">
+	<div id="right-sidebar" class="account-sidebar">
 			<ul class="xoxo">
 			
 			<li class="widget-container widget_text"><h3 class="widget-title"><?php _e("My Account Menu",'ProjectTheme'); ?></h3>
@@ -2610,7 +2852,7 @@ function ProjectTheme_get_users_links()
                  <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_delivered_projects_id')); ?>"><?php _e("Delivered & Paid Projects",'ProjectTheme');?></a></li>
                  
                  
-                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("Projects I bid",'ProjectTheme');?></a></li>
+                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("My Proposals",'ProjectTheme');?></a></li>
                  
                  <?php do_action('ProjectTheme_my_account_service_provider_menu'); ?>
                  
@@ -4206,6 +4448,33 @@ function ProjectTheme_project_get_star_rating($uid)
 	return ProjectTheme_get_project_stars($rating)." (".$rating2 ."/5) ". sprintf(__("on %s rating(s)","ProjectTheme"), $i);
 }
 
+
+function ProjectTheme_project_get_star_rating2($uid)
+{
+	
+	global $wpdb;
+	$s = "select grade from ".$wpdb->prefix."project_ratings where touser='$uid' AND awarded='1'";
+	$r = $wpdb->get_results($s);
+	$i = 0; $s = 0;
+		
+	if(count($r) == 0)	return __('(No rating)','ProjectTheme');
+	else
+	foreach($r as $row) // = mysql_fetch_object($r))
+	{
+		$i++;
+		$s = $s + $row->grade;
+			
+	}
+	
+	$rating = round(($s/$i)/2, 0);
+	$rating2 = round(($s/$i)/2, 1);
+		
+
+	return ProjectTheme_get_project_stars($rating)."<br/>(".$rating2 ."/5) ". sprintf(__("on %s rating(s)","ProjectTheme"), $i);
+}
+
+
+
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function
@@ -4512,8 +4781,201 @@ function projectTheme_get_post($arr = '')
 *	ProjectTheme (c) sitemile.com - function
 *
 **************************************************************/
+function projectTheme_get_post_main_function ( $arr = '')
+{
+	$pid = get_the_ID();
+	global $post;
+	
+	$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+	$sec 				= $ending - current_time('timestamp',0);
+	$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+	$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+	$featured 			= get_post_meta(get_the_ID(), 'featured', true);
+	$private_bids 		= get_post_meta(get_the_ID(), 'private_bids', true);
+	$paid		 		= get_post_meta(get_the_ID(), 'paid', true);
+	
+	$budget = ProjectTheme_get_budget_name_string_fromID(get_post_meta($pid,'budgets',true));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$days_left = ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) : __("Expired/Closed",'ProjectTheme'));
+	$posted = get_the_time("jS F Y");
+	$auth = get_userdata($post->post_author);
+	$hide_project_p = get_post_meta($post->ID, 'hide_project', true);		 
+	
+	?>
+    	
+        <div class="post" id="post-<?php the_ID(); ?>">
+    		<div class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+            
+             <?php
+				
+				if($featured == "1")
+				echo '<span class="featured_thing_project2">'.__('Featured Project','ProjectTheme').'</span>';
+				
+				if($hide_project_p == "1")
+				echo '<span class="private_thing_project2">'.__('Private Project','ProjectTheme').'</span>';
+				
+				?>
+            
+            </div>
+    		<div class="post-main-details">
+            	<ul>
+                	<li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/wallet_icon2.png" alt="project budget" width="16" height="16" /></p>
+                        <h4><?php echo $budget ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/prop_icon.png" alt="project proposals" width="16" height="16" /></p>
+                        <h4><?php echo $proposals ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/cal_icon.png" alt="project calendar" width="16" height="16" /></p>
+                        <h4><?php echo $posted ?></h4>
+                    </li>
+                    
+                    <li class="last">
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/clock_icon.png" alt="project clock" width="16" height="16" /></p>
+                        <h4><?php echo $days_left ?></h4>
+                    </li>
+                    
+                </ul>
+            </div> <!-- end post-main-details -->
+            
+            <div class="excerpt-thing">
+            	<?php $tg = strip_tags(get_the_excerpt()); echo substr($tg, 0, -10);  ?>
+            </div> <!-- end excerpt-thing -->
+            
+            
+            <div class="user-poster-thing">
+            	<div class="user-avatar-me">
+                	<img src="<?php echo ProjectTheme_get_avatar($post->post_author,25, 25) ?>" alt="avatar-user" class="acc_m1" width="25" height="25" />
+                </div>
+                
+                <div class="user-avatar-me fun-time">
+                <div class="post-main-details">
+            	<ul>
+                	<li><a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php echo $auth->user_login ?></a></li>
+                	<li><?php echo ProjectTheme_project_get_star_rating($post->post_author); ?></li>
+                    <li class="last"><a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a></li>
+                </ul>
+                
+                </div>
+                </div>
+                
+            </div> <!-- end user-poster-thing -->
+        
+        </div>
+        
+    <?php	
+	
+}
 
-function projectTheme_get_post_main_function( $arr = '')
+
+if(!function_exists('projectTheme_get_post_my_proposal'))
+{
+function projectTheme_get_post_my_proposal ( $arr = '')
+{
+	$pid = get_the_ID();
+	global $post, $current_user;
+	get_currentuserinfo();
+	
+	$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+	$sec 				= $ending - current_time('timestamp',0);
+	$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+	$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+	$featured 			= get_post_meta(get_the_ID(), 'featured', true);
+	$private_bids 		= get_post_meta(get_the_ID(), 'private_bids', true);
+	$paid		 		= get_post_meta(get_the_ID(), 'paid', true);
+	
+	$budget = ProjectTheme_get_budget_name_string_fromID(get_post_meta($pid,'budgets',true));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$days_left = ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) : __("Expired/Closed",'ProjectTheme'));
+	$posted = get_the_time("jS F Y");
+	$auth = get_userdata($post->post_author);
+	$hide_project_p = get_post_meta($post->ID, 'hide_project', true);		 
+	
+	?>
+    	
+        <div class="post" id="post-<?php the_ID(); ?>">
+    		<div class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+            
+             <?php
+				
+				if($featured == "1")
+				echo '<span class="featured_thing_project2">'.__('Featured Project','ProjectTheme').'</span>';
+				
+				if($hide_project_p == "1")
+				echo '<span class="private_thing_project2">'.__('Private Project','ProjectTheme').'</span>';
+				
+				?>
+            
+            </div>
+    		<div class="post-main-details">
+            	<ul>
+                	<li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/wallet_icon2.png" alt="project budget" width="16" height="16" /></p>
+                        <h4><?php echo $budget ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/prop_icon.png" alt="project proposals" width="16" height="16" /></p>
+                        <h4><?php echo $proposals ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/cal_icon.png" alt="project calendar" width="16" height="16" /></p>
+                        <h4><?php echo $posted ?></h4>
+                    </li>
+                    
+                    <li class="last">
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/clock_icon.png" alt="project clock" width="16" height="16" /></p>
+                        <h4><?php echo $days_left ?></h4>
+                    </li>
+                    
+                </ul>
+            </div> <!-- end post-main-details -->
+            <?php
+				
+				$my_bid = projectTheme_get_bid_by_uid($pid, $current_user->ID); 
+				$my_bid = projecttheme_get_show_price($my_bid->bid);
+			
+			?>
+            <div class="excerpt-thing">
+            	<div class="my-bid-thing-me"><?php printf(__('My Bid Amount: %s','ProjectTheme'), $my_bid) ?></div>
+                <div class="my-bid-thing-average"><?php printf(__('Average Bid: %s','ProjectTheme'), ProjectTheme_average_bid($pid)) ?></div>
+            </div> <!-- end excerpt-thing -->
+            
+            
+            <div class="user-poster-thing">
+            	<div class="user-avatar-me">
+                	<img src="<?php echo ProjectTheme_get_avatar($post->post_author,25, 25) ?>" alt="avatar-user" class="acc_m1" width="25" height="25" />
+                </div>
+                
+                <div class="user-avatar-me fun-time">
+                <div class="post-main-details">
+            	<ul>
+                	<li><a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php echo $auth->user_login ?></a></li>
+                	<li><?php echo ProjectTheme_project_get_star_rating($post->post_author); ?></li>
+                    <li class="last"><a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a></li>
+                </ul>
+                
+                </div>
+                </div>
+                
+            </div> <!-- end user-poster-thing -->
+        
+        </div>
+        
+    <?php	
+	
+}
+}
+
+
+function projectTheme_get_post_main_function2( $arr = '')
 {
 
 			if($arr[0] == "winner") 	$pay_this_me = 1;
@@ -4729,6 +5191,68 @@ function projectTheme_get_post_main_function( $arr = '')
 *	ProjectTheme (c) sitemile.com - function
 *
 **************************************************************/
+function projecttheme_generate_thumb2($img_ID, $width, $height, $cut = true)
+{
+
+	return projecttheme_wp_get_attachment_image($img_ID, array($width, $height ));
+}
+
+function projecttheme_get_cat_pic_attached($cat_id)
+{
+	$args = array(
+	'order'          => 'ASC',
+	'post_type'      => 'attachment',
+	'meta_key'		 => 'category_image',
+	'meta_value'	 => $cat_id,
+	'numberposts'    => -1,
+	'post_status'    => null,
+	);
+	$attachments = get_posts($args);
+	if(count($attachments) > 0)
+	{
+		return 	$attachments[0]->ID;	
+	}	
+		
+	return false;
+}
+
+function projecttheme_generate_thumb3($img_ID, $size_string)
+{
+	return projectTheme_wp_get_attachment_image($img_ID, $size_string);
+}
+
+function projectTheme_wp_get_attachment_image($attachment_id, $size = 'thumbnail', $icon = false, $attr = '') {
+
+	$html = '';
+	$image = wp_get_attachment_image_src($attachment_id, $size, $icon);
+	if ( $image ) {
+		list($src, $width, $height) = $image;
+		$hwstring = image_hwstring($width, $height);
+		if ( is_array($size) )
+			$size = join('x', $size);
+		$attachment =& get_post($attachment_id);
+		$default_attr = array(
+			'src'	=> $src,
+			'class'	=> "attachment-$size",
+			'alt'	=> trim(strip_tags( get_post_meta($attachment_id, '_wp_attachment_image_alt', true) )), // Use Alt field first
+			'title'	=> trim(strip_tags( $attachment->post_title )),
+		);
+		if ( empty($default_attr['alt']) )
+			$default_attr['alt'] = trim(strip_tags( $attachment->post_excerpt )); // If not, Use the Caption
+		if ( empty($default_attr['alt']) )
+			$default_attr['alt'] = trim(strip_tags( $attachment->post_title )); // Finally, use the title
+
+		$attr = wp_parse_args($attr, $default_attr);
+		$attr = apply_filters( 'wp_get_attachment_image_attributes', $attr, $attachment );
+		$attr = array_map( 'esc_attr', $attr );
+		$html = rtrim("<img $hwstring");
+		 
+		$html = $attr['src'];
+	}
+
+	return $html;
+}
+
 
 function projectTheme_get_post_awaiting_payment()
 {
@@ -4736,6 +5260,113 @@ function projectTheme_get_post_awaiting_payment()
 }
 
 function projectTheme_get_post_awaiting_payment_function()
+{
+	
+	$pid = get_the_ID();
+	global $post, $current_user;
+	get_currentuserinfo();
+	
+	$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+	$sec 				= $ending - current_time('timestamp',0);
+	$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+	$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+	$featured 			= get_post_meta(get_the_ID(), 'featured', true);
+	$private_bids 		= get_post_meta(get_the_ID(), 'private_bids', true);
+	$paid		 		= get_post_meta(get_the_ID(), 'paid', true);
+	
+	$budget = ProjectTheme_get_budget_name_string_fromID(get_post_meta($pid,'budgets',true));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+ 
+	$posted = get_the_time("jS M Y");
+	$auth = get_userdata($post->post_author);
+	$hide_project_p = get_post_meta($post->ID, 'hide_project', true);		 
+	
+ 
+								
+	$tm_d = get_post_meta(get_the_ID(), 'expected_delivery', true);							
+	$due_date = sprintf(__('Delivery was On: %s','ProjectTheme'), date_i18n('d-M-Y g:iA', $tm_d));
+	
+	//----------------------
+ 				
+	$bid = projectTheme_get_winner_bid(get_the_ID());
+	$my_bid = ProjectTheme_get_show_price($bid->bid);
+				 
+	
+	?>
+    	
+        <div class="post" id="post-<?php the_ID(); ?>">
+    		<div class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+            
+             <?php
+				
+				if($featured == "1")
+				echo '<span class="featured_thing_project2">'.__('Featured Project','ProjectTheme').'</span>';
+				
+				if($hide_project_p == "1")
+				echo '<span class="private_thing_project2">'.__('Private Project','ProjectTheme').'</span>';
+				
+				?>
+            
+            </div>
+    		<div class="post-main-details">
+            	<ul>
+                	<li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/wallet_icon2.png" alt="project budget" width="16" height="16" /></p>
+                        <h4><?php echo sprintf(__('My Bid: %s','ProjectTheme'), $my_bid) ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/prop_icon.png" alt="project proposals" width="16" height="16" /></p>
+                        <h4><?php echo $proposals ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/cal_icon.png" alt="project calendar" width="16" height="16" /></p>
+                        <h4><?php echo $posted ?></h4>
+                    </li>
+                    
+                    <li class="last">
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/clock_icon.png" alt="project clock" width="16" height="16" /></p>
+                        <h4><?php echo $due_date ?></h4>
+                    </li>
+                    
+                </ul>
+            </div> <!-- end post-main-details -->
+          
+            <div class="excerpt-thing">
+            	<div class="my-deliv_1"><?php _e('Waiting for the service contractor to submit payment.','ProjectTheme') ?></div>
+                <div class="my-deliv_2"><?php do_action('ProjectTheme_awaiting_payments_under_posted_in', get_the_ID()); ?> 
+                </div>
+            </div> <!-- end excerpt-thing -->
+            
+            
+            <div class="user-poster-thing">
+            	<div class="user-avatar-me">
+                	<img src="<?php echo ProjectTheme_get_avatar($post->post_author,25, 25) ?>" alt="avatar-user" class="acc_m1" width="25" height="25" />
+                </div>
+                
+                <div class="user-avatar-me fun-time">
+                <div class="post-main-details">
+            	<ul>
+                	<li><a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php echo $auth->user_login ?></a></li>
+                	<li><?php echo ProjectTheme_project_get_star_rating($post->post_author); ?></li>
+                    <li class="last"><a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a></li>
+                </ul>
+                
+                </div>
+                </div>
+                
+            </div> <!-- end user-poster-thing -->
+        
+        </div>
+        
+        <?php		
+	
+}
+
+
+function projectTheme_get_post_awaiting_payment_function2()
 {
 			$ending 			= get_post_meta(get_the_ID(), 'ending', true);
 			$sec 				= $ending - current_time('timestamp',0);
@@ -5082,6 +5713,132 @@ function projectTheme_get_post_outstanding_project()
 }
 
 function projectTheme_get_post_outstanding_project_function()
+{
+		$pid = get_the_ID();
+	global $post, $current_user;
+	get_currentuserinfo();
+	
+	$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+	$sec 				= $ending - current_time('timestamp',0);
+	$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+	$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+	$featured 			= get_post_meta(get_the_ID(), 'featured', true);
+	$private_bids 		= get_post_meta(get_the_ID(), 'private_bids', true);
+	$paid		 		= get_post_meta(get_the_ID(), 'paid', true);
+	
+	$budget = ProjectTheme_get_budget_name_string_fromID(get_post_meta($pid,'budgets',true));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+	$proposals = sprintf(__('%s proposals','ProjectTheme'), projectTheme_number_of_bid($pid));
+ 
+	$posted = get_the_time("jS F Y");
+	$auth = get_userdata($post->post_author);
+	$hide_project_p = get_post_meta($post->ID, 'hide_project', true);		 
+	
+ 
+								
+	$tm_d = get_post_meta(get_the_ID(), 'expected_delivery', true);							
+	$due_date = sprintf(__('Due Date: %s','ProjectTheme'), date_i18n('d-M-Y g:iA', $tm_d));
+	
+	//----------------------
+	  	
+				$my_bid = projectTheme_get_bid_by_uid($pid, $current_user->ID); 
+				$my_bid = projecttheme_get_show_price($my_bid->bid);
+			
+		 
+	
+	?>
+    	
+        <div class="post" id="post-<?php the_ID(); ?>">
+    		<div class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+            
+             <?php
+				
+				if($featured == "1")
+				echo '<span class="featured_thing_project2">'.__('Featured Project','ProjectTheme').'</span>';
+				
+				if($hide_project_p == "1")
+				echo '<span class="private_thing_project2">'.__('Private Project','ProjectTheme').'</span>';
+				
+				?>
+            
+            </div>
+    		<div class="post-main-details">
+            	<ul>
+                	<li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/wallet_icon2.png" alt="project budget" width="16" height="16" /></p>
+                        <h4><?php echo sprintf(__('My Bid: %s','ProjectTheme'), $my_bid) ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/prop_icon.png" alt="project proposals" width="16" height="16" /></p>
+                        <h4><?php echo $proposals ?></h4>
+                    </li>
+                    
+                    <li>
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/cal_icon.png" alt="project calendar" width="16" height="16" /></p>
+                        <h4><?php echo $posted ?></h4>
+                    </li>
+                    
+                    <li class="last">
+                    	<p><img src="<?php bloginfo('template_url') ?>/images/clock_icon.png" alt="project clock" width="16" height="16" /></p>
+                        <h4><?php echo $due_date ?></h4>
+                    </li>
+                    
+                </ul>
+            </div> <!-- end post-main-details -->
+          
+            <div class="excerpt-thing">
+            	<div class="my-deliv_1"><?php _e('After finishing the work on the project, you can mark it as <em><strong>delivered</strong></em>','ProjectTheme') ?></div>
+                <div class="my-deliv_2">
+					 	<?php do_action('ProjectTheme_outstanding_proj_buttons'); ?>    
+		
+						<?php if($mark_coder_delivered != "1"): ?>
+           
+                            <a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>" 
+                            class="green_btn"><?php echo __("Mark Delivered", "ProjectTheme");?></a>
+                       
+                       <?php else: 
+                       
+                            $dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
+                            $dv = date_i18n('d-M-Y H:i:s',$dv);
+                       
+                       ?>
+                       
+                       <span class="zbk_zbk">
+                       <?php printf(__("Awaiting buyer response.<br/>Marked as delivered on: %s","ProjectTheme"), $dv); ?>
+                       </span>
+                       
+                       <?php endif; ?>
+                
+                </div>
+            </div> <!-- end excerpt-thing -->
+            
+            
+            <div class="user-poster-thing">
+            	<div class="user-avatar-me">
+                	<img src="<?php echo ProjectTheme_get_avatar($post->post_author,25, 25) ?>" alt="avatar-user" class="acc_m1" width="25" height="25" />
+                </div>
+                
+                <div class="user-avatar-me fun-time">
+                <div class="post-main-details">
+            	<ul>
+                	<li><a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php echo $auth->user_login ?></a></li>
+                	<li><?php echo ProjectTheme_project_get_star_rating($post->post_author); ?></li>
+                    <li class="last"><a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a></li>
+                </ul>
+                
+                </div>
+                </div>
+                
+            </div> <!-- end user-poster-thing -->
+        
+        </div>
+        
+        <?php	
+	
+}
+
+function projectTheme_get_post_outstanding_project_function2()
 {
 	
 			$ending 			= get_post_meta(get_the_ID(), 'ending', true);
@@ -6778,6 +7535,7 @@ function ProjectTheme_get_categories_slug($taxo, $selected = "", $include_empty_
 *
 *	ProjectTheme (c) sitemile.com - function
 *
+
 **************************************************************/
 function ProjectTheme_get_categories($taxo, $selected = "", $include_empty_option = "", $ccc = "")
 {

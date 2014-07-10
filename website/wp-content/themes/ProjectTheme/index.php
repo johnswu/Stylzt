@@ -14,7 +14,16 @@
 	get_header();
 
 /**************************************************/ 
+?>
 
+<?php projecttheme_search_box_thing() ?>
+
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+
+<?php
 	
 		$ProjectTheme_adv_code_home_above_content = stripslashes(get_option('ProjectTheme_adv_code_home_above_content'));
 		if(!empty($ProjectTheme_adv_code_home_above_content)):
@@ -98,6 +107,10 @@
 		
 	
 	?>
+    
+    </div>
+    </div>
+    </div>
     
 <?php
 

@@ -33,20 +33,7 @@
 				jQuery("a[rel='image_gal2']").colorbox();
 				
 				
-				jQuery('.post_bid_btn_new').click( function () {
-					
-					var pid = jQuery(this).attr('rel');
-					jQuery.colorbox({href: "<?php bloginfo('siteurl'); ?>/?<?php echo $get_bidding_panel; ?>=" + pid });
-					return false;
-				});
-				
-				
-				jQuery('.message_brd_cls').click( function () {
-					
-					var pid = jQuery(this).attr('rel');
-					jQuery.colorbox({href: "<?php bloginfo('siteurl'); ?>/?get_message_board=" + pid });
-					return false;
-				});
+ 
 				
 				jQuery('.get_files').click( function () {
 					
@@ -267,11 +254,27 @@
 	
 	get_header();
 	global $post;
+?>
 
+     
+     
+
+
+<?php
 	$hide_project_p = get_post_meta($post->ID, 'hide_project', true);
 	
 	if($hide_project_p == "1" && !is_user_logged_in()):
 	?>
+    
+               <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"><?php echo $post->post_title; ?>     </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div>
+             
 	
     
     <div class="my_box3">
@@ -284,6 +287,9 @@
     </div>
     </div>   
     
+    
+    
+    </div></div></div>
     
     <?php
 	
@@ -298,23 +304,13 @@
 
 
 
-<div id="content">
 
-<?php 
-
-			if(function_exists('bcn_display'))
-		{
-		    echo '<div class="breadcrumb-wrap"><div class="padd10" style="padding-left:0">';	
-		    bcn_display();
-			echo '</div></div> ';
-		}
-
-?>	
-	
+ 
 	
 	
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<?php
+
+  <?php
 
 
 	$location   		= get_post_meta(get_the_ID(), "Location", true);
@@ -330,9 +326,52 @@
 
 	
 
-?>	
+?>	   
+                <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                        <div class="main-pg-title">
+                            <div class="mm_inn"><?php the_title() ?> 
+                <?php
+				
+				if($featured == "1")
+				echo '<span class="featured_thing_project">'.__('Featured Project','ProjectTheme').'</span>';
+				
+				if($hide_project_p == "1")
+				echo '<span class="private_thing_project">'.__('Private Project','ProjectTheme').'</span>';
+				
+				?>
+                
+                </div>      
+                  	    
+                        
+                        <?php 
+
+		if(function_exists('bcn_display'))
+		{
+		    echo '<div class="my_box3_breadcrumb breadcrumb-wrap">';	
+		    bcn_display();
+			echo '</div>';
+		}
+
+?>
+                                
+                                        
+                        </div>
+                    
+                   		<?php  projectTheme_get_the_search_box() ?>            
+                    
+    </div>
+</div>
+           
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
 
 
+
+<div id="content">
+
+ 
 <?php
 
 	if(isset($_POST['report_this']) and is_user_logged_in())
@@ -529,70 +568,9 @@
 
 
 
- 			<div class="my_box3">
-            
-            
-            	<div class="box_title ad_page_title"><?php the_title() ?> 
-                <?php
-				
-				if($featured == "1")
-				echo '<span class="featured_thing_project">'.__('Featured Project','ProjectTheme').'</span>';
-				
-				if($hide_project_p == "1")
-				echo '<span class="private_thing_project">'.__('Private Project','ProjectTheme').'</span>';
-				
-				?>
-                
-                </div>
-                <div class="box_content">
-				<?php
-				
-					$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
-					if($ProjectTheme_enable_images_in_projects == "yes"):
-				
-				?>
-                
-                
-				<div class="prj-page-image-holder">
-                <?php if($featured == "1"): ?>
-                <div class="featured-two"></div>
-                <?php endif; ?>
-                
-                 <?php if($private_bids == 'yes' or $private_bids == '1' or $private_bids == 1): ?>
-                <div class="sealed-two"></div>
-                <?php endif; ?>
-                    
-						<img class="img_class" src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(), 250, 170); ?>" id="main_pics_total" alt="<?php the_title(); ?>" />
-						
-						<?php
-				
-				$arr = ProjectTheme_get_post_images(get_the_ID(), 4);
-				
-				if($arr)
-				{
-					
-				
-				echo '<ul class="image-gallery" style="padding-top:10px">';
-				foreach($arr as $image)
-				{
-					echo '<li><a href="'.ProjectTheme_generate_thumb($image, -1,600).'" rel="image_gal1"><img 
-					src="'.ProjectTheme_generate_thumb($image, 50,50).'" class="img_class" /></a></li>';
-				}
-				echo '</ul>';
-				
-				
-				}
-				//else { echo __('No images.') ;}
-				
-				?>
-						
-					</div> 
-					<?php else: ?>
-                    
-                    
-                    <style> .project-page-details-holder { width:100% } </style>
-					
-					<?php endif; ?>
+ 			<div class="project-signle-content-main">
+ 
+			 
 				
                 <?php
 				
@@ -632,42 +610,91 @@
 
                
                
-               	<div class="bid_panel">
+               	<div class="bid_panel_front">
                 <div class="padd10">
-                <form method="post">
+                
+                <div class="small_buttons_div_left">
                 	<ul class="project-details">
 							<li>
+                            	<img src="<?php bloginfo('template_url') ?>/images/wallet_icon2.png" width="18" height="18" alt="budget" />
 								<h3><?php echo __("Project Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php echo ProjectTheme_get_budget_name_string_fromID(get_post_meta(get_the_ID(), 'budgets', true)); ?></p>
 							</li>
                             
                             
                             <li>
+                            	<img src="<?php bloginfo('template_url') ?>/images/coins_icon.png" width="18" height="18" alt="coins" />
 								<h3><?php echo __("Average Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php echo ProjectTheme_average_bid(get_the_ID()); ?></p>
 							</li>
                             
+                            
+                         
+                            
+            			<?php
+		
+						$ProjectTheme_enable_project_location = get_option('ProjectTheme_enable_project_location');
+						if($ProjectTheme_enable_project_location == "yes"):
+		
+						?>   
                             <li>
-								<h3>&nbsp;</h3>
-								<p>&nbsp;</p>
+								<img src="<?php echo get_bloginfo('template_url'); ?>/images/loc_icon.png" width="18" height="18" alt="location" /> 
+								<h3><?php echo __("Location",'ProjectTheme'); ?>:</h3>
+								<p><?php echo get_the_term_list( get_the_ID(), 'project_location', '', ', ', '' ); ?></p>
+							</li>
+                          
+                        <?php endif; ?>  
+                          
+                             
+                             <li>
+								<img src="<?php echo get_bloginfo('template_url'); ?>/images/cate_icon.png" width="18" height="18" alt="category" /> 
+								<h3><?php echo __("Category",'ProjectTheme'); ?>:</h3>
+								<p><?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?></p>
+							</li>
+                               
+          
+							<li>
+								<img src="<?php echo get_bloginfo('template_url'); ?>/images/cal_icon.png" width="18" height="18" alt="calendar" /> 
+								<h3><?php echo __("Posted on",'ProjectTheme'); ?>:</h3>
+								<p><?php the_time("jS F Y g:i A"); ?></p>
+							</li>
+                          
+                          <li>
+								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock_icon.png" width="18" height="18" alt="clock" /> 
+								<h3><?php echo __("Time Left",'ProjectTheme'); ?>:</h3>
+								<p><?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) 
+								: __("Expired/Closed",'ProjectTheme')); ?></p>
 							</li>
                             
-                            <?php
-								
-								global $current_user;
-								get_currentuserinfo();
-								$uid = $current_user->ID;
-								
-								if($closed == "0" && ProjectTheme_is_user_provider($uid) == true):
-							
-							?>
-                            <li>
-								<a href="#" class="post_bid_btn_new" rel="<?php the_ID(); ?>"><?php _e('Place a bid on this project','ProjectTheme'); ?></a>
+                          
+                          <li>
+                            	<img src="<?php bloginfo('template_url') ?>/images/prop_icon.png" width="18" height="18" alt="proposals" />
+								<h3><?php echo __("Proposals",'ProjectTheme'); ?>:</h3>
+								<p><?php echo projectTheme_number_of_bid(get_the_ID()); ?></p>
 							</li>
-                          	<?php endif; ?>
                             
                 	</ul>
-                   </form>
+                    
+                    <div class="clear10"></div>
+                    
+                    </div>
+                    <!-- ########### -->
+                    
+                    <div class="small_buttons_div">
+                    	<ul id="these-special-buttons">
+                        	<li><a href="<?php
+                            	
+								$post = get_post(get_the_ID());
+								if($current_user->ID == $post->post_author)
+								echo '#';
+								else
+								echo ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$post->post_author.'&pid='.get_the_ID());
+							
+							?>" class="project-owner-contact"><?php _e('Contact Project Owner','ProjectTheme') ?></a></li>
+                            <li><a href="#" class="message_brd_cls project-owner-contact"><?php _e('Project Message Board','ProjectTheme') ?></a></li>
+                        </ul>
+                    </div>
+                  
                 </div>
                 </div>
                
@@ -703,58 +730,12 @@
                 </div>
                 
                 <?php endif; ?>
-                <div class="clear10"></div>
-                
-						<ul class="project-details">
-				     
-                             <?php
-		
-			$ProjectTheme_enable_project_location = get_option('ProjectTheme_enable_project_location');
-			if($ProjectTheme_enable_project_location == "yes"):
-		
-		?>               
-							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/location.png" width="20" height="20" /> 
-								<h3><?php echo __("Location",'ProjectTheme'); ?>:</h3>
-								<p><?php echo get_the_term_list( get_the_ID(), 'project_location', '', ', ', '' ); ?></p>
-							</li>
-				
-                <?php endif; ?>
-                			
-							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/cal.png" width="20" height="20" /> 
-								<h3><?php echo __("Posted on",'ProjectTheme'); ?>:</h3>
-								<p><?php the_time("jS F Y g:i A"); ?></p>
-							</li>
-							
-							
-							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock.png" width="20" height="20" /> 
-								<h3><?php echo __("Time Left",'ProjectTheme'); ?>:</h3>
-								<p><?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) 
-								: __("Expired/Closed",'ProjectTheme')); ?></p>
-							</li>
-							
-                             <?php
-							
-								if($closed == "0"):
-							
-							?>
-                            <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/msg.gif" width="20" height="20" /> 
-								<h3><?php echo __("Message Board",'ProjectTheme'); ?>:</h3>
-								<p><a href="#" class="message_brd_cls" rel="<?php the_ID(); ?>"><?php _e('Show Project Message Board','ProjectTheme'); ?></a></p>
-							</li>
-							<?php endif; ?>
-                            
-						</ul>
-						
+               
 						
 												
 					</div>
 				
-				
-				</div>
+				 
 			</div>
 			
 			
@@ -765,8 +746,8 @@
 			<div class="my_box3">
            
             
-            	<div class="box_title"><?php echo __("Description",'ProjectTheme'); ?></div>
-                <div class="box_content">
+            	<div class="box_title"><?php echo __("Project Description",'ProjectTheme'); ?></div>
+                <div class="box_content" id="project-single-page-content">
 					<?php the_content(); 
 					
 					do_action('ProjectTheme_after_description_in_single_proj_page');
@@ -788,9 +769,9 @@
 			<div class="my_box3">
             
             
-            	<div class="box_title"><?php echo __("Posted Bids",'ProjectTheme'); ?> <?php
+            	<div class="box_title"><?php echo __("Proposals",'ProjectTheme'); ?> <?php
 				
-				if($private_bids == 'yes' or $private_bids == '1' or $private_bids == 1) _e('[project has private bids]','ProjectTheme');
+				if($private_bids == 'yes' or $private_bids == '1' or $private_bids == 1) _e('[project has private proposals]','ProjectTheme');
 				
 				 ?></div>
                 <div class="box_content">
@@ -824,7 +805,7 @@
 						echo '<table id="my_bids" width="100%">';
 						echo '<thead><tr>';
 							echo '<th>'.__('Username','ProjectTheme').'</th>';
-							echo '<th>'.__('Bid Amount','ProjectTheme').'</th>';
+							echo '<th>'.__('Bid','ProjectTheme').'</th>';
 							echo '<th>'.__('Date Made','ProjectTheme').'</th>';
 							echo '<th>'.__('Days to Complete','ProjectTheme').'</th>';
 							if ($owner == 1): 
@@ -902,7 +883,7 @@
 					
 					echo '</tbody></table>';
 				}
-				else _e("No bids placed yet.",'ProjectTheme');
+				else _e("No proposals placed yet.",'ProjectTheme');
 				?>	
 				</div>
 			</div>
@@ -1072,18 +1053,54 @@ codeAddress("<?php
 
 	
 
-	
+	 
 	?>
+    <li class="widget-container widget_text" id="ad-other-details">
+		<h3 class="widget-title"><?php _e("Apply for this Project",'ProjectTheme'); ?></h3>
+		<p>
+        <?php _e('You can use the button below to apply and submit a proposal for this project.','ProjectTheme') ?>
+        </p>
+        
+        
+       <p id='proposal_btn_p'>
+         <?php
+								
+								global $current_user;
+								get_currentuserinfo();
+								$uid = $current_user->ID;
+								
+								if($closed == "0" && ProjectTheme_is_user_provider($uid) == true):
+							
+							?>
+                            
+								<a href="#" class="post_bid_btn_new" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a>
+							 
+                          	<?php endif; ?>
+       
+       </p> 
+    </li>
+    
+    
     
     	<li class="widget-container widget_text" id="ad-other-details">
-		<h3 class="widget-title"><?php _e("Seller Details",'ProjectTheme'); ?></h3>
-		<p>
+		<h3 class="widget-title"><?php _e("Project Posted By",'ProjectTheme'); ?></h3>
+		
+        <div class="avatar-op-wrap">
+        	
+            <div class="avatar-op-inner"><img width="60" height="60" border="0" class="project-single-avatar" src="<?php echo ProjectTheme_get_avatar($post->post_author, 60, 60); ?>" /> </div>
+        	<div class="avatar-op-list">
+            		<ul>
+                    	<li><a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a></li>
+                    	<li><?php echo ProjectTheme_project_get_star_rating2($post->post_author); ?></li>
+                        <li><a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a></li>
+                    </ul>
+            </div>
+            
+        </div>
         
+        <p>
         <ul class="other-dets other-dets2">
-				<li>
-					<h3><?php _e("Posted by",'ProjectTheme');?>:</h3>
-					<p><a href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a></p> 
-				</li>
+				 
                 <?php
 					
 					$has_created 	= projectTheme_get_total_number_of_created_Projects($post->post_author);
@@ -1092,14 +1109,8 @@ codeAddress("<?php
 				
 				?>
                 
-                <li>
-					<h3><?php _e("Feedback",'ProjectTheme');?>:</h3>
-					<p id='my_stars_rating_done'><?php echo ProjectTheme_project_get_star_rating($post->post_author); ?></p> 
-				</li>
-                 <li>
-                 <a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php _e('View User Feedback','ProjectTheme'); ?></a>
-			 	
-                </li>
+                 
+                 
                 <li>
 					<h3><?php _e("Has created:",'ProjectTheme');?></h3>
 					<p><?php echo sprintf(__("%s project(s)",'ProjectTheme'), $has_created); ?></p> 
@@ -1184,18 +1195,8 @@ codeAddress("<?php
 		<h3 class="widget-title"><?php _e("Other Details",'ProjectTheme'); ?></h3>
 		<p>
 			<ul class="other-dets other-dets2">
-				<li>
-				<img src="<?php echo get_bloginfo('template_url'); ?>/images/posted.png" width="15" height="15" /> 	
-					
-					<h3><?php _e("Bids",'ProjectTheme');?>:</h3>
-					<p><?php echo projectTheme_number_of_bid(get_the_ID()); ?></p> 
-				</li> 
-				
-				<li>
-					<img src="<?php echo get_bloginfo('template_url'); ?>/images/category.png" width="15" height="15" /> 
-					<h3><?php _e("Category",'ProjectTheme');?>:</h3>
-					<p><?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?></p> 
-				</li>
+	 
+		 
 				<?php
 		
 			$ProjectTheme_enable_project_location = get_option('ProjectTheme_enable_project_location');
@@ -1285,6 +1286,11 @@ codeAddress("<?php
 
 
 //===============================================================================================
+?>
 
+    
+    </div></div></div>
+
+<?php
 	get_footer();
 ?>

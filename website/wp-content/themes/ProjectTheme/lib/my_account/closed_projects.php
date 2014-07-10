@@ -18,14 +18,13 @@ function ProjectTheme_my_account_closed_projects_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
+    	<div id="content" class="account-main-area">
         
         
                 
                 <div class="my_box3 border_bottom_0">
             	
-            
-            	<div class="box_title"><?php _e("My Closed Projects",'ProjectTheme'); ?></div>
+             
                 <div class="box_content">    
 				
                 
@@ -47,7 +46,7 @@ function ProjectTheme_my_account_closed_projects_area_function()
 				
 				 else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("There are no closed projects yet.",'ProjectTheme');
 				
 				endif;
 				

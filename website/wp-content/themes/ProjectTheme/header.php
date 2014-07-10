@@ -81,7 +81,7 @@
 	 
 	 
 	 ?>
-	
+	 
      <script type="text/javascript">
 		
 		var $ = jQuery;
@@ -143,7 +143,11 @@
 	
 	</script>
     
-
+	
+    <!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url') ?>/css/all-ie.css" />
+    <![endif]-->
+    
     <?php do_action('ProjectTheme_before_head_tag_closes'); ?>
 	</head>
 	<body <?php body_class(); ?> >
@@ -267,21 +271,38 @@
 			
 			do_action("ProjectTheme_content_before_main_menu");
 			
+			if(projecttheme_is_home()): 
 		?>
         
-        <!-- Responsive Menu -->
+        <!-- head scr -->
+        
+        <div class="home_blur">
+        <div class="main_area_homepg">
+       		<div class="main_tagLine"><?php _e('Find Local Freelancers. Get your project done.','ProjectTheme') ?></div>
+            <div class="sub_tagLine"><?php _e('You can start by posting a chore you need done or register to get your job.','ProjectTheme') ?></div>
+       	 	<div class="search_box_main"><input type="text" placeholder="What service do you need? (e.g. website design)" id="findService" name="search_keyword"></div>
+        	<div class="buttons_box_main">
+            	<ul class="regular_ul">
+                	<li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php _e('Post Your Project','ProjectTheme') ?></a></li>
+                	<li><a href="<?php bloginfo('siteurl') ?>/wp-login.php?action=register"><?php _e("Join Us. It's Free", 'ProjectTheme' ) ?></a></li>
+                </ul>
+            
+            </div>
+        
+        </div>
+       	</div>
         
         
         
-        
-        
-        <!-- END Responsive Menu -->
+        <!-- END head scr -->
         
         <?php
+		
+		endif;
 			
 			
 			$ProjectTheme_show_blue_menu = get_option('ProjectTheme_show_blue_menu');
-			if($ProjectTheme_show_blue_menu == 'yes'):
+			if($ProjectTheme_show_blue_menu == 'yes' && !projecttheme_is_home()):
 		?>
         
         <div class="main_menu_menu_wrap">
@@ -459,86 +480,8 @@
 		?>
             
             <!-- end main menu -->
-            
-            <script>
-			
-			jQuery(function(){
-
-				jQuery("ul.dropdown li").hover(function(){
-				
-					jQuery(this).addClass("hover");
-					jQuery('ul:first',this).css('visibility', 'visible');
-				
-				}, function(){
-				
-					jQuery(this).removeClass("hover");
-					jQuery('ul:first',this).css('visibility', 'hidden');
-				
-				});
-				
-				jQuery("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
-			
-			});
-			
-			
-			</script>
-            
-			
-			<div class="middle-header-bg">
-				<div class="middle-header wrapper">
-						
-					<div class="near_search_links">
-                    	 <ul class="dropdown">
-        					<li><a href="#" class="main-browse-by-cat"><?php _e('Browse By Category','ProjectTheme') ?></a>
-                        	<?php
-							
-								$terms_cats = get_terms('project_cat','hide_empty=false');
-								if(count($terms_cats) > 0):
-							?>	
-                                <ul class="sub_menu">
-                                		<?php
-                                        
-											foreach($terms_cats as $ct)
-											{
-												echo '<li><a href="'.get_term_link($ct->slug, 'project_cat').'">'.$ct->name.'</a></li>';	
-											}
-										
-										?>
-                                </ul>      
-                                               
-                            <?php endif; ?>       
-                        	</li>	
-                    	</ul>
-                    </div>	 
-                     
-	       
-        <div class="my_placeholder_4_suggest">
-        <div id="suggest" >
-                    <form method="get" action="<?php echo projectTheme_advanced_search_link(); ?>">
-						<input type="text" onfocus="this.value=''" id="big-search" name="term" autocomplete="off" onkeyup="suggest(this.value);" onblur="fill();"  value="<?php if(isset($_GET['term'])) echo $_GET['term']; 
-						else echo $default_search; ?>" />
-					
-				<?php	//echo sitemile_get_categories_slug("project_cat", $_GET["project_cat_cat"], 1, "big-search-select"); 
-				?>
+           
 		
-					
-					<input type="submit" id="big-search-submit" name="search_me" value="<?php _e("Start Search","ProjectTheme"); ?>" />
-					</form>
-                    
-                    <div class="suggestionsBox" id="suggestions" style="z-index:999;display: none;"> <img src="<?php echo get_bloginfo('template_url');?>/images/arrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
-        <div class="suggestionList" id="suggestionsList"> &nbsp; </div>
-      </div></div>
-                    
-
-                        
-                        <!-- ###### -->
-				</div>
-                </div>
-				
-			</div> <!-- middle-header-bg -->
-		
-			
-		</div>	
         
        
         
@@ -556,5 +499,4 @@
 		
 		?>
         
-        <div id="main_wrapper">
-		<div id="main" class="wrapper"><div class="padd10">
+        

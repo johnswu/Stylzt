@@ -14,12 +14,28 @@
 get_header();
 ?>
 
+             
+                <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"><?php printf(__("User Feedback - %s", 'ProjectTheme'), $username); ?>   </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+                
+
+
 
 	<div id="content">
     		<div class="my_box3">
             <div class="padd10">
             
-            	<div class="box_title"><?php _e("User Feedback",'ProjectTheme'); ?> - <?php echo $username; ?></div>
+            	 
             	<div class="box_content">	
                <!-- ####### -->
                 
@@ -114,6 +130,9 @@ get_header();
 	<?php dynamic_sidebar( 'other-page-area' ); ?>
 	</ul>
 </div>
+
+
+</div></div></div>
 
 <?php
 

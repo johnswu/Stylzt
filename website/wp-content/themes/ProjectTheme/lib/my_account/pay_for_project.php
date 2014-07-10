@@ -21,7 +21,7 @@ function ProjectTheme_my_account_pay4project_area_function()
 		$post = get_post($pid);
 		
 ?>
-    	<div id="content">
+    <div id="content" class="account-main-area">
         	
             <div class="my_box3 ">
             	<div class="padd10">

@@ -1,4 +1,4 @@
-<?php
+<div id="content" class="account-main-area"><?php
 /***************************************************************************
 *
 *	ProjectTheme - copyright (c) - sitemile.com
@@ -337,13 +337,29 @@
 	
 ?>
 
+             
+                <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"><?php printf(__("Edit Project", 'ProjectTheme')); ?>   </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
 
-	<div id="content" >
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+
+
+
+
+<div id="content" class="account-main-area">
         	
             <div class="my_box3">
             	<div class="padd10">
             
-            	<div class="box_title"><?php _e("Edit Project", "ProjectTheme"); ?></div>
+ 
                 <div class="box_content"> 
             	
                 
@@ -984,4 +1000,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
                 
 	<?php ProjectTheme_get_users_links(); ?>
 
+
+ </div> </div> </div>
+ 
 <?php get_footer(); ?>

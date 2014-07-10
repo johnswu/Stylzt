@@ -118,6 +118,7 @@ add_submenu_page("project_theme_mnu", __('Custom Fields','ProjectTheme'), '<img 
 add_submenu_page("project_theme_mnu", __('User Fields','ProjectTheme'), '<img src="'.get_bloginfo('template_url').'/images/input_icon.png" border="0" /> '.__('User Fields','ProjectTheme'),$capability, 'user-fields', 'projectTheme_custom_user_fields_scr');
 
 add_submenu_page("project_theme_mnu", __('Images Options','ProjectTheme'), '<img src="'.get_bloginfo('template_url').'/images/image_icon.png" border="0" /> '. __('Images Options','ProjectTheme'),$capability, 'images-settings', 'projectTheme_theme_images_settings');
+add_submenu_page("project_theme_mnu", __('Category Images','ProjectTheme'), '<img src="'.get_bloginfo('template_url').'/images/image_icon.png" border="0" /> '. __('Category Images','ProjectTheme'),$capability, 'PT_cat_img_', 'projectTheme_theme_cate_images_settings');
 
 add_submenu_page("project_theme_mnu", __('Advertising','ProjectTheme'), '<img src="'.get_bloginfo('template_url').'/images/adv_icon.png" border="0" /> '. __('Advertising','ProjectTheme'),$capability, 'adv-settings', 'projectTheme_advertise_settings');
 
@@ -166,6 +167,196 @@ $menu_admin_project_theme_bull = '<img src="'.get_bloginfo('template_url') . '/i
 *	developed by Andrei Saioc - andreisaioc[at]gmail.com
 *
 *******************************************************************/
+function projectTheme_theme_cate_images_settings()
+{
+	$id_icon 		= 'icon-options-general-img';
+	$ttl_of_stuff 	= 'ProjectTheme - '.__('Category Images','ProjectTheme');
+	global $menu_admin_pricerrtheme_theme_bull;
+	
+	//------------------------------------------------------
+	
+	$arr = array("yes" => __("Yes",'ProjectTheme'), "no" => __("No",'ProjectTheme'));
+	
+	echo '<div class="wrap">';
+	echo '<div class="icon32" id="'.$id_icon.'"><br/></div>';	
+	echo '<h2 class="my_title_class_sitemile">'.$ttl_of_stuff.'</h2>';	
+	
+	?>
+    
+     <?php
+		  
+		  if(isset($_POST['set_category_image']))
+		  {
+		  		$category_id 	= $_POST['category_id'];
+		  		$category_image = $_POST['category_image'];
+
+				if(!empty($_FILES['category_image']['name'])):
+	  
+					$upload_overrides 	= array( 'test_form' => false );
+					$uploaded_file 		= wp_handle_upload($_FILES['category_image'], $upload_overrides);
+					
+					$file_name_and_location = $uploaded_file['file'];
+					$file_title_for_media_library = $_FILES['category_image' ]['name'];
+							
+					$arr_file_type 		= wp_check_filetype(basename($_FILES['category_image']['name']));
+					$uploaded_file_type = $arr_file_type['type'];
+	
+					if($uploaded_file_type == "image/png" or $uploaded_file_type == "image/jpg" or $uploaded_file_type == "image/jpeg" or $uploaded_file_type == "image/gif" )
+					{
+					
+						$attachment = array(
+										'post_mime_type' => $uploaded_file_type,
+										'post_title' =>  addslashes($file_title_for_media_library),
+										'post_content' => '',
+										'post_status' => 'inherit',
+										'post_parent' =>  0,
+		
+										'post_author' => $cid,
+									);
+								 
+						$attach_id = wp_insert_attachment( $attachment, $file_name_and_location, 0 );
+						$attach_data = wp_generate_attachment_metadata( $attach_id, $file_name_and_location );
+						wp_update_attachment_metadata($attach_id,  $attach_data);
+						
+						update_post_meta($attach_id, 'category_image', $category_id);
+					
+					}
+				
+					echo '<div class="saved_thing">'.__('Image attached. Done.','ProjectTheme').'</div>';
+				
+				else:
+					
+					
+					echo '<div class="saved_thing">'.__('Please select an image.','ProjectTheme').'</div>';
+					
+				endif;
+		  
+		  }
+		  
+		  ?>
+    
+    	<style>
+		
+		.crme_brullet
+		{
+			padding:2px;
+			background:white;
+			border:1px solid #ccc;	
+		}
+		
+		.expl_expl
+		{
+			padding:5px;
+			margin-bottom:15px;
+			font-size:13px;
+			font-family:Arial, Helvetica, sans-serif	
+		}
+		
+		</style>
+        
+            
+              <script type="text/javascript">
+	
+				function delete_this_my_pic(id)
+				{
+					 $.ajax({
+									method: 'get',
+									url : '<?php echo get_bloginfo('siteurl');?>/index.php?_ad_delete_pid='+id,
+									dataType : 'text',
+									success: function (text) {   window.location.reload();  
+									
+									return false;
+									}
+								 });
+					  //alert("a");
+					  
+					  return false;
+				
+				}
+				
+			</script>
+				
+    
+    	  <div id="usual2" class="usual"> 
+          <ul> 
+            <li><a href="#tabs1"><?php _e('Set Images','ProjectTheme'); ?></a></li> 
+          </ul>
+         
+           <div id="tabs1">
+           
+           <div class="expl_expl">
+           Here you can set the images for each main category. The images are used in the widget called "ProjectTheme - Category Thumbs" and is used in front page.
+           </div>
+           
+           <?php
+		   
+		   	$categories = get_terms( 'project_cat', array(
+					'parent'    => '0',
+					'hide_empty' => 0
+				 ) );
+		   if(count($categories) > 0)
+		   {
+		   ?>
+           
+           <table class="sitemile-table" width="650">
+           <tr>
+            	<td><strong><?php echo __('Category Name','ProjectTheme') ?></strong></td>
+            	<td><strong><?php echo __('Upload Picture','ProjectTheme') ?></strong></td>
+            	<td><strong><?php echo __('Current Picture','ProjectTheme') ?></strong></td>
+            </tr>
+            
+            
+           <?php
+		   foreach($categories as $cat)
+		   {
+			   
+			   $projecttheme_get_cat_pic_attached = projecttheme_get_cat_pic_attached($cat->term_id);
+			   		   
+		   ?>
+           	
+            <form method="post" enctype="multipart/form-data"><input type="hidden" value="<?php echo $cat->term_id ?>" name="category_id" />
+           	<tr>
+            	<td><?php echo $cat->name ?></td>
+            	<td><?php if($projecttheme_get_cat_pic_attached == false): ?>
+                
+                	<input accept="image/*" type="file" name="category_image" size="20" />
+                
+                <?php else: ?>
+                	<?php _e('Picture attached already.','ProjectTheme'); ?>
+                <?php endif; ?>
+                </td>
+            	<td>
+                
+                <?php if($projecttheme_get_cat_pic_attached == false): ?>
+                
+                	 <input type="submit" name="set_category_image" size="20" value="<?php _e('Upload Image','ProjectTheme'); ?>" />
+                
+                <?php else: ?>
+                		
+                        <img src="<?php echo projecttheme_generate_thumb2( $projecttheme_get_cat_pic_attached,45,35); ?>" width="45" height="35" class="crme_brullet" />
+                         <a href="" onclick="return delete_this_my_pic('<?php echo $projecttheme_get_cat_pic_attached  ?>')"><img src="<?php bloginfo('template_url') ?>/images/delete.gif" border="0" /></a>
+                <?php endif; ?>
+                
+                </td>
+            </tr>
+           </form>
+           
+           
+           <?php  } ?>
+           
+           </table>
+           <?php } ?>
+           
+           </div> 
+    
+    
+    <?php
+	
+	echo '</div>';	
+	
+}
+
+
 function projectTheme_options()
 {
 	global $menu_admin_project_theme_bull;

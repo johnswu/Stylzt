@@ -19,8 +19,9 @@ function ProjectTheme_my_account_pay_with_credits_area_function()
 		$pid = $_GET['pid'];
 		$post_ar = get_post($pid);	
 ?>
-    	<div id="content">
+    	
         
+        <div id="content" class="account-main-area">      
         
         	<div class="my_box3 border_bottom_0">
             	

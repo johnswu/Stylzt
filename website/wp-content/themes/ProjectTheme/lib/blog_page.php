@@ -27,7 +27,7 @@ function ProjectTheme_display_blog_page_disp()
    <div id="content">
 			
             
-            		<div class="box_title"><?php echo __("All Blog Posts", 'ProjectTheme'); ?></div>
+            		 
             		<div class="box_content">
                     
                     <?php

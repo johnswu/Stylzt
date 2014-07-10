@@ -19,7 +19,7 @@ function ProjectTheme_my_account_delivered_projects_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
+    <div id="content" class="account-main-area">
         
         
         	<div class="my_box3 border_bottom_0">

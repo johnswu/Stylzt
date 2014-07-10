@@ -98,7 +98,6 @@ get_header( 'leftbar' );
 				  </div>
 				</div>
 				<div class="col-md-12">
-                    <ul>
                     <?php
 						$arrms = ProjectTheme_get_user_fields_values($uid);
 						
@@ -106,10 +105,9 @@ get_header( 'leftbar' );
 							for($i=0;$i<count($arrms);$i++)
 							{
 					?>
-						<li>
-							<h3><?php echo $arrms[$i]['field_name'];?>:</h3>
-							<p><?php echo $arrms[$i]['field_value'];?></p>
-						</li>
+					<h3><?php echo $arrms[$i]['field_name'];?></h3>
+					<p><?php echo $arrms[$i]['field_value'];?></p>
+
 					<?php } ?>
 					</ul>
 					<h3><?php _e("Portfolio Pictures",'ProjectTheme'); ?></h3>

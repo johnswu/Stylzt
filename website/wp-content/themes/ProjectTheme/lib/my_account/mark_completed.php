@@ -58,13 +58,25 @@ if(!is_user_logged_in()) { wp_redirect(get_bloginfo('siteurl')."/wp-login.php");
 	get_header();
 
 ?>
-<div class="clear10"></div>
+                <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"><?php  printf(__("Mark the project as completed: %s",'ProjectTheme'), $post_pr->post_title); ?> </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+
 
 	
 			<div class="my_box3">
             	<div class="padd10">
             
-            	<div class="box_title"><?php  printf(__("Mark the project as completed: %s",'ProjectTheme'), $post_pr->post_title); ?></div>
+            	 
                 <div class="box_content">   
                <?php
 			   
@@ -88,6 +100,9 @@ if(!is_user_logged_in()) { wp_redirect(get_bloginfo('siteurl')."/wp-login.php");
         
         <div class="clear100"></div>
             
+    
+    
+    </div></div></div>
             
 <?php
 

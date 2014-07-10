@@ -33,7 +33,7 @@ function ProjectTheme_my_account_private_messages_area_function()
 	
 		?>
         <div class="clear10"></div>
-        <div id="content">
+      <div id="content" class="account-main-area">
         
         <div class="my_box3">
            

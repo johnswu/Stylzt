@@ -4209,6 +4209,31 @@ function ProjectTheme_project_get_star_rating($uid)
 	return ProjectTheme_get_project_stars($rating)." (".$rating2 ."/5) ". sprintf(__("on %s rating(s)","ProjectTheme"), $i);
 }
 
+
+function ProjectTheme_project_get_star_rating2($uid)
+{
+	
+	global $wpdb;
+	$s = "select grade from ".$wpdb->prefix."project_ratings where touser='$uid' AND awarded='1'";
+	$r = $wpdb->get_results($s);
+	$i = 0; $s = 0;
+		
+	if(count($r) == 0)	return __('(No rating)','ProjectTheme');
+	else
+	foreach($r as $row) // = mysql_fetch_object($r))
+	{
+		$i++;
+		$s = $s + $row->grade;
+			
+	}
+	
+	$rating = round(($s/$i)/2, 0);
+	$rating2 = round(($s/$i)/2, 1);
+		
+
+	return ProjectTheme_get_project_stars($rating)."<br/>(".$rating2 ."/5) ". sprintf(__("on %s rating(s)","ProjectTheme"), $i);
+}
+
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function

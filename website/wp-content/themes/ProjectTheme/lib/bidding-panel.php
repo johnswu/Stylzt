@@ -2,16 +2,17 @@
 
 	if(!is_user_logged_in())
 	{
-		
+		echo '<div class="padd10"><div class="padd10">';
 		echo sprintf(__('You are not logged in. In order to bid please <a href="%s">login</a> or <a href="%s">register</a> an account','ProjectTheme'),
 		get_bloginfo('siteurl').'/wp-login.php',get_bloginfo('siteurl').'/wp-login.php?action=register');
+		echo '</div></div>';
 		exit;	
 	}
 
 
 
 	global $wpdb,$wp_rewrite,$wp_query;
-	$pid = $_GET['get_bidding_panel'];
+	$pid = $_GET['pid'];
 	
 	global $current_user;
 	get_currentuserinfo();
@@ -73,8 +74,11 @@ function check_submits()
 
 
 </script>
-	<div class="box_title"><?php echo sprintf(__("Post bid on project: %s",'ProjectTheme'), $post->post_title ); ?></div>
-  	<div class="bid_panel" style="width:550px;height:450px">
+
+<div class="super_bid_panel">
+
+	<div class="bid_panel_box_title"><?php echo sprintf(__("Submit Your Proposal",'ProjectTheme')); ?></div>
+  	<div class="bid_panel" >
     <?php
 	
 	$do_not_show = 0;
@@ -114,7 +118,7 @@ function check_submits()
 		                           
                             <li>
 								<h3><?php _e('Your Bid','ProjectTheme'); ?></h3>
-								<p><input type="text" name="bid" id="bid" value="<?php echo $bid; ?>" size="10" /> 
+								<p><input type="text" name="bid" id="bid" class="bid_field" value="<?php echo $bid; ?>" size="10" /> 
                                 <?php 
 								
 								$currency = projectTheme_currency();
@@ -126,7 +130,7 @@ function check_submits()
                             
                             <li>
 								<h3><?php _e('Days to Complete','ProjectTheme'); ?></h3>
-								<p><input type="text" name="days_done" id="days_done" value="<?php echo $days_done; ?>" size="10" /> 
+								<p><input type="text" name="days_done" id="days_done" class="bid_field" value="<?php echo $days_done; ?>" size="10" /> 
                               
                                 </p>
 							</li>
@@ -218,7 +222,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
    
    <?php
 
-
+	if(empty($cid)) $cid = -1;
+	
 	$args = array(
 	'order'          => 'ASC',
 	'post_type'      => 'attachment',
@@ -238,7 +243,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		if($attachment->post_author == $cid)
 		
 			echo '<div class="div_div"  id="image_ss'.$attachment->ID.'">'.$url.'
-			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.SITEMILE_CHILD_THEME.'/images/delete_icon.png" /></a>
+			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_bloginfo('template_url').'/images/delete_icon.png" /></a>
 			</div>';
 	  
 	}
@@ -261,7 +266,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 								<h3><?php _e('Description','ProjectTheme'); ?></h3>
 								<p>
                                 
-                                <textarea name="description2" cols="28" rows="3"><?php echo $description; ?></textarea><br/>
+                                <textarea name="description2" cols="28" class="bid_field" rows="3"><?php echo $description; ?></textarea><br/>
                              
                                 <input type="hidden" name="control_id" value="<?php echo base64_encode($pid); ?>" />
                                 </p>
@@ -287,4 +292,4 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
                 	</ul>
                    </form>
                 </div> <?php } ?>
-                </div> <?php endif; ?>
+                </div> </div> <?php endif; ?>

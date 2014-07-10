@@ -21,13 +21,11 @@ function ProjectTheme_my_account_area_awaiting_payments_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
+    	<div id="content" class="account-main-area">
         
         
         	<div class="my_box3 border_bottom_0">
-            	
-            
-            	<div class="box_title"><?php _e("Awaiting Payments",'ProjectTheme'); ?></div>
+            	 
                 <div class="box_content">    
 				
                 
@@ -73,7 +71,7 @@ function ProjectTheme_my_account_area_awaiting_payments_function()
 				
 				 else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("You do not have any awaiting payments yet.",'ProjectTheme');
 				
 				endif;
 				

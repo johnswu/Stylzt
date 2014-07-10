@@ -16,14 +16,41 @@ function ProjectTheme_display_provider_search_page_disp()
 {
 	
 ?>	
-	
-    	<div id="content" >
-        	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Service Provider Search", "ProjectTheme"); ?></div>
-                <div class="box_content"> 
+			  <!-- Start filtering form controls -->
+              <form class="navbar-form" role="search" id="searchForm" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search by Username" value="" name="username" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" name="ref-search" onclick="$('#searchForm').submit();"><span class="fa fa-search"></span></button>
+                  </span>
+                </div><!-- end input group -->
+				<br/><br/>
+				<ul class="nav navbar-nav filter-portfolio">
+					<li class="title">
+						<?php _e('Filter Options','ProjectTheme'); ?>
+					</li>
+					<li>
+						<?php _e('Rating Over','ProjectTheme'); ?>:<br/>
+						<select name="rating_over" class="form-control filterDropDown">
+							<option value="0">0 stars</option>
+							<option value="1">1 stars</option>
+							<option value="2">2 stars</option>
+							<option value="3">3 stars</option>
+							<option value="4">4 stars</option>
+							<option value="5">5 stars</option>
+						</select>
+					</li>
+					<li style="text-align:center;">
+						<br/>
+						<input type="submit" value="<?php _e('Search','ProjectTheme'); ?>" name="search_provider" class="btn btn-primary" />
+					</li>
+				</ul>
+			  </form>
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content">
+          <div class="portfolio-wrapper">
 <?php
 			
 			$ProjectTheme_enable_2_user_tp = get_option('ProjectTheme_enable_2_user_tp');
@@ -94,30 +121,49 @@ function ProjectTheme_display_provider_search_page_disp()
 			// Check for results
 			if (!empty($authors))
 			{
-				echo '<table width="100%">';
-				// loop trough each author
-				
-				echo '<tr>';
-					echo '<td><strong>'.__('Username','ProjectTheme').'</strong></td>';
-					echo '<td><strong>'.__('User Rating','ProjectTheme').'</strong></td>';
-					echo '<td><strong>'.__('Options','ProjectTheme').'</strong></td>';
-					
-					echo '</tr>';
-				
+				// loop trough each author				
 				foreach ($authors as $author)
 				{
 					// get all the user's data
 					$author_info = get_userdata($author->ID);
-					echo '<tr>';
-					echo '<td><a href="'.ProjectTheme_get_user_profile_link($author->ID).'">'.$author_info->user_login.'<a/></td>';
-					echo '<td>'.ProjectTheme_project_get_star_rating($author->ID).'</td>';
-					echo '<td><a href="'.ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$author_info->ID).'">'.__('Contact Provider','ProjectTheme').'</a></td>';
+				?>
+            <div class="card film art">
+				<a href="<?php echo ProjectTheme_get_user_profile_link($author->ID); ?>" class="thumb">
+                <?php
 					
-					echo '</tr>';
+					$width 	= 250;
+					$height = 250;
+					$image_class = "image_class";
+					
+					
+					$width 			= apply_filters("ProjectTheme_regular_proj_img_width", 	$width);
+					$height 		= apply_filters("ProjectTheme_regular_proj_img_height", $height);
+					$image_class 	= apply_filters("ProjectTheme_regular_proj_img_class", 	$image_class);
+					
+				?>
+                <img alt="<?php echo $author_info->user_login; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
+					src="<?php echo ProjectTheme_get_avatar($author->ID,250,250); ?>" />
+                <span class="overlay"><span class="fa fa-search"></span></span>
+              </a>
+              <div class="card-body">
+                <h2><a href="<?php echo ProjectTheme_get_user_profile_link($author->ID); ?>" title="<?php echo $author_info->user_login; ?>">
+				<?php echo $author_info->user_login; ?></a></h2>
+				<p>
+                <?php
+					$info = get_user_meta($author->ID, 'user_description', true);
+					if(empty($info)) _e("No personal info defined.",'ProjectTheme');
+					else echo $info;
+                ?>
+				</p>
+              </div><!-- end card-body -->
+              <div class="card-footer">
+                <ul class="list-inline filters">
+                  <li><?php echo ProjectTheme_project_get_star_rating($author->ID); ?></li>
+                </ul>
+              </div><!-- end card-footer -->
+            </div><!-- end card -->					
+				<?php
 				}
-				echo '</table>';
-				
-				echo '<div class="div_class_div">';
 				
 				$totalPages = $nrPages;
 				$my_page = $pg;
@@ -136,7 +182,8 @@ function ProjectTheme_display_provider_search_page_disp()
 				
 				$links = '';
 				
-				$raport = ceil($my_page/$batch) - 1; if ($raport < 0) $raport = 0;
+				$raport = ceil($my_page/$batch) - 1; 
+				if ($raport < 0) $raport = 0;
 		
 				$start 		= $raport * $batch + 1; 
 				$end		= $start + $batch - 1;
@@ -155,84 +202,30 @@ function ProjectTheme_display_provider_search_page_disp()
 				$next_pg = $page + 1;
 				if($next_pg > $totalPages) $next_pg = 1;
 		
-		
-		
-		
 				if($my_page > 1)
 				{
 					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$previous_pg.'" class="bighi"><< '.__('Previous','ProjectTheme').'</a>';
 					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$start_me.'" class="bighi"><<</a>';
 				}
 				
-					for($i=$start;$i<=$end;$i++)
-					{
-						if($i == $pg)
-						echo '<a href="#" class="bighi" id="activees">'.$i.'</a>';
-						else
-						echo '<a href="'.projectTheme_provider_search_link() .'pg='.$i.'" class="bighi">'.$i.'</a>';	
-					}	
+				for($i=$start;$i<=$end;$i++)
+				{
+					if($i == $pg)
+					echo '<a href="#" class="bighi" id="activees">'.$i.'</a>';
+					else
+					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$i.'" class="bighi">'.$i.'</a>';	
+				}	
 				
 				if($totalPages > $my_page)
 				echo '<a href="'.projectTheme_provider_search_link() .'pg='.$end_me.'" class="bighi">>></a>';
 				
 				if($page < $totalPages)
 				echo '<a href="'.projectTheme_provider_search_link() .'pg='.$next_pg.'" class="bighi">'.__('Next','ProjectTheme').' >></a>';						
-		
 					
 				echo '</div>';
 				
 			} else {
 				echo 'No authors found';
 			}
-
-
-
-?>
-    
-    			</div>
-                </div>
-                </div>
-                </div>
-                
-                <!-- ############## -->
-                
-                
-                <div id="right-sidebar"> <ul class="xoxo">
-	<li class="">
-    	<h3 class="widget-title"><?php _e('Filter Options','ProjectTheme'); ?></h3>
-    	
-        <form method="get">
-		<table width="100%">
-        <tr>
-        <td><?php _e('Username Like','ProjectTheme'); ?></td>
-        <td><input type="text" size="20" value="<?php echo $_GET['username']; ?>" name="username" /></td>
-        </tr>
-        
-        
-        <tr>
-        <td><?php _e('Rating Over','ProjectTheme'); ?></td>
-        <td><input type="text" size="10" value="<?php echo $_GET['rating_over']; ?>" name="rating_over" /> [0-5]</td>
-        </tr>
-        
-        
-         <tr>
-        <td></td>
-        <td><input type="submit" value="<?php _e('Search','ProjectTheme'); ?>" name="search_provider" /></td>
-        </tr>
-        
-        
-        </table>
-    	</form>
-        <div class="clear10"></div>
-    </li>
-    
-	<?php dynamic_sidebar( 'other-page-area' ); ?>
-</ul>
-</div>
-
-                
-                
-   <?php 
 }}
-
 ?>

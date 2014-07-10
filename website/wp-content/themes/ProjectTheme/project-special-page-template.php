@@ -19,19 +19,44 @@ Template Name: Project_Special_Page
 
 
 	get_header();
-
-
+	global $post;
+ 
 ?>
+<div class="page_heading_me">
+	<div class="page_heading_me_inner">
+    <div class="main-pg-title">
+    	<div class="mm_inn"><?php
+						
+							echo $post->post_title
+						
+						?>
+                     </div>
+                    
+        
 <?php 
 
 		if(function_exists('bcn_display'))
 		{
-		    echo '<div class="my_box3_breadcrumb"><div class="padd10">';	
+		    echo '<div class="my_box3_breadcrumb breadcrumb-wrap">';	
 		    bcn_display();
-			echo '</div></div><div class="clear10"></div>';
+			echo '</div>';
 		}
 
-?>	
+?>	</div>
+
+
+		<?php projectTheme_get_the_search_box() ?>            
+                    
+    </div>
+</div>
+
+
+<?php projecttheme_search_box_thing() ?>
+
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
 
 
 
@@ -39,6 +64,7 @@ Template Name: Project_Special_Page
 <?php the_content(); ?>			
 <?php endwhile; // end of the loop. ?>
 
-
-
+</div>
+</div>
+</div>
 <?php get_footer(); ?>

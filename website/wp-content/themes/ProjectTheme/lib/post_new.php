@@ -29,8 +29,7 @@ function ProjectTheme_post_new_area_function()
         	
             <div class="my_box3">
             	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Post New", "ProjectTheme"); ?></div>
+             
                 <div class="box_content"> 
                 
                 <?php
@@ -251,7 +250,7 @@ if($new_Project_step == "1")
         <li>
         <h2>&nbsp;</h2>
         <p> 
-        <input type="submit" name="project_submit1" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <input type="submit" name="project_submit1" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" class="submit_bottom" /></p>
         </li>
     	
         <?php do_action('ProjectTheme_step1_after_submit'); ?>
@@ -684,7 +683,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		
 		?>
         <p><a href="<?php echo ProjectTheme_post_new_with_pid_stuff_thg($pid, $stp); ?>" class="go_back_btn" ><?php _e('Go Back','ProjectTheme'); ?></a> 
-        <input type="submit" name="project_submit2" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <input type="submit" name="project_submit2" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" class="submit_bottom" /></p>
         </li>
     
     

@@ -19,9 +19,7 @@ function ProjectTheme_all_categories_area_main_function()
           	<div id="content" style="width:100%">
         	
             <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("All Categories", "ProjectTheme"); ?></div>
+            	<div class="padd10"> 
                 <div class="box_content"> 
             	
                 <script>

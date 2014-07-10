@@ -39,12 +39,25 @@
  ?> 
  
  
- <div id="content" >
+                 <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"> <?php printf(__("Review User %s for project %s",'ProjectTheme'), $user->user_login, $post_pr->post_title ) ; ?> </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+ 
+ <div id="content" class="account-main-area">
         	
             <div class="my_box3">
             	<div class="padd10">
             
-            	<div class="box_title"><?php printf(__("Review User %s for project %s",'ProjectTheme'), $user->user_login, $post_pr->post_title ) ; ?></div>
+            	 
                 <div class="box_content"> 
             	
                 <?php
@@ -146,5 +159,7 @@
                 </div>
                 
 	<?php ProjectTheme_get_users_links(); ?>
+
+</div></div></div>
 
 <?php get_footer(); ?>

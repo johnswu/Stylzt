@@ -24,8 +24,7 @@ function ProjectTheme_display_all_prjs_page_disp()
         
    <div id="content">
 			
-            
-            		<div class="box_title"><?php echo __("All Posted Projects", 'ProjectTheme'); ?></div>
+             
             		<div class="box_content">
                     
                     <?php

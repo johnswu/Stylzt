@@ -14,12 +14,30 @@
 get_header();
 ?>
 
+
+             
+                <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"><?php printf(__("User Profile - %s", 'ProjectTheme'), $username); ?>   </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+                
+
+
+
 <div id="content">
 	
     		<div class="my_box3">
             <div class="padd10">
             
-            	<div class="box_title"><?php _e("User Profile",'ProjectTheme'); ?> - <?php echo html_entity_decode($username); ?></div>
+            	 
             	<div class="box_content">	
                     	
                       
@@ -450,6 +468,10 @@ if(ProjectTheme_is_user_business($uid)):
 	<?php dynamic_sidebar( 'other-page-area' ); ?>
 
 </div>
+
+
+
+</div></div></div>
 
 
 <?php

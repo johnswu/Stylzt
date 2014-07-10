@@ -1277,7 +1277,6 @@ dl:after {
 }
 .card .card-body h2 {
   margin: 0 0 3px;
-  height: 55px;
   overflow: hidden;
   font-size: 20px;
   line-height: 1.4;
@@ -1510,6 +1509,7 @@ a.list-group-item.active:focus {
 .pagination-wrapper {
   margin: 0 auto 30px;
   clear: both;
+  text-align:center;
 }
 .pagination-wrapper ul.pagination {
   background: #1abc9c;

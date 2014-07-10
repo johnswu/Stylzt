@@ -23,7 +23,7 @@ function ProjectTheme_my_account_area_main_function()
 	
 	
 ?>
-    	<div id="content">
+    	<div id="content" class="account-main-area">
         
         <?php
 			
@@ -217,7 +217,7 @@ function ProjectTheme_my_account_area_main_function()
         <div class="my_box3">
         
             
-            	<div class="box_title"><?php _e("My Latest Bids",'ProjectTheme'); ?></div>
+            	<div class="box_title"><?php _e("My Latest Posted Proposals",'ProjectTheme'); ?></div>
                 <div class="box_content">    
 			
 			
@@ -227,7 +227,7 @@ function ProjectTheme_my_account_area_main_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
+					projectTheme_get_post_my_proposal();
 				endwhile; else:
 				
 				_e("There are no projects yet.",'ProjectTheme');

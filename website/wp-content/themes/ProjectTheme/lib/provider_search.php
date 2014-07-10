@@ -21,8 +21,7 @@ function ProjectTheme_display_provider_search_page_disp()
         	
             <div class="my_box3">
             	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Service Provider Search", "ProjectTheme"); ?></div>
+             
                 <div class="box_content"> 
 <?php
 			

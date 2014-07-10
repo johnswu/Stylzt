@@ -70,7 +70,7 @@ $term_title = $term->name;
 		
 		endif;
 	
-
+ 
 ?>
 
 <?php 

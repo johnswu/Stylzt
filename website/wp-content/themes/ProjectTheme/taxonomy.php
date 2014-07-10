@@ -74,20 +74,11 @@ $term_title = $term->name;
 
 ?>
 
-<?php 
 
-		if(function_exists('bcn_display'))
-		{
-		    echo '<div class="my_box3_breadcrumb breadcrumb-wrap"><div class="padd10">';	
-		    bcn_display();
-			echo '</div></div>';
-		}
-
-?>	
-
-<div id="content">
-
-<div class="box_title"><?php
+<div class="page_heading_me">
+	<div class="page_heading_me_inner">
+    <div class="main-pg-title">
+    	<div class="mm_inn"><?php
 						if(empty($term_title)) echo __("All Posted Projects",'ProjectTheme');
 						else { echo sprintf( __("Latest Posted Projects in %s",'ProjectTheme'), $term_title);
 						
@@ -99,11 +90,42 @@ $term_title = $term->name;
                         <?php
 						
 						}
-					?>
-            		
-            		
-            		
-            	</div> 
+					?></div>
+                    
+        
+<?php 
+
+		if(function_exists('bcn_display'))
+		{
+		    echo '<div class="my_box3_breadcrumb breadcrumb-wrap">';	
+		    bcn_display();
+			echo '</div>';
+		}
+
+?>	            
+                    
+    </div>
+
+
+		<?php projectTheme_get_the_search_box() ?>            
+                    
+    </div>
+</div>
+  
+
+
+<?php projecttheme_search_box_thing() ?>
+
+<!-- ########## -->
+
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+
+
+
+
+<div id="content">
+ 
 
 
 <?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
@@ -136,6 +158,11 @@ $term_title = $term->name;
     </ul>
 </div>
 
+
+
+</div>
+</div>
+</div>
 
 <?php
 

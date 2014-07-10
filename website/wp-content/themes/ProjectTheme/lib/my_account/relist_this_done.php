@@ -43,14 +43,25 @@
 
 	get_header();
 ?>
+ 
+                 <div class="page_heading_me">
+                        <div class="page_heading_me_inner">
+                            <div class="mm_inn"> <?php _e("Finalise Relist Project", "ProjectTheme"); ?> </div>
+                  	            
+                                        
+                        </div>
+                    
+                    </div> 
+<!-- ########## -->
 
-
-	<div id="content" >
+<div id="main_wrapper">
+		<div id="main" class="wrapper"><div class="padd10">
+ 
+<div id="content" class="account-main-area">
         	
             <div class="my_box3">
             	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Finalise Relist Project", "ProjectTheme"); ?></div>
+             
                 <div class="box_content"> 
             	
      <?php           
@@ -320,4 +331,5 @@
                 
 	<?php ProjectTheme_get_users_links(); ?>
 
+</div></div></div>
 <?php get_footer(); ?>

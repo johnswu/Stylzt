@@ -18,12 +18,11 @@ function ProjectTheme_my_account_bid_projects_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
+    	<div id="content" class="account-main-area">
         
          <div class="my_box3 border_bottom_0">
             	
-            
-            	<div class="box_title"><?php _e("Projects I Bid",'ProjectTheme'); ?></div>
+             
                 <div class="box_content">    
 				
                 
@@ -51,7 +50,7 @@ function ProjectTheme_my_account_bid_projects_area_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
+					projectTheme_get_post_my_proposal();
 				endwhile;
 				
 				if(function_exists('wp_pagenavi')):
@@ -59,7 +58,7 @@ function ProjectTheme_my_account_bid_projects_area_function()
 				
 				 else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("You have not submitted any proposals yet.",'ProjectTheme');
 				
 				endif;
 				

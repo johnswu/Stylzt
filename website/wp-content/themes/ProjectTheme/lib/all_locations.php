@@ -21,8 +21,7 @@ function ProjectTheme_all_locations_area_main_function()
         	
             <div class="my_box3">
             	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("All Locations", "ProjectTheme"); ?></div>
+             
                 <div class="box_content"> 
             	
                  <script>

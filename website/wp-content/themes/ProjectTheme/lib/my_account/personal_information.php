@@ -20,7 +20,7 @@ function ProjectTheme_my_account_personal_info_function()
 		$uid = $current_user->ID;
 	
 ?>
-    	<div id="content">
+    	<div id="content" class="account-main-area">
         	
            <?php
 				
@@ -137,7 +137,7 @@ function ProjectTheme_my_account_personal_info_function()
 							echo '<div class="error">'.__("Password was not updated. Passwords do not match!","ProjectTheme").'</div>'; $xxp = 1; }
 						}
 						else
-						{
+						{ 
 							
 							echo '<div class="error">'.__("Password was not updated. Passwords do not match!","ProjectTheme").'</div>';	 $xxp = 1;		
 						}
@@ -195,8 +195,7 @@ function ProjectTheme_my_account_personal_info_function()
              
             <div class="my_box3">
             	
-            
-            	<div class="box_title"><?php _e("Personal Information",'ProjectTheme'); ?></div>
+             
                 <div class="box_content">    
 	
          <ul class="post-new3">
@@ -319,7 +318,7 @@ function ProjectTheme_my_account_personal_info_function()
         
         <li>
         <h2>&nbsp;</h2>
-        <p><input type="submit" name="save-info" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
+        <p><input type="submit" name="save-info" class="my-buttons" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
         </li>
         
        </ul> 
@@ -617,7 +616,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
         			
                     <li id="bk_save_not">
         <h2>&nbsp;</h2> <input type="hidden" value="<?php echo $uid; ?>" name="user_id" />
-        <p><input type="submit" name="save-info" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
+        <p><input type="submit" class="my-buttons" name="save-info" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
         </li>
                     
         </ul>
