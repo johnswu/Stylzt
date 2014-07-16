@@ -20,12 +20,19 @@ Template Name: Stylzt Page Template
     <!--[if IE 7]>
       <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
+	<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.css" type="text/css" />
+	
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
 		wp_head();
 	?>	
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
     
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>     
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,12 +60,32 @@ Template Name: Stylzt Page Template
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">
+				<li class="title">Main Menu</li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_advanced_search_page_id')); ?>"><?php _e('Project Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_provider_search_page_id')); ?>"><?php _e('Provider Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php echo __("Post New",'ProjectTheme'); ?></a></li>
 	<?php if(get_option('projectTheme_enable_blog') == "yes") { ?>
                 <li><a href="<?php echo projectTheme_blog_link(); ?>"><?php echo __("Blog",'ProjectTheme'); ?></a></li>
 	<?php } ?>
+              </ul>
+              <ul class="nav navbar-nav">
+	<?php
+		if(is_user_logged_in())
+		{
+			global $current_user;
+			get_currentuserinfo();
+			$u = $current_user;
+	?>			  
+			<?php ProjectTheme_get_users_links(); ?>
+	<?php
+		}
+		else
+		{							
+	?>
+							
+				<li><a href="<?php bloginfo('siteurl') ?>/wp-login.php?action=register"><?php echo __("Register",'ProjectTheme'); ?></a></li>
+				<li><a href="<?php bloginfo('siteurl') ?>/wp-login.php"><?php echo __("Log In",'ProjectTheme'); ?></a></li>
+	<?php } ?>					
               </ul>
             </div><!-- end navbar-collapse -->
           </div><!-- end navbar -->

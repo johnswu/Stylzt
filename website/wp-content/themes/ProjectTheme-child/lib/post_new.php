@@ -25,13 +25,17 @@ function ProjectTheme_post_new_area_function()
 	$uid = $current_user->ID;
 	
 ?>
-    	<div id="content" style="width:100%">
-        	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Post New", "ProjectTheme"); ?></div>
-                <div class="box_content"> 
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content portfolio item">
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php _e("Post New", "ProjectTheme"); ?></h1>
+				  </div><!-- end page-header -->
+				  <div class="row">
+					<div class="col-md-12">
                 
                 <?php
 				
@@ -56,7 +60,7 @@ function ProjectTheme_post_new_area_function()
 							echo '<li '.($new_Project_step == '2' ? "class='active_step' " : "").'>'.__("STEP 2", 'ProjectTheme').'</li>';
 							echo '<li '.($new_Project_step == '3' ? "class='active_step' " : "").'>'.__("STEP 3", 'ProjectTheme').'</li>';
 						echo '</ul>';		
-					echo '</div>';
+					echo '</div><br/>';
 
 
 //****************************************************************************************
@@ -92,29 +96,29 @@ if($new_Project_step == "1")
     <?php do_action('ProjectTheme_step1_before_title'); ?>
     
         <li>
-        	<h2><?php echo __('Your project title', 'ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="50" class="do_input" name="project_title" 
+        	<h3><?php echo __('Your project title', 'ProjectTheme'); ?>:</h3>
+        	<p><input type="text" size="50" class="form-control" name="project_title" 
             value="<?php echo (empty($_POST['project_title']) ? 
 			($post->post_title == "Auto Draft" ? "" : $post->post_title) : $_POST['project_title']); ?>" /></p>
         </li>
        
      <?php do_action('ProjectTheme_step1_before_category'); ?>  
         
-        <li><h2><?php echo __('Category', 'ProjectTheme'); ?>:</h2>
+        <li><h3><?php echo __('Category', 'ProjectTheme'); ?>:</h3>
         	<p><?php	echo ProjectTheme_get_categories("project_cat",  
 			!isset($_POST['project_cat_cat']) ? (is_array($cat) ? $cat[0]->term_id : "") : $_POST['project_cat_cat']
-			, __("Select Category","ProjectTheme"), "do_input"); ?></p>
+			, __("Select Category","ProjectTheme"), "form-control"); ?></p>
         </li>
   
   <?php do_action('ProjectTheme_step1_before_price'); ?>
   
-        <li><h2><?php echo __('Price', 'ProjectTheme'); ?>:</h2>
+        <li><h3><?php echo __('Price', 'ProjectTheme'); ?>:</h3>
         <p>
         
       <?php
 	  
 	  $sel = get_post_meta($pid, 'budgets', true);
-	  echo ProjecTheme_get_budgets_dropdown($sel, 'do_input');
+	  echo ProjecTheme_get_budgets_dropdown($sel, 'form-control');
 	  
 	  ?>
       
@@ -124,7 +128,7 @@ if($new_Project_step == "1")
         <?php do_action('ProjectTheme_step1_before_ending'); ?>
         
         <li>
-        <h2>
+        <h3>
         
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
@@ -137,10 +141,11 @@ if($new_Project_step == "1")
         	
         
         <link rel="stylesheet" media="all" type="text/css" href="<?php echo get_bloginfo('template_url'); ?>/css/ui_thing.css" />
+		<script type="text/javascript" language="javascript" src="<?php echo get_bloginfo('template_url'); ?>/js/jquery.ui.datepicker.js"></script>
 		<script type="text/javascript" language="javascript" src="<?php echo get_bloginfo('template_url'); ?>/js/timepicker.js"></script>
           
 
-       <?php _e("Project Ending On",'ProjectTheme'); ?>:</h2>
+       <?php _e("Project Ending On",'ProjectTheme'); ?>:</h3>
        <?php 
 	   
 	   $dt = get_post_meta($pid,'ending',true);
@@ -149,7 +154,7 @@ if($new_Project_step == "1")
 	   $dt = date_i18n('d-m-Y H:i',$dt);
 	   
 	   ?>
-       <p><input type="text" name="ending" id="ending" class="do_input" value="<?php echo $dt; ?>"  /></p>
+       <p><input type="text" name="ending" id="ending" class="form-control" value="<?php echo $dt; ?>"  /></p>
        </li>
         
  		<script>
@@ -194,9 +199,9 @@ if($new_Project_step == "1")
 		
 		?>
         <li>
-        	<h2><?php echo __('Location', 'ProjectTheme'); ?>:</h2>
+        	<h3><?php echo __('Location', 'ProjectTheme'); ?>:</h3>
         <p><?php	echo ProjectTheme_get_categories("project_location", 
-		empty($_POST['project_location_cat']) ? (is_array($location) ? $location[0]->term_id : "") : $_POST['project_location_cat'], __("Select Location","ProjectTheme"), "do_input"); ?></p>
+		empty($_POST['project_location_cat']) ? (is_array($location) ? $location[0]->term_id : "") : $_POST['project_location_cat'], __("Select Location","ProjectTheme"), "form-control"); ?></p>
         </li>
        
        
@@ -210,8 +215,8 @@ if($new_Project_step == "1")
 	   
 	   ?> 
         <li>
-        	<h2><?php echo __('Address','ProjectTheme'); ?>:</h2>
-        <p><input type="text" size="50" class="do_input"  name="project_location_addr" value="<?php echo !isset($_POST['project_location_addr']) ? 
+        	<h3><?php echo __('Address','ProjectTheme'); ?>:</h3>
+        <p><input type="text" size="50" class="form-control"  name="project_location_addr" value="<?php echo !isset($_POST['project_location_addr']) ? 
 		get_post_meta($pid, 'Location', true) : $_POST['project_location_addr']; ?>" /> </p>
         </li>
         <?php endif; endif; ?>
@@ -225,8 +230,8 @@ if($new_Project_step == "1")
 		
 		?>
         <li>
-        	<h2><?php echo __('Description', 'ProjectTheme'); ?>:</h2>
-        <p><textarea rows="6" cols="60" class="do_input description_edit"  name="project_description"><?php echo trim($pst); ?></textarea></p>
+        	<h3><?php echo __('Description', 'ProjectTheme'); ?>:</h3>
+        <p><textarea rows="6" cols="60" class="form-control description_edit"  name="project_description"><?php echo trim($pst); ?></textarea></p>
         </li>
 
 		
@@ -241,8 +246,8 @@ if($new_Project_step == "1")
 		
 		?>
 		<li>
-        	<h2><?php echo __('Tags', 'ProjectTheme'); ?>:</h2>
-        <p><input type="text" size="50" class="do_input"  name="project_tags" value="<?php echo $project_tags; ?>" /> </p>
+        	<h3><?php echo __('Tags', 'ProjectTheme'); ?>:</h3>
+        <p><input type="text" size="50" class="form-control"  name="project_tags" value="<?php echo $project_tags; ?>" /> </p>
         </li>
         
         
@@ -251,7 +256,7 @@ if($new_Project_step == "1")
         <li>
         <h2>&nbsp;</h2>
         <p> 
-        <input type="submit" name="project_submit1" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <input type="submit" name="project_submit1" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
         </li>
     	
         <?php do_action('ProjectTheme_step1_after_submit'); ?>
@@ -285,8 +290,6 @@ if($new_Project_step == "2")
 	?>
     
     
-    
-   
  	<ul class="post-new">
     
     <?php
@@ -304,7 +307,7 @@ if($new_Project_step == "2")
     	
         
         <?php
-		echo '<div class="images_sub_small_txt">';
+		echo '<div class="images_sub_small_txt"><p>';
 		
 		$ProjectTheme_enable_max_images_limit = get_option('ProjectTheme_enable_max_images_limit');
 		if($ProjectTheme_enable_max_images_limit == "yes")
@@ -327,21 +330,21 @@ if($new_Project_step == "2")
 			echo '<br/>';
 			echo sprintf(__('There are %s free images. After that each image will be charged %s.','ProjectTheme'), $projectTheme_nr_of_free_images, ProjectTheme_get_show_price($projectTheme_extra_image_charge));	
 		}
-		echo '</div>';
+		echo '</p></div>';
 		?>
         
         
         
         
     	<li>
-        <h2><?php _e('Images','ProjectTheme'); ?>:</h2>
+        <h3><?php _e('Images','ProjectTheme'); ?>:</h3>
         <p>	
                     
         <!-- ##################################################################### -->
 
 
 
-    <form id="fileupload" action="<?php bloginfo('siteurl'); ?>/?uploady_thing=1&pid=<?php echo $pid; ?>" method="POST" enctype="multipart/form-data">
+    <form id="fileupload" action="<?php bloginfo('siteurl'); ?>/?uploady_thing=1&pid=<?php echo $pid; ?>" method="POST" class="" enctype="multipart/form-data">
     <input type="hidden" name="pid" value="<?php echo $pid; ?>">
     <input type="hidden" name="cid" value="<?php echo $cid; ?>">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -472,7 +475,7 @@ if($new_Project_step == "2")
 						   ?>
 
 		<li>
-        <h2><?php _e("Project Files",'ProjectTheme'); ?>:</h2>
+        <h3><?php _e("Project Files",'ProjectTheme'); ?>:</h3>
         <p>
 
     <script type="text/javascript">
@@ -521,9 +524,9 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 	</script>
 
 
-	<div id="fileUpload3"><?php _e('You have a problem with your javascript','ProjectTheme'); ?></div>
+	<div id="fileUpload3"><p><?php _e('You have a problem with your javascript','ProjectTheme'); ?></p></div>
 	<div id="thumbnails" style="overflow:hidden;margin-top:20px">
-    
+		<p>
     <?php
 
 
@@ -553,7 +556,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 
 
 	?>
-    
+		</p>
     </div>
     
     <!--####################################### -->
@@ -586,7 +589,7 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 				{
 					
 							echo '<li>';
-							echo '<h2>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h2>';
+							echo '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
 							echo '<p>'.$arr[$i]['value'].'</p>';
 							echo '</li>';
 					
@@ -606,9 +609,9 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
       
       
         <li>
-        <h2><?php _e("Feature project?",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="featured" value="1" 
-		<?php $feature = get_post_meta($pid, 'featured', true); echo ($feature == "1" ? "checked='checked'" : ""); ?> /> 
+        <h3><?php _e("Feature project?",'ProjectTheme'); ?>:</h3>
+        <p><label class="checkbox"><input type="checkbox" class="form-control" name="featured" value="1" 
+		<?php $feature = get_post_meta($pid, 'featured', true); echo ($feature == "1" ? "checked='checked'" : ""); ?> /> <span></span>
         <?php 
 		
 				
@@ -617,7 +620,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		if(empty($projectTheme_featured_fee) or $projectTheme_featured_fee <= 0) $sl = '';
 		
 		
-		printf(__("By clicking this checkbox you mark your project as featured. %s", 'ProjectTheme'), $sl); ?></p>
+		printf(__("By clicking this checkbox you mark your project as featured. %s", 'ProjectTheme'), $sl); ?>
+		</label></p>
         </li>
         
         <?php endif; ?>
@@ -633,9 +637,9 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 						   ?>
         
         <li>
-        <h2><?php _e("Sealed Bidding?",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="private_bids" value="1"
-        <?php $private_bids = get_post_meta($pid, 'private_bids', true); echo ($private_bids == "1" ? "checked='checked'" : ""); ?> /> 
+        <h3><?php _e("Sealed Bidding?",'ProjectTheme'); ?>:</h3>
+        <p><label class="checkbox"><input type="checkbox" class="form-control" name="private_bids" value="1"
+        <?php $private_bids = get_post_meta($pid, 'private_bids', true); echo ($private_bids == "1" ? "checked='checked'" : ""); ?> /> <span></span>
         <?php 
 		
 		$projectTheme_sealed_bidding_fee = get_option('projectTheme_sealed_bidding_fee');
@@ -643,7 +647,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		if(empty($projectTheme_sealed_bidding_fee) or $projectTheme_sealed_bidding_fee <= 0) $sl = '';
 		
 		
-		printf(__("By clicking this checkbox you hide your project's bids. %s", 'ProjectTheme'), $sl); ?></p>
+		printf(__("By clicking this checkbox you hide your project's bids. %s", 'ProjectTheme'), $sl); ?>
+		</label></p>
         </li>
         <?php endif; ?>
         
@@ -657,16 +662,17 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 						   ?>        
         
         <li>
-        <h2><?php _e("Hide Project from search engines",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="hide_project" value="1" 
-        <?php $hide_project = get_post_meta($pid, 'hide_project', true); echo ($hide_project == "1" ? "checked='checked'" : ""); ?>/> 
+        <h3><?php _e("Hide Project from search engines",'ProjectTheme'); ?>:</h3>
+        <p><label class="checkbox"><input type="checkbox" class="form-control" name="hide_project" value="1" 
+        <?php $hide_project = get_post_meta($pid, 'hide_project', true); echo ($hide_project == "1" ? "checked='checked'" : ""); ?>/> <span></span>
         <?php 
 		
 		$projectTheme_hide_project_fee = get_option('projectTheme_hide_project_fee');
 		$sl = __('Extra fee is applied','ProjectTheme');
 		if(empty($projectTheme_hide_project_fee) or $projectTheme_hide_project_fee <= 0) $sl = '';
 		
-		echo sprintf(__("By clicking this checkbox you hide your project from search engines. %s", 'ProjectTheme'), $sl); ?></p>
+		echo sprintf(__("By clicking this checkbox you hide your project from search engines. %s", 'ProjectTheme'), $sl); ?>
+		</label></p>
         </li>
         <?php endif; ?>
         
@@ -683,8 +689,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		$stp = apply_filters('ProjectTheme_filter_go_back_stp2', $stp);
 		
 		?>
-        <p><a href="<?php echo ProjectTheme_post_new_with_pid_stuff_thg($pid, $stp); ?>" class="go_back_btn" ><?php _e('Go Back','ProjectTheme'); ?></a> 
-        <input type="submit" name="project_submit2" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <p><a href="<?php echo ProjectTheme_post_new_with_pid_stuff_thg($pid, $stp); ?>" class="btn btn-default" ><?php _e('Go Back','ProjectTheme'); ?></a> 
+        <input type="submit" name="project_submit2" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
         </li>
     
     
@@ -872,7 +878,7 @@ if($new_Project_step == "3")
 	
 	if($total == 0)
 	{
-			echo '<div >';
+			echo '<div ><p>';
 			echo __('Thank you for posting your project with us.','ProjectTheme');
 			update_post_meta($pid, "paid", "1");
 			
@@ -914,7 +920,7 @@ if($new_Project_step == "3")
 					}
 				}
 			 
-			echo '</div>';
+			echo '</p></div>';
 			
 	
 	}
@@ -922,10 +928,10 @@ if($new_Project_step == "3")
 	{
 			update_post_meta($pid, "paid", "0");
 			
-			echo '<div >';
+			echo '<div ><p>';
 			echo __('Thank you for posting your project with us. Below is the total price that you need to pay in order to put your project live.<br/>
 			Click the pay button and you will be redirected...', 'ProjectTheme');
-			echo '</div>';
+			echo '</p></div>';
 			
 	 
 	}
@@ -988,14 +994,14 @@ if($new_Project_step == "3")
 		
 			echo '<tr>';
 			echo '<td></td>';
-			echo '<td><a href="'.get_permalink($pid).'" class="go_back_btn">'.__('See your project','ProjectTheme') .'</a></td>';
+			echo '<td><a href="'.get_permalink($pid).'" class="btn btn-default">'.__('See your project','ProjectTheme') .'</a></td>';
 			echo '</tr>';	
 		
 		else:
 			
 			echo '<tr>';
 			echo '<td></td>';
-			echo '<td><a href="'.get_permalink(get_option('ProjectTheme_my_account_page_id')).'" class="go_back_btn">'.__('Go to your account','ProjectTheme') .'</a></td>';
+			echo '<td><a href="'.get_permalink(get_option('ProjectTheme_my_account_page_id')).'" class="btn btn-default">'.__('Go to your account','ProjectTheme') .'</a></td>';
 			echo '</tr>';	
 				
 		endif;
@@ -1043,11 +1049,11 @@ if($new_Project_step == "3")
 	echo '<div class="clear10"></div>';
 	
 	if($finalize == false)
-	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '2') .'" class="go_back_btn" >'.__('Go Back','ProjectTheme').'</a>';
+	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '2') .'" class="btn btn-default" >'.__('Go Back','ProjectTheme').'</a>';
 	
 	if($total == 0 && $finalize == false)
 	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '3', 'finalize').'" 
-	class="go_back_btn" >'.__('Finalize Project Posting','ProjectTheme').'</a>';
+	class="btn btn-default" >'.__('Finalize Project Posting','ProjectTheme').'</a>';
 	
 
 
@@ -1058,13 +1064,11 @@ if($new_Project_step == "3")
                 
             <?php endif; ?>
                 
-                </div>
-              </div>
-           </div>
-                
-        </div> <!-- end dif content -->
-     
-        
+                  </div><!-- end col -->
+                </div><!-- end row -->
+            </article>
+		  </div>
+        </div>
     
 	
 <?php	

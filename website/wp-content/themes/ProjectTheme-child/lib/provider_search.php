@@ -126,6 +126,9 @@ function ProjectTheme_display_provider_search_page_disp()
 				{
 					// get all the user's data
 					$author_info = get_userdata($author->ID);
+				
+				
+					// BEGIN card code
 				?>
             <div class="card film art">
 				<a href="<?php echo ProjectTheme_get_user_profile_link($author->ID); ?>" class="thumb">
@@ -152,7 +155,7 @@ function ProjectTheme_display_provider_search_page_disp()
                 <?php
 					$info = get_user_meta($author->ID, 'user_description', true);
 					if(empty($info)) _e("No personal info defined.",'ProjectTheme');
-					else echo $info;
+					else echo substr($info, 0, 100).'...';
                 ?>
 				</p>
               </div><!-- end card-body -->
@@ -162,6 +165,7 @@ function ProjectTheme_display_provider_search_page_disp()
                 </ul>
               </div><!-- end card-footer -->
             </div><!-- end card -->					
+				
 				<?php
 				}
 				
@@ -182,8 +186,7 @@ function ProjectTheme_display_provider_search_page_disp()
 				
 				$links = '';
 				
-				$raport = ceil($my_page/$batch) - 1; 
-				if ($raport < 0) $raport = 0;
+				$raport = ceil($my_page/$batch) - 1; if ($raport < 0) $raport = 0;
 		
 				$start 		= $raport * $batch + 1; 
 				$end		= $start + $batch - 1;
@@ -202,19 +205,22 @@ function ProjectTheme_display_provider_search_page_disp()
 				$next_pg = $page + 1;
 				if($next_pg > $totalPages) $next_pg = 1;
 		
+		
+		
+		
 				if($my_page > 1)
 				{
 					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$previous_pg.'" class="bighi"><< '.__('Previous','ProjectTheme').'</a>';
 					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$start_me.'" class="bighi"><<</a>';
 				}
 				
-				for($i=$start;$i<=$end;$i++)
-				{
-					if($i == $pg)
-					echo '<a href="#" class="bighi" id="activees">'.$i.'</a>';
-					else
-					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$i.'" class="bighi">'.$i.'</a>';	
-				}	
+					for($i=$start;$i<=$end;$i++)
+					{
+						if($i == $pg)
+						echo '<a href="#" class="bighi" id="activees">'.$i.'</a>';
+						else
+						echo '<a href="'.projectTheme_provider_search_link() .'pg='.$i.'" class="bighi">'.$i.'</a>';	
+					}	
 				
 				if($totalPages > $my_page)
 				echo '<a href="'.projectTheme_provider_search_link() .'pg='.$end_me.'" class="bighi">>></a>';
@@ -228,4 +234,5 @@ function ProjectTheme_display_provider_search_page_disp()
 				echo 'No authors found';
 			}
 }}
+
 ?>

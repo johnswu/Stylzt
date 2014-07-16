@@ -21,9 +21,18 @@ function ProjectTheme_my_account_area_main_function()
 				
 				$uid = $current_user->ID;
 	
+        
 	
 ?>
-    	<div id="content">
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content item">
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php echo __("MyAccount",'ProjectTheme'); ?></h1>
+				  </div><!-- end page-header -->
         
         <?php
 			
@@ -33,10 +42,10 @@ function ProjectTheme_my_account_area_main_function()
 				$psts = get_post($_GET['prj_not_approved']);		
 		?>
         
-        <div class="saved_thing">
+        <p>
         <?php echo sprintf(__('Your payment was received for the item: <b>%s</b> but your project needs to be approved. 
 		You will be notified when your project will be approved and live on our website','ProjectTheme'), $psts->post_title ); ?>
-        </div>
+        </p>
         
         	<?php
 			}
@@ -45,9 +54,8 @@ function ProjectTheme_my_account_area_main_function()
 			
 			
 			?>
-            <div class="my_box3">            
-            	<div class="box_title"><?php _e("My Latest Posted Projects", "ProjectTheme"); ?></div>
-                <div class="box_content "> 
+
+		<h3><?php _e("My Latest Posted Projects", "ProjectTheme"); ?></h3>
             	
                  <?php
 							
@@ -87,7 +95,7 @@ function ProjectTheme_my_account_area_main_function()
 				
 				 else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				
@@ -95,18 +103,9 @@ function ProjectTheme_my_account_area_main_function()
 
 				
 				?>
-
-              </div>
-           </div>
+          <div style="clear:both;"></div> 
            
-           
-           <div class="my_box3">
-          
-            
-            	<div class="box_title"><?php _e("My Unpublished &amp; Unpaid Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-			
-			
+          <h3><?php _e("My Unpublished &amp; Unpaid Projects",'ProjectTheme'); ?></h3>
 				<?php
 
 				query_posts( "post_status=draft&meta_key=paid&meta_value=0&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
@@ -116,7 +115,7 @@ function ProjectTheme_my_account_area_main_function()
 					projectTheme_get_post(array('unpaid'));
 				endwhile; else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				
@@ -124,21 +123,10 @@ function ProjectTheme_my_account_area_main_function()
 				
 				?>
 			
-			</div>
-			</div>
-	
-			
-			
-			<div class="clear10"></div>
-			
-			
-			<div class="my_box3">
-        
+          <div style="clear:both;"></div> 
             
-            	<div class="box_title"><?php _e("My Latest Closed Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-			
-			
+		  <h3><?php _e("My Latest Closed Projects",'ProjectTheme'); ?></h3>
+		  
 				<?php
 
 				query_posts( "meta_key=closed&meta_value=1&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
@@ -148,29 +136,22 @@ function ProjectTheme_my_account_area_main_function()
 					projectTheme_get_post();
 				endwhile; else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				wp_reset_query();
 				
 				?>
 
-			</div>
-			</div>
+          <div style="clear:both;"></div> 
 		
         <?php endif; ?>
         
         <?php if(ProjectTheme_is_user_provider($uid)): ?>	
-           
-           
-        <div class="my_box3">
-        
             
-            	<div class="box_title"><?php _e("Outstanding Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-			
-			
-				<?php
+		  <h3><?php _e("Outstanding Projects",'ProjectTheme'); ?></h3>
+
+			<?php
 				
 				global $wp_query;
 				$query_vars = $wp_query->query_vars;
@@ -200,26 +181,16 @@ function ProjectTheme_my_account_area_main_function()
 					projectTheme_get_post_outstanding_project();
 				endwhile; else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				wp_reset_query();
 				
 				?>
 
-			</div>
-			</div>   
-           
-           
-           
-           
-           
-        <div class="my_box3">
-        
-            
-            	<div class="box_title"><?php _e("My Latest Bids",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-			
+          <div style="clear:both;"></div> 
+		  
+          <h3><?php _e("My Latest Bids",'ProjectTheme'); ?></h3>
 			
 				<?php
 
@@ -230,24 +201,16 @@ function ProjectTheme_my_account_area_main_function()
 					projectTheme_get_post();
 				endwhile; else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				wp_reset_query();
 				
 				?>
 
-			</div>
-			</div>
+          <div style="clear:both;"></div> 
             
-            
-            
-            <div class="my_box3">
-        
-            
-            	<div class="box_title"><?php _e("My Latest Won Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-			
+          <h3><?php _e("My Latest Won Projects",'ProjectTheme'); ?></h3>
 			
 				<?php
 
@@ -258,22 +221,21 @@ function ProjectTheme_my_account_area_main_function()
 					projectTheme_get_post();
 				endwhile; else:
 				
-				_e("There are no projects yet.",'ProjectTheme');
+				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				wp_reset_query();
 				
 				?>
 
-			</div>
-			</div>
+          <div style="clear:both;"></div> 
             
         
         <?php endif; ?>   
-                
-        </div> <!-- end dif content -->
-        
-        <?php ProjectTheme_get_users_links(); ?>
+                				
+            </article>
+		  </div>
+        </div>
         
     
 	

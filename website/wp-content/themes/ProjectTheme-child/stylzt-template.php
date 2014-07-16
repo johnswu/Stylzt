@@ -16,16 +16,23 @@ Template Name: Stylzt Page Template
     
     <!-- Le styles -->
     <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap_min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!--[if IE 7]>
       <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
+
 		wp_head();
+
 	?>	
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.css" type="text/css" />
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,6 +60,7 @@ Template Name: Stylzt Page Template
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">
+				<li class="title">Main Menu</li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_advanced_search_page_id')); ?>"><?php _e('Project Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_provider_search_page_id')); ?>"><?php _e('Provider Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php echo __("Post New",'ProjectTheme'); ?></a></li>
@@ -60,30 +68,38 @@ Template Name: Stylzt Page Template
                 <li><a href="<?php echo projectTheme_blog_link(); ?>"><?php echo __("Blog",'ProjectTheme'); ?></a></li>
 	<?php } ?>
               </ul>
+              <ul class="nav navbar-nav">
+	<?php
+		if(is_user_logged_in())
+		{
+			global $current_user;
+			get_currentuserinfo();
+			$u = $current_user;
+	?>			  
+			<?php ProjectTheme_get_users_links(); ?>
+	<?php
+		}
+		else
+		{							
+	?>
+							
+				<li><a href="<?php bloginfo('siteurl') ?>/wp-login.php?action=register"><?php echo __("Register",'ProjectTheme'); ?></a></li>
+				<li><a href="<?php bloginfo('siteurl') ?>/wp-login.php"><?php echo __("Log In",'ProjectTheme'); ?></a></li>
+	<?php } ?>					
+              </ul>
 			  
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <?php the_content(); ?>			
 <?php endwhile; // end of the loop. ?>
 		  
           </div>
-          <div class="pagination-wrapper">
-            <ul class="pagination">
-              <li class="disabled"><span>Prev</span></li>
-              <li class="active"><a href="#none">1</a></li>
-              <li><a href="#none">2</a></li>
-              <li><a href="#none">3</a></li>
-              <li><a href="#none">4</a></li>
-              <li><a href="#none">5</a></li>
-              <li><a href="#none">Next</a></li>
-            </ul>
-          </div><!-- end pagination-wrapper -->
         </div><!-- end col -->
       </div><!-- end row -->
     </div><!-- end wrapper -->
     
     <footer class="hidden-xs">
-      <p class="pull-left">&copy; Copyright 2014. Rebound.</p>
-      <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p>
+      <p class="pull-left">&copy; Copyright 2014. STYLZT.</p>
+      <p class="pull-right"></p>
     </footer>
     
     <!-- Le javascript
@@ -94,11 +110,21 @@ Template Name: Stylzt Page Template
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
+	<!--
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/templ.min.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.fileupload.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.fileupload-fp.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.fileupload-ui.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>     
+	-->
+	
+	
     <script type="text/javascript">
       
       $(document).ready(function() {
-        
-        $('.dropdown-toggle').dropdown();
+
+		$('.dropdown-toggle').dropdown();
         
         var $container = $('.portfolio-wrapper');
         

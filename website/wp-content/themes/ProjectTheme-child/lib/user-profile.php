@@ -14,7 +14,6 @@
 get_header( 'leftbar' );
 ?>
 
-        <div class="col-md-9 content portfolio item">
           <div class="page">
             <article>
               <div class="page-header">
@@ -70,7 +69,7 @@ get_header( 'leftbar' );
                 <h1><?php echo html_entity_decode($username); ?></h1>
               </div><!-- end page-header -->
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" style="text-align:center;">
                   <ul class="list-unstyled post-meta">
                     <li><img class="imgImg" width="100" height="100" src="<?php echo ProjectTheme_get_avatar($uid,100,100); ?>" /></li>
 					<li><?php 
@@ -176,7 +175,7 @@ get_header( 'leftbar' );
 						wp_reset_postdata();
 										 
 					?>
-							
+					<div style="clear:both;"></div>
 					<h3><?php _e("User Latest Won Projects",'ProjectTheme'); ?></h3>
 					<?php
 						
@@ -204,7 +203,7 @@ get_header( 'leftbar' );
 						// Reset Post Data
 						wp_reset_postdata();
 					?>
-						
+					<div style="clear:both;"></div>
 					<h3><?php _e("User Latest Feedback",'ProjectTheme'); ?></h3>
 					<span class="sml_ltrs"> [<a href="<?php bloginfo('siteurl'); ?>?p_action=user_feedback&post_author=<?php echo $uid; ?>"><?php _e('See All Feedback','ProjectTheme'); ?></a>]</span>
 					<?php
@@ -267,7 +266,6 @@ get_header( 'leftbar' );
               </div><!-- end post-content -->
             </article>
           </div><!-- end post -->
-        </div><!-- end col -->
 
 <?php
 

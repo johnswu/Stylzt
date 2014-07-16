@@ -371,8 +371,6 @@ class UploadHandlerMan
 if(isset($_GET['uploady_thing']))
 {
 
-		
-	
 $upload_handler = new UploadHandlerMan();
 
 header('Pragma: no-cache');
