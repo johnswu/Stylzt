@@ -529,8 +529,65 @@ function ProjectTheme_add_max_nr_of_images()
 		var maxNrImages_PT = <?php echo $projectTheme_nr_max_of_images; ?>;
 	
 	</script>
+    <?php
+    if ( is_singular( 'project' ) ):
+	
+	$get_bidding_panel = 'get_bidding_panel';
+	$get_bidding_panel = apply_filters('ProjectTheme_get_bidding_panel_string', $get_bidding_panel) ;
+	
+	?>
+	
+    <!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
     
-    <?php	
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    
+    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    
+    
+    <script>
+	jQuery( document ).ready(function() {
+		
+	 	var pid = jQuery("#submit-proposal-id").attr('rel');		
+		jQuery("#submit-proposal-id").fancybox({
+			 
+				'scrolling'         : 'no',
+				'padding'           : 0,
+				'centerOnScroll'    : true,
+				'href'              : '<?php bloginfo('siteurl') ?>/?<?php echo $get_bidding_panel ?>=1&pid=' + pid,
+				'type'              : 'ajax'
+			 
+		});
+		
+		
+		var pid = jQuery('.message_brd_cls').attr('rel');
+		jQuery(".message_brd_cls").fancybox({
+			 
+				'scrolling'         : 'no',
+				'padding'           : 0,
+				'centerOnScroll'    : true,
+				'href'              : '<?php bloginfo('siteurl') ?>/?get_message_board=' + pid,
+				'type'              : 'ajax'
+			 
+		});
+ 
+		
+		jQuery('.image_gal1').fancybox();
+		
+		});
+	
+	</script>
+    
+    <?php
+	endif;  
 	
 }
 /*************************************************************
@@ -741,49 +798,51 @@ function ProjectTheme_add_theme_styles()
   // Register the style like this for a theme:  
   // (First the unique name for the style (custom-style) then the src, 
   // then dependencies and ver no. and media type)
-  	wp_register_style( 'bootstrap_style1', get_bloginfo('template_url').'/css/bootstrap_min.css', array(), '20120822', 'all' );
-  	// wp_register_style( 'bootstrap_style2', get_bloginfo('template_url').'/css/css.css', array(), '20120822', 'all' );
-	wp_register_style( 'bootstrap_style3', get_bloginfo('template_url').'/css/bootstrap_responsive.css', array(), '20120822', 'all' );
-	wp_register_style( 'bootstrap_ie6', 	get_bloginfo('template_url').'/css/bootstrap_ie6.css', array(), '20120822', 'all' );
-	wp_register_style( 'bootstrap_gal', 	get_bloginfo('template_url').'/css/bootstrap_gal.css', array(), '20120822', 'all' );
-	wp_register_style( 'fileupload_ui', 	get_bloginfo('template_url').'/css/fileupload_ui.css', array(), '20120822', 'all' );
-	wp_register_style( 'mega_menu_thing', 	get_bloginfo('template_url').'/css/menu.css', array(), '20120822', 'all' );
-	wp_register_style( 'uploadify_css', 	get_bloginfo('template_url').'/lib/uploadify/uploadify.css', array(), '20120822', 'all' );
-	wp_register_script( 'social_pr', get_bloginfo('template_url').'/js/connect.js');
+  	wp_register_style( 'bootstrap_style1', get_stylesheet_directory_uri().'/css/bootstrap_min.css', array(), '20120822', 'all' );
+  	// wp_register_style( 'bootstrap_style2', get_stylesheet_directory_uri().'/css/css.css', array(), '20120822', 'all' );
+	wp_register_style( 'bootstrap_style3', get_stylesheet_directory_uri().'/css/bootstrap_responsive.css', array(), '20120822', 'all' );
+	wp_register_style( 'bootstrap_ie6', 	get_stylesheet_directory_uri().'/css/bootstrap_ie6.css', array(), '20120822', 'all' );
+	wp_register_style( 'bootstrap_gal', 	get_stylesheet_directory_uri().'/css/bootstrap_gal.css', array(), '20120822', 'all' );
+	wp_register_style( 'fileupload_ui', 	get_stylesheet_directory_uri().'/css/fileupload_ui.css', array(), '20120822', 'all' );
+	wp_register_style( 'mega_menu_thing', 	get_stylesheet_directory_uri().'/css/menu.css', array(), '20120822', 'all' );
+	wp_register_style( 'uploadify_css', 	get_stylesheet_directory_uri().'/lib/uploadify/uploadify.css', array(), '20120822', 'all' );
+	wp_register_script( 'social_pr', get_stylesheet_directory_uri().'/js/connect.js');
 	
-	wp_register_style( 'bx_styles', get_bloginfo('template_url').'/css/bx_styles.css', array(), '20120822', 'all' );
-	wp_register_script( 'easing', get_bloginfo('template_url').'/js/jquery.easing.1.3.js');
-	wp_register_script( 'bx_slider', get_bloginfo('template_url').'/js/jquery.bxSlider.min.js');
+	wp_register_style( 'bx_styles', get_stylesheet_directory_uri().'/css/bx_styles.css', array(), '20120822', 'all' );
+	wp_register_script( 'easing', get_stylesheet_directory_uri().'/js/jquery.easing.1.3.js');
+	wp_register_script( 'bx_slider', get_stylesheet_directory_uri().'/js/jquery.bxSlider.min.js');
  
 	
 	
-	wp_register_script( 'html5_js', get_bloginfo('template_url').'/js/html5.js');
-	wp_register_script( 'jquery_ui', get_bloginfo('template_url').'/js/vendor/jquery.ui.widget.js');
-	wp_register_script( 'templ_min', get_bloginfo('template_url').'/js/templ.min.js');
-	wp_register_script( 'load_image', get_bloginfo('template_url').'/js/load_image.min.js');
-	wp_register_script( 'canvas_to_blob', get_bloginfo('template_url').'/js/canvas_to_blob.js');
-	wp_register_script( 'iframe_transport', get_bloginfo('template_url').'/js/jquery.iframe-transport.js');
+	wp_register_script( 'html5_js', get_stylesheet_directory_uri().'/js/html5.js');
+	wp_register_script( 'jquery_ui', get_stylesheet_directory_uri().'/js/vendor/jquery.ui.widget.js');
+	wp_register_script( 'bootstrap', get_stylesheet_directory_uri().'/js/bootstrap.js');
+	wp_register_script( 'templ_min', get_stylesheet_directory_uri().'/js/templ.min.js');
+	wp_register_script( 'load_image', get_stylesheet_directory_uri().'/js/load_image.min.js');
+	wp_register_script( 'canvas_to_blob', get_stylesheet_directory_uri().'/js/canvas_to_blob.js');
+	wp_register_script( 'iframe_transport', get_stylesheet_directory_uri().'/js/jquery.iframe-transport.js');
 	
-	wp_register_script( 'fileupload_main', get_bloginfo('template_url').'/js/jquery.fileupload.js');
-	wp_register_script( 'fileupload_fp', get_bloginfo('template_url').'/js/jquery.fileupload-fp.js');
-	wp_register_script( 'fileupload_ui', get_bloginfo('template_url').'/js/jquery.fileupload-ui.js');
+	wp_register_script( 'fileupload_main', get_stylesheet_directory_uri().'/js/jquery.fileupload.js');
+	wp_register_script( 'fileupload_fp', get_stylesheet_directory_uri().'/js/jquery.fileupload-fp.js');
+	wp_register_script( 'fileupload_ui', get_stylesheet_directory_uri().'/js/jquery.fileupload-ui.js');
 	
-	wp_register_script( 'locale_thing', get_bloginfo('template_url').'/js/locale.js');
-	wp_register_script( 'main_thing', get_bloginfo('template_url').'/js/main.js');
-	wp_register_script( 'uploadify_js', get_bloginfo('template_url').'/lib/uploadify/jquery.uploadify-3.1.js');
+	wp_register_script( 'locale_thing', get_stylesheet_directory_uri().'/js/locale.js');
+	wp_register_script( 'main_thing', get_stylesheet_directory_uri().'/js/main.js');
+	wp_register_script( 'uploadify_js', get_stylesheet_directory_uri().'/lib/uploadify/jquery.uploadify-3.1.js');
 	
-	wp_enqueue_script( 'jqueryhoverintent', get_bloginfo('template_url') . '/js/jquery.hoverIntent.minified.js', array('jquery') );
-	wp_enqueue_script( 'dcjqmegamenu', get_bloginfo('template_url') . '/js/jquery.dcmegamenu.1.3.4.min.js', array('jquery') );
+	wp_enqueue_script( 'jqueryhoverintent', get_stylesheet_directory_uri() . '/js/jquery.hoverIntent.minified.js', array('jquery') );
+	wp_enqueue_script( 'dcjqmegamenu', get_stylesheet_directory_uri() . '/js/jquery.dcmegamenu.1.3.4.min.js', array('jquery') );
 	
 	global $wp_styles, $wp_scripts;
 	
 	 wp_enqueue_script( 'social_pr' );
 	
+	wp_enqueue_script( 'bootstrap' );
 	 wp_enqueue_style( 'bx_styles' );
-		 wp_enqueue_script( 'easing' );
-		 wp_enqueue_script( 'bx_slider' );
-		 wp_enqueue_script( 'jqueryhoverintent' );
-		 wp_enqueue_script( 'dcjqmegamenu' );
+	 wp_enqueue_script( 'easing' );
+	 wp_enqueue_script( 'bx_slider' );
+	 wp_enqueue_script( 'jqueryhoverintent' );
+	 wp_enqueue_script( 'dcjqmegamenu' );
 		 
 	wp_enqueue_style( 'mega_menu_thing' );
  
@@ -1380,8 +1439,8 @@ function projectTheme_theme_project_dts()
  
         
         
-        <link rel="stylesheet" media="all" type="text/css" href="<?php echo get_bloginfo('template_url'); ?>/css/ui-thing.css" />
-		<script type="text/javascript" language="javascript" src="<?php echo get_bloginfo('template_url'); ?>/js/jquery-ui-timepicker-addon.js"></script>
+        <link rel="stylesheet" media="all" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ui-thing.css" />
+		<script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-ui-timepicker-addon.js"></script>
           
           
           
@@ -1568,8 +1627,8 @@ function projectTheme_theme_project_files()
 <div style="overflow:hidden">
 	
 
-<script type="text/javascript" src="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>     
-	<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.css" type="text/css" />
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>     
+	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.css" type="text/css" />
 	
     <script type="text/javascript">
 	
@@ -1592,8 +1651,8 @@ function projectTheme_theme_project_files()
 		jQuery("#fileUpload3").uploadify({
 			height        : 30,
 			auto:			true,
-			swf           : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.swf',
-			uploader      : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploady2.php',
+			swf           : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.swf',
+			uploader      : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploady2.php',
 			width         : 120,
 			fileTypeExts  : '*.zip;*.pdf;*.doc;*.docx',
 			fileTypeDesc : '<?php _e('Select Project Files','ProjectTheme'); ?>',
@@ -1603,7 +1662,7 @@ function projectTheme_theme_project_files()
 			//alert(data);
 			var bar = data.split("|");
 			
-jQuery('#thumbnails2').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[0] + '" <a href="javascript: void(0)" onclick="delete_this('+ bar[1] +')"><img border="0" src="<?php echo get_bloginfo('template_url'); ?>/images/delete_icon.png" border="0" /></a></div>');
+jQuery('#thumbnails2').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[0] + '" <a href="javascript: void(0)" onclick="delete_this('+ bar[1] +')"><img border="0" src="<?php echo get_stylesheet_directory_uri(); ?>/images/delete_icon.png" border="0" /></a></div>');
 }
 	
 			
@@ -1653,7 +1712,7 @@ jQuery('#thumbnails2').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' 
 			
 			if(!empty($act)) // == "1")				
 			echo '<div class="div_div1"  id="image_ss'.$attachment->ID.'">'.$attachment->post_title.'
-			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_bloginfo('template_url').'/images/delete_icon.png" /></a>
+			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_stylesheet_directory_uri().'/images/delete_icon.png" /></a>
 			</div>';
 		
 	}
@@ -1810,8 +1869,8 @@ function projectTheme_theme_project_images()
 		jQuery("#fileUpload4").uploadify({
 			height        : 30,
 			auto:			true,
-			swf           : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.swf',
-			uploader      : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploady.php',
+			swf           : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.swf',
+			uploader      : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploady.php',
 			width         : 120,
 			fileTypeExts  : '*.jpg;*.jpeg;*.gif;*.png',
 			formData    : {'ID':<?php echo $pid; ?>,'author':<?php echo $cid; ?>},
@@ -1820,7 +1879,7 @@ function projectTheme_theme_project_images()
 			//alert(data);
 			var bar = data.split("|");
 			
-jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img width="70" class="image_class" height="70" src="' + bar[0] + '" /><a href="javascript: void(0)" onclick="delete_this('+ bar[1] +')"><img border="0" src="<?php echo get_bloginfo('template_url'); ?>/images/delete_icon.png" border="0" /></a></div>');
+jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img width="70" class="image_class" height="70" src="' + bar[0] + '" /><a href="javascript: void(0)" onclick="delete_this('+ bar[1] +')"><img border="0" src="<?php echo get_stylesheet_directory_uri(); ?>/images/delete_icon.png" border="0" /></a></div>');
 }
 	
 			
@@ -1866,7 +1925,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		
 			echo '<div class="div_div"  id="image_ss'.$attachment->ID.'"><img width="70" class="image_class" height="70" src="' .
 			ProjectTheme_generate_thumb($url, 70, 70). '" />
-			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_bloginfo('template_url').'/images/delete_icon.png" /></a>
+			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_stylesheet_directory_uri().'/images/delete_icon.png" /></a>
 			</div>';
 	  
 	}
@@ -1940,7 +1999,7 @@ function ProjectTheme_add_query_vars($public_query_vars)
 function ProjectTheme_create_post_type() {
   
 	global $projects_url_nm;
-  	$icn = get_bloginfo('template_url')."/images/projecticon.gif";
+  	$icn = get_stylesheet_directory_uri()."/images/projecticon.gif";
   	
 	register_post_type( 'project',
     array(
@@ -2023,7 +2082,7 @@ function ProjectTheme_create_post_type() {
 function ProjectTheme_get_avatar($uid, $w = 25, $h = 25)
 {
 	$av = get_user_meta($uid, 'avatar', true);
-	if(empty($av)) return get_bloginfo('template_url')."/images/noav.jpg";
+	if(empty($av)) return get_stylesheet_directory_uri()."/images/noav.jpg";
 	else return ProjectTheme_generate_thumb($av, $w, $h);
 }
 
@@ -2256,7 +2315,7 @@ function ProjectTheme_add_js_coin_slider()
 	if($opt == "yes") :
 	
 ?>	
-	<script type="text/javascript" src="<?php echo get_bloginfo('template_url'); ?>/js/easySlider1.7.js"></script>
+	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/easySlider1.7.js"></script>
 			<script type="text/javascript">
 
 	var $ = jQuery;
@@ -2281,6 +2340,58 @@ function ProjectTheme_add_js_coin_slider()
 	
 	</script>	
 	<?php endif; endif;
+	if(!ProjectTheme_is_home()):
+	?>
+	<script type="text/javascript" src="<?php bloginfo('template_url') ?>/js/modernizr.custom.79639.js"></script>
+    <script type="text/javascript">
+			/*
+			function DropDown(el) {
+				this.dd = el;
+				this.placeholder = this.dd.children('span');
+				this.opts = this.dd.find('ul.dropdown > li');
+				this.val = '';
+				this.index = -1;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						return false;
+					});
+
+					obj.opts.on('click',function(){
+						var opt = $(this);
+						obj.val = opt.text();
+						obj.index = opt.index();
+						obj.placeholder.text(obj.val);
+					});
+				},
+				getValue : function() {
+					return this.val;
+				},
+				getIndex : function() {
+					return this.index;
+				}
+			}
+
+			jQuery(function() {
+
+				var dd = new DropDown( jQuery('#dd') );
+
+				jQuery(document).click(function() {
+					// all dropdowns
+					jQuery('.wrapper-dropdown-3').removeClass('active');
+				});
+
+			});
+			*/
+		</script>
+    
+    <?php
+	endif;
 }
 /*************************************************************
 *
@@ -2312,7 +2423,7 @@ function ProjectTheme_get_post_blog_function()
 						 else
 						 {
 								$sImgString = '<a href="' . get_permalink() . '">' .
-	                          '<img class="image_class" src="' . get_bloginfo('template_url') . '/images/nopic.jpg" width="100" height="100" />' .
+	                          '<img class="image_class" src="' . get_stylesheet_directory_uri() . '/images/nopic.jpg" width="100" height="100" />' .
                       			'</a>'; 
 							 
 						 }
@@ -3680,8 +3791,8 @@ function ProjectTheme_admin_style_sheet()
 	
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     
-    <link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/css/tipTip.css" type="text/css" /> 
-    <link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/css/admin.css" type="text/css" />    
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/tipTip.css" type="text/css" /> 
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/admin.css" type="text/css" />    
     <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/colorpicker.css" type="text/css" />
     <link rel="stylesheet" media="screen" type="text/css" href="<?php bloginfo('template_url'); ?>/css/layout.css" />
 	<link type="text/css" href="<?php bloginfo('template_url'); ?>/css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
@@ -4216,8 +4327,8 @@ function ProjectTheme_project_get_star_rating2($uid)
 
 function ProjectTheme_get_project_stars($rating)
 {
-	$full 	= get_bloginfo('template_url')."/images/full_star.gif";
-	$empty 	= get_bloginfo('template_url')."/images/empty_star.gif";	
+	$full 	= get_stylesheet_directory_uri()."/images/full_star.gif";
+	$empty 	= get_stylesheet_directory_uri()."/images/empty_star.gif";	
 		
 	$r = '';
 	
@@ -4458,7 +4569,7 @@ function projectTheme_get_post_active()
                   
                   <ul class="project-details1 project-details1_a">
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4472,20 +4583,20 @@ function projectTheme_get_post_active()
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Average Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php echo ProjectTheme_average_bid(get_the_ID()); ?> </p>
 							</li>
 					
              				
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/posted.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/posted.png" width="15" height="15" /> 
 								<h3><?php echo __("Bids Posted",'ProjectTheme'); ?>:</h3>
 								<p><?php echo projectTheme_number_of_bid( get_the_ID()  ); ?></p>
 							</li>
 					
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
 								<h3><?php echo __("Expires in",'ProjectTheme'); ?>:</h3>
 								<p><?php echo ($closed=="1" ? __('Closed', 'ProjectTheme') : ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0))); ?></p>
 							</li>
@@ -4682,7 +4793,7 @@ function projectTheme_get_post_awaiting_payment_function()
                   
                   <ul class="project-details1 project-details1_a">
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4696,7 +4807,7 @@ function projectTheme_get_post_awaiting_payment_function()
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4711,7 +4822,7 @@ function projectTheme_get_post_awaiting_payment_function()
 					
              				
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/location.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/location.png" width="15" height="15" /> 
 								<h3><?php echo __("Winner",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4725,7 +4836,7 @@ function projectTheme_get_post_awaiting_payment_function()
                         
 							
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
 								<h3><?php echo __("Delivery On",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4875,7 +4986,7 @@ function projectTheme_get_post_awaiting_compl_function()
                   
                   <ul class="project-details1 project-details1_a">
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4889,7 +5000,7 @@ function projectTheme_get_post_awaiting_compl_function()
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4904,7 +5015,7 @@ function projectTheme_get_post_awaiting_compl_function()
 					
              				
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/location.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/location.png" width="15" height="15" /> 
 								<h3><?php echo __("Winner",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -4918,7 +5029,7 @@ function projectTheme_get_post_awaiting_compl_function()
                         
 							
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
 								<h3><?php echo __("Delivery On",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5053,7 +5164,7 @@ function projectTheme_get_post_outstanding_project_function()
                   		
                   
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5067,7 +5178,7 @@ function projectTheme_get_post_outstanding_project_function()
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5082,7 +5193,7 @@ function projectTheme_get_post_outstanding_project_function()
              
                         
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/clock.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
 								<h3><?php echo __("Delivery On",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5227,7 +5338,7 @@ function projectTheme_get_post_pay_function( $arr = '')
                   
                   <ul class="project-details1 project-details1_a">
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5241,7 +5352,7 @@ function projectTheme_get_post_pay_function( $arr = '')
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5257,7 +5368,7 @@ function projectTheme_get_post_pay_function( $arr = '')
              
                         
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/location.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/location.png" width="15" height="15" /> 
 								<h3><?php echo __("Winner",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5379,7 +5490,7 @@ function projectTheme_get_post_paid_function( $arr = '')
                   
                   <ul class="project-details1 project-details1_a">
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5393,7 +5504,7 @@ function projectTheme_get_post_paid_function( $arr = '')
                             
                             
                             <li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/price.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
 								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								
@@ -5409,7 +5520,7 @@ function projectTheme_get_post_paid_function( $arr = '')
              
                         
 							<li>
-								<img src="<?php echo get_bloginfo('template_url'); ?>/images/location.png" width="15" height="15" /> 
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/location.png" width="15" height="15" /> 
 								<h3><?php echo __("Winner",'ProjectTheme'); ?>:</h3>
 								<p><?php 
 								

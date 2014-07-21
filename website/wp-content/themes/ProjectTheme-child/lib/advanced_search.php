@@ -303,7 +303,7 @@ function ProjectTheme_advanced_search_area_main_function()
     
 
                      
-                    
+                    <div style="clear:both;"></div>
                      <div class="div_class_div">
                      <?php
 					 	
@@ -353,7 +353,7 @@ function ProjectTheme_advanced_search_area_main_function()
 		
 		for($i = $start; $i <= $end; $i ++) {
 			if ($i == $pj) {
-				echo '<a class="bighi" id="activees" href="#">'.$i.'TESTTESTTEST</a>';
+				echo '<a class="bighi" id="activees" href="#">'.$i.'</a>';
 			} else {
 				
 			 

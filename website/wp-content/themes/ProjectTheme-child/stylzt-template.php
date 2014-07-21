@@ -4,7 +4,7 @@ Template Name: Stylzt Page Template
 */
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -16,7 +16,6 @@ Template Name: Stylzt Page Template
     
     <!-- Le styles -->
     <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap_min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!--[if IE 7]>
       <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
@@ -24,9 +23,15 @@ Template Name: Stylzt Page Template
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
 
-		wp_head();
+		//wp_head();
 
 	?>	
+	<!--
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
+	-->
+	
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
 
     <!-- Add fancyBox -->
@@ -106,10 +111,6 @@ Template Name: Stylzt Page Template
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
 	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/templ.min.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.fileupload.js"></script>

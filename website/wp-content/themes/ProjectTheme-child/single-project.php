@@ -15,7 +15,7 @@
 	{	
 	
 		echo '<link media="screen" rel="stylesheet" href="'.get_bloginfo('template_url').'/css/colorbox.css" />';
-		/*echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>'; */
+		echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>'; 
 		echo '<script src="'.get_bloginfo('template_url').'/js/jquery.colorbox.js"></script>';
 		
 		$get_bidding_panel = 'get_bidding_panel';
@@ -29,8 +29,8 @@ var $ = jQuery;
 
 jQuery(document).ready(function(){
 	
-	jQuery("a[rel='image_gal1']").colorbox();
-	jQuery("a[rel='image_gal2']").colorbox();
+	//jQuery("a[rel='image_gal1']").colorbox();
+	//jQuery("a[rel='image_gal2']").colorbox();
 	
 	jQuery('.get_files').click( function () {
 		
@@ -313,33 +313,6 @@ jQuery(document).ready(function(){
 
 ?>
 
-<script>
-jQuery( document ).ready(function() {
-	
-	var pid = jQuery("#submit-proposal-id").attr('rel');		
-	jQuery("#submit-proposal-id").fancybox({
-		 
-			'scrolling'         : 'no',
-			'padding'           : 0,
-			'centerOnScroll'    : true,
-			'href'              : '<?php bloginfo('siteurl') ?>/?<?php echo $get_bidding_panel ?>=1&pid=' + pid,
-			'type'              : 'ajax'
-		 
-	});
-	
-	
-	var pid = jQuery('.message_brd_cls').attr('rel');
-	jQuery(".message_brd_cls").fancybox({
-		 
-			'scrolling'         : 'no',
-			'padding'           : 0,
-			'centerOnScroll'    : true,
-			'href'              : '<?php bloginfo('siteurl') ?>/?get_message_board=' + pid,
-			'type'              : 'ajax'
-		 
-	});	
-});
-</script>
           <div class="page">
             <article>
               <div class="page-header">
@@ -462,20 +435,20 @@ jQuery( document ).ready(function() {
                     <li style="text-align:center;"><a href="<?php
                             	
 								$post = get_post(get_the_ID());
-								if($current_user->ID == $post->post_author)
-								echo '#';
-								else
+								//if($current_user->ID == $post->post_author)
+								//echo '#';
+								//else
 								echo ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$post->post_author.'&pid='.get_the_ID());
 							
-							?>" class="btn btn-default" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Contact Project Owner','ProjectTheme') ?></a></li>
+							?>" class="btn btn-default project-owner-contact" rel="<?php the_ID(); ?>"><?php _e('Contact Project Owner','ProjectTheme') ?></a></li>
 					
 					<li><span class="fa fa-calendar"></span><?php the_time("jS F Y g:i A"); ?></li>
 					<li><span class="fa fa-list"></span><?php echo __("Proposals",'ProjectTheme'); ?>: <?php echo projectTheme_number_of_bid(get_the_ID()); ?></li>
 					<li><span class="fa fa-usd"></span><?php echo __("Average Bid",'ProjectTheme'); ?>: <?php echo ProjectTheme_average_bid(get_the_ID()); ?></li>
 					<li><span class="fa fa-clock-o"></span><?php echo __("Time Left",'ProjectTheme'); ?>: <?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) 
 								: __("Expired/Closed",'ProjectTheme')); ?></li>
-                    <li style="text-align:center;"><a href="#" class="btn btn-primary message_brd_cls" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Project Message Board','ProjectTheme') ?></a></li>
-                    <li style="text-align:center;"><a href="#none" class="btn btn-primary" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a></li>
+                    <li style="text-align:center;"><a href="#" class="btn btn-primary message_brd_cls" rel="<?php the_ID(); ?>"><?php _e('Project Message Board','ProjectTheme') ?></a></li>
+                    <li style="text-align:center;"><a href="#" class="btn btn-primary post_bid_btn_new" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a></li>
                   </ul><!-- end post-meta -->
                 </div><!-- end col -->
                 <div class="col-md-8">

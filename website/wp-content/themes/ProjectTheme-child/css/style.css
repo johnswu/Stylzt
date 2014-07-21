@@ -44,7 +44,6 @@
 body {
   font-family: 'PT Sans', Helvetica, Arial, ans-serif;
   background-color: #222;
-  color: #efefef;
 }
 a {
   color: #1abc9c;
@@ -1361,6 +1360,9 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 .card .card-footer .list-inline {
   margin: 0;
@@ -2746,4 +2748,8 @@ ul.xoxo li.widget-container {
 
 div.steps {
 	text-align:center;
+}
+
+div.card {
+	height:345px;
 }

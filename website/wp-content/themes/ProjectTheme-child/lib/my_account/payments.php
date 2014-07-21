@@ -20,7 +20,15 @@ function ProjectTheme_my_account_payments_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content item">
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php _e("Finances","ProjectTheme"); ?></h1>
+				  </div><!-- end page-header -->
 
             
             <?php
@@ -146,38 +154,16 @@ function ProjectTheme_my_account_payments_area_function()
 				do_action('ProjectTheme_before_payments_in_payments');
 			
 			?>
-            
-            
-            
-            <div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e("Finances","ProjectTheme"); ?></div>
-            	<div class="box_content">
-                
-                
                 
                 <?php
 				$bal = projectTheme_get_credits($uid);
-				echo '<span class="balance">'.__("Your Current Balance is", "ProjectTheme").": ".ProjectTheme_get_show_price($bal,2)."</span>"; 
+				echo '<h2>'.__("Your Current Balance is", "ProjectTheme").": ".ProjectTheme_get_show_price($bal,2)."</h2>"; 
 				
 				
 				?> 
-    
-    
-               
-            </div>
-            </div>
             
-            <div class="clear10"></div>
             
-            <div class="my_box3">
-           
-            
-            	<div class="box_title"><?php _e('What do you want to do','ProjectTheme'); ?></div>
-            	<div class="box_content">
-                
-                
+            	<h2><?php _e('What do you want to do','ProjectTheme'); ?></h2>
                 
                 <a href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>" class="green_btn old_mm_k"><?php _e('Deposit Money','ProjectTheme'); ?></a>  
                 <a href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>" class="green_btn old_mm_k"><?php _e('Make Payment','ProjectTheme'); ?></a> 
@@ -1076,8 +1062,11 @@ function ProjectTheme_my_account_payments_area_function()
                 
         </div> <!-- end dif content -->
         
-        <?php ProjectTheme_get_users_links(); ?>
+
         
+            </article>
+		  </div>
+        </div>
     
 	
 <?php	

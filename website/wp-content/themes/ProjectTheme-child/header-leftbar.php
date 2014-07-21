@@ -20,7 +20,7 @@ Template Name: Stylzt Page Template
     <!--[if IE 7]>
       <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
     <![endif]-->
-	<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.css" type="text/css" />
 	
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
@@ -29,9 +29,16 @@ Template Name: Stylzt Page Template
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
     
     <!-- Add fancyBox -->
-    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
-	<script type="text/javascript" src="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>     
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+	
+	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>    
+	<!--
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
+	-->
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/typeahead.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

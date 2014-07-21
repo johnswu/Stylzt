@@ -20,15 +20,15 @@ function ProjectTheme_my_account_personal_info_function()
 		$uid = $current_user->ID;
 	
 ?>
-
             </div><!-- end navbar-collapse -->
           </div><!-- end navbar -->
         </div><!-- end col -->
-        <div class="col-md-9 content">
-          <div class="portfolio-wrapper">
-		  
-	<div id="content" >
-        	
+        <div class="col-md-9 content item">
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php _e("Personal Information",'ProjectTheme'); ?></h1>
+				  </div><!-- end page-header -->
            <?php
 				
 				if(isset($_POST['save-info']))
@@ -200,17 +200,9 @@ function ProjectTheme_my_account_personal_info_function()
             
              <form method="post"  enctype="multipart/form-data">
              
-            <div class="my_box3">
-            	
-            
-            	<div class="box_title"><?php _e("Personal Information",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-	
-         <ul class="post-new3">
-        <li>
-        	<h2><?php echo __('Username','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="35" value="<?php echo $user->user_login; ?>" disabled="disabled" class="do_input" /></p>
-        </li>
+        	<h3><?php echo __('Username','ProjectTheme'); ?>:</h3>
+        	<input type="text" size="35" value="<?php echo $user->user_login; ?>" disabled="disabled" class="form-control" />
+			<br/>
 
 		<?php
 			
@@ -219,19 +211,14 @@ function ProjectTheme_my_account_personal_info_function()
 		
 		?>
         
-		 <li>
-        	<h2><?php echo __('Location','ProjectTheme'); ?>:</h2>
-        	<p>
-            <?php	echo ProjectTheme_get_categories("project_location", $user_location , __("Select Location","ProjectTheme"), "do_input"); ?>
-            </p>
-        </li>
-		
-        
-        <li>
-        	<h2><?php echo __('City','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="35" name="user_city" value="<?php echo get_user_meta($uid, 'user_city', true); ?>" class="do_input" /></p>
-        </li>
-        
+        	<h3><?php echo __('Location','ProjectTheme'); ?>:</h3>
+            <?php	echo ProjectTheme_get_categories("project_location", $user_location , __("Select Location","ProjectTheme"), "form-control"); ?>
+			<br/>			
+			
+        	<h3><?php echo __('City','ProjectTheme'); ?>:</h3>
+        	<input type="text" size="35" name="user_city" value="<?php echo get_user_meta($uid, 'user_city', true); ?>" class="form-control" />
+			<br/>
+			
 		<?php endif; ?>
      
             <script>
@@ -246,10 +233,10 @@ function ProjectTheme_my_account_personal_info_function()
 			});
 						
 			</script>    
-        <li>
-        	<h2><?php echo __('Description','ProjectTheme'); ?>:</h2>
-        	<p><textarea cols="40" rows="5"  name="user_description" class="tinymce-enabled do_input"><?php echo get_usermeta($uid,'user_description',true); ?></textarea></p>
-        </li>
+
+        	<h3><?php echo __('Description','ProjectTheme'); ?>:</h3>
+        	<textarea cols="40" rows="5"  name="user_description" class="tinymce-enabled form-control"><?php echo get_usermeta($uid,'user_description',true); ?></textarea>
+			<br/>
         
         <?php
 		
@@ -258,10 +245,9 @@ function ProjectTheme_my_account_personal_info_function()
 					
 		?>
         
-        <li>
-        	<h2><?php echo __('PayPal Email','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="35" name="paypal_email" value="<?php echo get_user_meta($uid, 'paypal_email', true); ?>" class="do_input" /></p>
-        </li>
+        	<h3><?php echo __('PayPal Email','ProjectTheme'); ?>:</h3>
+        	<input type="text" size="35" name="paypal_email" value="<?php echo get_user_meta($uid, 'paypal_email', true); ?>" class="form-control" />
+			<br/>
         
         <?php
 		endif;
@@ -271,10 +257,9 @@ function ProjectTheme_my_account_personal_info_function()
 					
 		?>
         
-        <li>
-        	<h2><?php echo __('Moneybookers Email','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="35" name="moneybookers_email" value="<?php echo get_user_meta($uid, 'moneybookers_email', true); ?>" class="do_input" /></p>
-        </li>
+        	<h3><?php echo __('Moneybookers Email','ProjectTheme'); ?>:</h3>
+        	<input type="text" size="35" name="moneybookers_email" value="<?php echo get_user_meta($uid, 'moneybookers_email', true); ?>" class="form-control" />
+			<br/>
         
         <?php
 		endif;
@@ -284,69 +269,44 @@ function ProjectTheme_my_account_personal_info_function()
 					
 		?>
         
-         <li>
-        	<h2><?php echo __('Payza Email','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="35" name="payza_email" value="<?php echo get_user_meta($uid, 'payza_email', true); ?>" class="do_input" /></p>
-        </li>
-       <?php endif; ?> 
+        	<h3><?php echo __('Payza Email','ProjectTheme'); ?>:</h3>
+        	<input type="text" size="35" name="payza_email" value="<?php echo get_user_meta($uid, 'payza_email', true); ?>" class="form-control" />
+			<br/>
+
+		<?php endif; ?> 
         
-         <li>
-        	<h2><?php echo __('New Password', "ProjectTheme"); ?>:</h2>
-        	<p><input type="password" value="" class="do_input" name="password" size="35" /></p>
-        </li>
+        	<h3><?php echo __('New Password', "ProjectTheme"); ?>:</h3>
+        	<input type="password" value="" class="form-control" name="password" size="35" />
+			<br/>
         
         
-        <li>
-        	<h2><?php echo __('Repeat Password', "ProjectTheme"); ?>:</h2>
-        	<p><input type="password" value="" class="do_input" name="reppassword" size="35"  /></p>
-        </li>
+        	<h3><?php echo __('Repeat Password', "ProjectTheme"); ?>:</h3>
+        	<input type="password" value="" class="form-control" name="reppassword" size="35"  />
+			<br/>
         
         
         <?php do_action('ProjectTheme_pers_info_fields_1'); ?>
         
-   		  <li>
-        	<h2><?php echo __('Profile Avatar','ProjectTheme'); ?>:</h2>
-        	<p> <input type="file" name="avatar" /> <br/>
+        	<h3><?php echo __('Profile Avatar','ProjectTheme'); ?>:</h3>
+            <img width="100" height="100" border="0" src="<?php echo ProjectTheme_get_avatar($uid,100,100); ?>" /> 
+        	<input type="file" name="avatar" /> <br/>
            <?php _e('max file size: 1mb. Formats: jpeg, jpg, png, gif' ,'ProjectTheme'); ?>
             <br/>
-            <img width="50" height="50" border="0" src="<?php echo ProjectTheme_get_avatar($uid,50,50); ?>" /> 
-            </p>
-        </li>
    
-   
-   <li>
    <?php
    
    if(function_exists('cimy_extract_ExtraFields'))
    cimy_extract_ExtraFields();
    
    ?>
-   </li> 
         
         
-        <li>
-        <h2>&nbsp;</h2>
-        <p><input type="submit" name="save-info" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
-        </li>
-        
-       </ul> 
-        
-               
-        
-           </div>
-           </div>     
+        <h3>&nbsp;</h3>
+        <input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" />
+        <br/><br/>
             
-            <div class="clear10"></div>
-            
-            <div class="my_box3" >
-           
-            
-            	<div class="box_title" id="other_infs_mm"><?php _e("Other Information",'ProjectTheme'); ?></div>
-                <div class="box_content">  
+        <!-- <h3><?php _e("Other Information",'ProjectTheme'); ?></h3> -->
                 
-        <ul class="post-new3">
-        
-        
         <?php do_action('ProjectTheme_pers_info_fields_2'); ?>
         
         <?php
@@ -373,10 +333,10 @@ function ProjectTheme_my_account_personal_info_function()
 		for($i=0;$i<count($arr);$i++)
 		{
 			
-			        $exf .= '<li>';
-					$exf .= '<h2>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h2>';
+			        $exf .= '';
+					$exf .= '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
 					$exf .= '<p>'.$arr[$i]['value'].'</p>';
-					$exf .= '</li>';
+					$exf .= '';
 					
 					$k++;
 			
@@ -389,12 +349,10 @@ function ProjectTheme_my_account_personal_info_function()
 			$k++;
 		?>           
                             
-        <li>
-        	<h2><?php echo __('Hourly Rate','ProjectTheme'); ?>:</h2>
-        	<p><?php echo projectTheme_currency(); ?><input type="text" size="7" name="per_hour" value="<?php echo get_user_meta($uid, 'per_hour', true); ?>" class="do_input" /> 
-             *<?php _e('your estimated hourly rate','ProjectTheme'); ?></p>
-        </li>
-        
+        	<h3><?php echo __('Hourly Rate','ProjectTheme'); ?> (<?php echo projectTheme_currency(); ?>):</h3>
+             *<?php _e('your estimated hourly rate','ProjectTheme'); ?>
+        	<input type="text" size="7" name="per_hour" value="<?php echo get_user_meta($uid, 'per_hour', true); ?>" class="form-control" /> 
+			<br/>
         <?php
 		endif;
 		
@@ -406,8 +364,7 @@ function ProjectTheme_my_account_personal_info_function()
 			  
 		?>           
                             
-        <li>
-        	<h2><?php echo __('Portfolio Pictures','ProjectTheme'); ?>:</h2>
+        	<h3><?php echo __('Portfolio Pictures','ProjectTheme'); ?>:</h3>
         	<p>
 			
      <?php
@@ -508,7 +465,6 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
             
             
             </p>
-        </li>
         
         <?php
 		endif;
@@ -517,8 +473,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 			$k++;
 		?>
                     
-                    <li>
-                        <h2><?php echo __('Emails Alerts','ProjectTheme'); ?>:</h2>
+                        <h3><?php echo __('Emails Alerts','ProjectTheme'); ?>:</h3>
                         <p><div style="border:1px solid #ccc;background:#f2f2f2; overflow:auto; width:350px; border-radius:5px; height:160px;">
                         
                         <?php
@@ -559,7 +514,6 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
                         </div>
                         <br/>
                         *<?php _e('you will get an email notification when a project is posted in the selected categories','ProjectTheme'); ?></p>
-                    </li>
         
         <?php
 		
@@ -567,8 +521,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		if($ProjectTheme_enable_project_location != "no"):
 		
 		?>
-        	   <li>
-                        <h2>&nbsp;</h2>
+                        <h3>Location Alerts:</h3>
                         <p><div style="border:1px solid #ccc;background:#f2f2f2; overflow:auto; width:350px; border-radius:5px; height:160px;">
                         
                         <?php
@@ -609,7 +562,6 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
                         </div>
                         <br/>
                         *<?php _e('you will get an email notification when a project is posted in the selected locations','ProjectTheme'); ?></p>
-                    </li>
         
         
         <?php endif;  endif; 
@@ -622,30 +574,16 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		?>
         
         			
-                    <li id="bk_save_not">
-        <h2>&nbsp;</h2> <input type="hidden" value="<?php echo $uid; ?>" name="user_id" />
-        <p><input type="submit" name="save-info" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
-        </li>
-                    
-        </ul>
+        <h3>&nbsp;</h3> 
+		<input type="hidden" value="<?php echo $uid; ?>" name="user_id" />
+        <p><input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
                 
-                
-              
-                </div>
-                </div>
-                
-                
-             
-            
-            
-            
             
 		</form>
-
-                
-        </div> <!-- end dif content -->
         
-        <?php ProjectTheme_get_users_links(); ?>
+        </article>
+	</div>
+</div>
         
     
 	

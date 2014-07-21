@@ -23,6 +23,15 @@ function ProjectTheme_my_account_private_messages_area_function()
 	
 		
 ?>
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content item">
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php _e("Messaging Home","ProjectTheme"); ?></h1>
+				  </div><!-- end page-header -->
     	 
        <?php 	
             global $wpdb,$wp_rewrite,$wp_query;
@@ -32,25 +41,19 @@ function ProjectTheme_my_account_private_messages_area_function()
 		
 	
 		?>
-        <div class="clear10"></div>
-        <div id="content">
-        
-        <div class="my_box3">
            
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url(); ?>" class="green_btn"><?php _e("Messaging Home","ProjectTheme"); ?></a>
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('send'); ?>" class="green_btn"><?php _e("Send New Message","ProjectTheme"); ?></a>
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('inbox'); ?>" class="green_btn"><?php _e("Inbox","ProjectTheme");
+                <a href="<?php echo ProjectTheme_get_priv_mess_page_url(); ?>" class="btn btn-lg btn-default"><?php _e("Messaging Home","ProjectTheme"); ?></a>&nbsp;&nbsp;&nbsp;
+                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('inbox'); ?>" class="btn btn-lg btn-default"><?php _e("Inbox","ProjectTheme");
 				
 				global $current_user;
 				get_currentuserinfo();
 				$rd = projectTheme_get_unread_number_messages($current_user->ID);
 				if($rd > 0) echo ' ('.$rd.')';
 				
-				 ?></a>
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('sent-items'); ?>" class="green_btn"><?php _e("Sent Items","ProjectTheme"); ?></a>
+				 ?></a>&nbsp;&nbsp;&nbsp;
+                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('sent-items'); ?>" class="btn btn-lg btn-default"><?php _e("Sent Items","ProjectTheme"); ?></a>&nbsp;&nbsp;&nbsp;
+                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('send'); ?>" class="btn btn-lg btn-default"><?php _e("Send New Message","ProjectTheme"); ?></a>
              
-        </div>
-        <div class="clear10"></div>
         <?php
 		
 			if($third_page == 'home') {
@@ -63,12 +66,8 @@ function ProjectTheme_my_account_private_messages_area_function()
         
 		<!-- page content here -->	
 			
-            
-            	
-            	<div class="my_box3">
-            	
-            	<div class="box_title"><?php _e("Latest Received Messages","ProjectTheme"); ?></div>
-                <div class="box_content">  
+            	<br/><br/><br/>
+            	<h3><?php _e("Latest Received Messages","ProjectTheme"); ?></h3>
                 <?php
 				global $wpdb; $uidsss = $current_user->ID;
 				$s = "select * from ".$wpdb->prefix."project_pm where user='$uidsss'  AND show_to_destination='1' and approved='1'  order by id desc limit 4";
@@ -76,14 +75,14 @@ function ProjectTheme_my_account_private_messages_area_function()
 				
 				if(count($r) > 0)
 				{
-					echo '<table width="100%">';
+					echo '<table width="100%" class="table table-hover">';
 					
-					echo '<tr>';
-						echo '<td>'.__('From User','ProjectTheme').'</td>';
-						echo '<td>'.__('Subject','ProjectTheme').'</td>';						
-						echo '<td>'.__('Date','ProjectTheme').'</td>';
-						echo '<td>'.__('Options','ProjectTheme').'</td>';
-						echo '</tr>';
+					echo '<thead><tr>';
+						echo '<th>'.__('From User','ProjectTheme').'</th>';
+						echo '<th>'.__('Subject','ProjectTheme').'</th>';						
+						echo '<th>'.__('Date','ProjectTheme').'</th>';
+						echo '<th>'.__('Options','ProjectTheme').'</th>';
+						echo '</tr></thead>';
 					
 					
 					
@@ -110,19 +109,11 @@ function ProjectTheme_my_account_private_messages_area_function()
 				
 				?>
       
-            
-                </div>
-                </div>
-            
             <!--#######-->
             
-            <div class="clear10"></div>
-            
-            	<div class="my_box3">
             	
-            
-            	<div class="box_title"><?php _e("Latest Sent Items","ProjectTheme"); ?></div>
-                <div class="box_content">  
+				
+            	<h3><?php _e("Latest Sent Items","ProjectTheme"); ?></h3>
                 <?php
 				global $wpdb; $uidss = $current_user->ID;
 				$s = "select * from ".$wpdb->prefix."project_pm where initiator='$uidss'  AND show_to_source='1' order by id desc limit 4";
@@ -130,14 +121,14 @@ function ProjectTheme_my_account_private_messages_area_function()
 				
 				if(count($r) > 0)
 				{
-					echo '<table width="100%">';
+					echo '<table width="100%" class="table table-hover">';
 					
-					echo '<tr>';
-						echo '<td>'.__('To User','ProjectTheme').'</td>';
-						echo '<td>'.__('Subject','ProjectTheme').'</td>';						
-						echo '<td>'.__('Date','ProjectTheme').'</td>';
-						echo '<td>'.__('Options','ProjectTheme').'</td>';
-						echo '</tr>';
+					echo '<thead><tr>';
+						echo '<th>'.__('To User','ProjectTheme').'</th>';
+						echo '<th>'.__('Subject','ProjectTheme').'</th>';						
+						echo '<th>'.__('Date','ProjectTheme').'</th>';
+						echo '<th>'.__('Options','ProjectTheme').'</th>';
+						echo '</tr></thead>';
 					
 					
 					
@@ -166,10 +157,6 @@ function ProjectTheme_my_account_private_messages_area_function()
 				?>
       
                
-                </div>
-                </div>
-            
-            
 		<!-- page content here -->	
 			
         <?php }
@@ -185,12 +172,8 @@ function ProjectTheme_my_account_private_messages_area_function()
         
 		<!-- page content here -->	
 			
-            
-            	<div class="my_box3">
-           
-            
-            	<div class="box_title"><?php _e("Private Messages: Inbox","ProjectTheme"); ?></div>
-                <div class="box_content">  
+				<br/><br/><br/>
+            	<h3><?php _e("Private Messages: Inbox","ProjectTheme"); ?></h3>
                 <?php
 				
 				global $wpdb;
@@ -241,15 +224,15 @@ function ProjectTheme_my_account_private_messages_area_function()
                     <?php
 					
 					echo '<form method="post" action="'.ProjectTheme_get_priv_mess_page_url('delete-message','','&return=inbox').'">';
-					echo '<table width="100%">';
+					echo '<table width="100%" class="table table-hover">';
 					
-					echo '<tr>';
-						echo '<td><input type="checkbox" name="" id="select_all_stuff" value="1" /> '.__('Select All','ProjectTheme').' </td>';
-						echo '<td>'.__('From User','ProjectTheme').'</td>';
-						echo '<td>'.__('Subject','ProjectTheme').'</td>';						
-						echo '<td>'.__('Date','ProjectTheme').'</td>';
-						echo '<td>'.__('Options','ProjectTheme').'</td>';
-						echo '</tr>';
+					echo '<thead><tr>';
+						echo '<th><input type="checkbox" name="" id="select_all_stuff" value="1" /> '.__('Select All','ProjectTheme').' </th>';
+						echo '<th>'.__('From User','ProjectTheme').'</th>';
+						echo '<th>'.__('Subject','ProjectTheme').'</th>';						
+						echo '<th>'.__('Date','ProjectTheme').'</th>';
+						echo '<th>'.__('Options','ProjectTheme').'</th>';
+						echo '</tr></thead>';
 					
 					
 					
@@ -285,11 +268,7 @@ function ProjectTheme_my_account_private_messages_area_function()
 				} else _e('No messages here.','ProjectTheme');
 				
 				?>
-      
-             
-                </div>
-                </div>
-            
+                  
             
 		<!-- page content here -->	
 			
@@ -326,13 +305,9 @@ function ProjectTheme_my_account_private_messages_area_function()
 					
 					</script>
 		<!-- page content here -->	
-			
             
-            	<div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e("Private Messages: Sent Items","ProjectTheme"); ?></div>
-                <div class="box_content">  
+				<br/><br/><br/>
+            	<h3><?php _e("Private Messages: Sent Items","ProjectTheme"); ?></h3>
                 <?php
 				global $wpdb;
 				
@@ -359,15 +334,15 @@ function ProjectTheme_my_account_private_messages_area_function()
 				{
 					
 					echo '<form method="post" action="'.ProjectTheme_get_priv_mess_page_url('delete-message','','&return=outbox').'">';
-					echo '<table width="100%">';
+					echo '<table width="100%" class="table table-hover">';
 					
-					echo '<tr>';
-						echo '<td><input type="checkbox" name="" id="select_all_stuff" value="1" /> '.__('Select All','ProjectTheme').' </td>';
-						echo '<td>'.__('To User','ProjectTheme').'</td>';
-						echo '<td>'.__('Subject','ProjectTheme').'</td>';						
-						echo '<td>'.__('Date','ProjectTheme').'</td>';
-						echo '<td>'.__('Options','ProjectTheme').'</td>';
-						echo '</tr>';
+					echo '<thead><tr>';
+						echo '<th><input type="checkbox" name="" id="select_all_stuff" value="1" /> '.__('Select All','ProjectTheme').' </th>';
+						echo '<th>'.__('To User','ProjectTheme').'</th>';
+						echo '<th>'.__('Subject','ProjectTheme').'</th>';						
+						echo '<th>'.__('Date','ProjectTheme').'</th>';
+						echo '<th>'.__('Options','ProjectTheme').'</th>';
+						echo '</tr></thead>';
 					
 					
 					
@@ -404,10 +379,6 @@ function ProjectTheme_my_account_private_messages_area_function()
 				else _e('No messages here.','ProjectTheme');
 				?>
       
-                </div>
-                </div>
-        
-            
             
 		<!-- page content here -->	
 			
@@ -437,11 +408,8 @@ function ProjectTheme_my_account_private_messages_area_function()
         
 		<!-- page content here -->	
 			
-            
-            	<div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php 
+				
+            	<h3><?php 
 				
 				if(isset($_POST['delete_sel']))
 				{
@@ -454,8 +422,7 @@ function ProjectTheme_my_account_private_messages_area_function()
 					echo " ".$row->subject;
 				}
 				
-				 ?></div>
-                <div class="box_content">  
+				 ?></h3>
                 
                 <?php
 					if(isset($_POST['message_ids']))
@@ -510,9 +477,6 @@ function ProjectTheme_my_account_private_messages_area_function()
       
        <a href="<?php echo ProjectTheme_get_priv_mess_page_url('delete-message', $row->id, '&confirm_message_deletion=yes&return='.urlencode($_GET['rdr'])); ?>" 
        class="nice_link"><?php _e("Confirm Deletion",'ProjectTheme'); ?></a> <?php endif; endif; ?>
-                </div>
-                </div>
-                </div>
             
             
 		<!-- page content here -->	
@@ -542,11 +506,8 @@ function ProjectTheme_my_account_private_messages_area_function()
 		<!-- page content here -->	
 			
             
-            	<div class="my_box3">
-           
-            
-            	<div class="box_title"><?php _e("Read Message: ","ProjectTheme"); echo " ".$row->subject ?></div>
-                <div class="box_content">  
+            	<h3><?php _e("Read Message: ","ProjectTheme"); echo " ".$row->subject ?></h3>
+
                 <?php echo $row->content; ?>
       <br/> <br/>
       
@@ -560,9 +521,7 @@ function ProjectTheme_my_account_private_messages_area_function()
       
       <?php if($owner == false): ?>
        <a href="<?php echo ProjectTheme_get_priv_mess_page_url('send', '', '&pid='.$row->pid.'&uid='.$row->initiator.'&in_reply_to='.$row->id); ?>" class="nice_link"><?php _e("Reply",'ProjectTheme'); ?></a> <?php endif; ?>
-                </div>
-                </div>
-             
+	   
             
 		<!-- page content here -->	
 			
@@ -753,18 +712,15 @@ function ProjectTheme_my_account_private_messages_area_function()
 			//-----------------------		
 				?>
                 
-                <div class="my_box3">
-            	<div class="padd10">
-                 <?php 
-				 
+
+				<br/><br/><br/>
+				<?php 
 				 if($ProjectTheme_moderate_private_messages == false)				 
 				 	_e('Your message has been sent.','ProjectTheme');
 				 else
 				  	_e('Your message has been sent but the receiver will receive it only after moderation.','ProjectTheme')
 				 
 				  ?>
-                </div>
-                </div>
                 
                 <?php
 				
@@ -788,14 +744,11 @@ function ProjectTheme_my_account_private_messages_area_function()
 		
 		?>   
              
-        <div class="my_box3">
-            	
-            
-            	<div class="box_title"><?php _e("Send Private Message to: ","ProjectTheme"); ?> <?php echo $user->user_login; ?></div>
-                <div class="box_content">  
+				<br/><br/><br/>
+				<h3><?php _e("Send Private Message to: ","ProjectTheme"); ?> <?php echo $user->user_login; ?></h3>
                 <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="tm" value="<?php echo current_time('timestamp',0); ?>" />
-                <table>
+                <table class="table table-hover">
                 <?php if(empty($uid)): 
 				
 				$rtt = ProjectTheme_get_my_awarded_projects2($current_user->ID);
@@ -850,17 +803,13 @@ function ProjectTheme_my_account_private_messages_area_function()
                 </table>
       			</form>
                 
-                </div>
-                </div>
-             
         
         <?php } } ?>
         
              
-        </div> <!-- end dif content -->
-        
-        <?php ProjectTheme_get_users_links(); ?>
-        
+            </article>
+		  </div>
+        </div>
     
 	
 <?php	

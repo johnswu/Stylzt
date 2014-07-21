@@ -82,7 +82,7 @@ get_header( 'leftbar' );
 						  }
 						  
 						  echo sprintf(__('Hourly Rate: %s','ProjectTheme'), $pr); ?></li>
-                    <li><a href="#none" class="btn btn-default">Contact Me</a></li>
+                    <li><a href="<?php echo ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$uid) ?>" class="btn btn-default">Contact Me</a></li>
                   </ul><!-- end post-meta -->
                 </div><!-- end col -->
                 <div class="col-md-8">

@@ -1,15 +1,4 @@
           </div>
-          <div class="pagination-wrapper">
-            <ul class="pagination">
-              <li class="disabled"><span>Prev</span></li>
-              <li class="active"><a href="#none">1</a></li>
-              <li><a href="#none">2</a></li>
-              <li><a href="#none">3</a></li>
-              <li><a href="#none">4</a></li>
-              <li><a href="#none">5</a></li>
-              <li><a href="#none">Next</a></li>
-            </ul>
-          </div><!-- end pagination-wrapper -->
         </div><!-- end col -->
       </div><!-- end row -->
     </div><!-- end wrapper -->
@@ -23,15 +12,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
     <script type="text/javascript">
       
       $(document).ready(function() {
         
-        $('.dropdown-toggle').dropdown();
+        // $('.dropdown-toggle').dropdown();
         
         var $container = $('.portfolio-wrapper');
         
