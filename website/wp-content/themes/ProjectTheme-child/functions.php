@@ -560,7 +560,10 @@ function ProjectTheme_add_max_nr_of_images()
 		jQuery("#submit-proposal-id").fancybox({
 			 
 				'scrolling'         : 'no',
-				'padding'           : 0,
+				'autoDimensions'	: false,
+				'width'				: 545,
+				'height'			: 608,
+				'padding'           : 20,
 				'centerOnScroll'    : true,
 				'href'              : '<?php bloginfo('siteurl') ?>/?<?php echo $get_bidding_panel ?>=1&pid=' + pid,
 				'type'              : 'ajax'

@@ -48,10 +48,9 @@
 				
 		?>
 				
-				<div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e('Registration Complete',$current_theme_locale_name) ?></div>
+            <div class="col-lg-12">
+				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
+					<div class="box_title"><?php _e('Registration Complete',$current_theme_locale_name) ?></div>
 							<p><?php printf(__('Username: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_login) . "</strong>") ?><br />
 							<?php printf(__('Password: %s',$current_theme_locale_name), '<strong>' . __('emailed to you',$current_theme_locale_name) . '</strong>') ?> <br />
 							<?php printf(__('E-mail: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_email) . "</strong>") ?><br /><br />
@@ -59,7 +58,8 @@
                             </p>
 
 							<p class="submit"><a href="wp-login.php"><?php _e('Login', $current_theme_locale_name); ?> &raquo;</a></p>
-						</div></div>
+				</div>
+			</div>
 		<?php
 								
 				
@@ -76,14 +76,14 @@
 				
 				?>
 				
-				<div class="my_box3">
-            	<div class="padd10">
+            <div class="col-lg-12">
+				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
             
-            	<div class="box_title"><?php _e("Register",$current_theme_locale_name); ?> - <?php echo  get_bloginfo('name'); ?></div>
-                <div class="box_content">                                          
+					<div class="box_title"><?php _e("Register",$current_theme_locale_name); ?> - <?php echo  get_bloginfo('name'); ?></div>
+					<div class="box_content">                                          
 						  
-						  <?php if ( isset($errors) && isset($_POST['action']) ) : ?>
-						  <div class="error">
+						<?php if ( isset($errors) && isset($_POST['action']) ) : ?>
+						<div class="error">
 							<ul>
 							<?php
 							foreach($errors as $error) {
@@ -96,9 +96,9 @@
 							}
 							?>
 							</ul>
-						  </div>
+						</div>
 						  <?php endif; ?>
-						  <div class="login-submit-form">
+						<div class="login-submit-form">
                           
                           
                           <form method="post" id="registerform" action="<?php echo esc_url( site_url('wp-login.php?action=register', 'login_post') ); ?>">
@@ -160,9 +160,9 @@
                         
                         
                         
-                        </div>
-                        </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
                         
                         
 		<?php
@@ -178,18 +178,17 @@
 				
 			
 		?>
-        <div class="clear10"></div>	
-				<div class="my_box3">
-            	<div class="padd10">
+            <div class="col-lg-12">
+				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
 
-        <div class="box_title"><?php _e('Registration Disabled',$current_theme_locale_name) ?></div>
-                <div class="box_content">
-                                                  
-							
-							<p><?php _e('User registration is currently not allowed.',$current_theme_locale_name) ?><br />
-							<a href="<?php echo get_settings('home'); ?>/" title="<?php _e('Go back to the blog',$current_theme_locale_name) ?>"><?php _e('Home',$current_theme_locale_name) ?></a>
-							</p>
-						</div></div></div>
+					<div class="box_title"><?php _e('Registration Disabled',$current_theme_locale_name) ?></div>
+					<div class="box_content">
+						<p><?php _e('User registration is currently not allowed.',$current_theme_locale_name) ?><br />
+						<a href="<?php echo get_settings('home'); ?>/" title="<?php _e('Go back to the blog',$current_theme_locale_name) ?>"><?php _e('Home',$current_theme_locale_name) ?></a>
+						</p>
+					</div>
+				</div>
+			</div>
 		<?php
 				
 				 get_footer();

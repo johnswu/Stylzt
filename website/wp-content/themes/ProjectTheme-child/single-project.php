@@ -447,7 +447,7 @@ jQuery(document).ready(function(){
 					<li><span class="fa fa-usd"></span><?php echo __("Average Bid",'ProjectTheme'); ?>: <?php echo ProjectTheme_average_bid(get_the_ID()); ?></li>
 					<li><span class="fa fa-clock-o"></span><?php echo __("Time Left",'ProjectTheme'); ?>: <?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) 
 								: __("Expired/Closed",'ProjectTheme')); ?></li>
-                    <li style="text-align:center;"><a href="#" class="btn btn-primary message_brd_cls" rel="<?php the_ID(); ?>"><?php _e('Project Message Board','ProjectTheme') ?></a></li>
+                    <!-- <li style="text-align:center;"><a href="#" class="btn btn-primary message_brd_cls" rel="<?php the_ID(); ?>"><?php _e('Project Message Board','ProjectTheme') ?></a></li> -->
                     <li style="text-align:center;"><a href="#" class="btn btn-primary post_bid_btn_new" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a></li>
                   </ul><!-- end post-meta -->
                 </div><!-- end col -->

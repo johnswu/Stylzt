@@ -98,6 +98,5 @@ Template Name: Stylzt Page Template
           </div><!-- end navbar -->
         </div><!-- end col -->
         <div class="col-md-9 content">
-          <div class="portfolio-wrapper">
 		  
-	<div id="content" >
+	<!-- <div id="content" > -->

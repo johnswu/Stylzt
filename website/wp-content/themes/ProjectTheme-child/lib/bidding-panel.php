@@ -11,7 +11,7 @@
 
 
 	global $wpdb,$wp_rewrite,$wp_query;
-	$pid = $_GET['get_bidding_panel'];
+	$pid = $_GET['pid'];
 	
 	global $current_user;
 	get_currentuserinfo();
@@ -44,7 +44,8 @@
 
 <?php else: ?>	
 
-
+	<div class="fancyContainer">
+	
 <script type="text/javascript">
 
 function check_submits()
@@ -73,8 +74,8 @@ function check_submits()
 
 
 </script>
-	<div class="box_title"><?php echo sprintf(__("Post bid on project: %s",'ProjectTheme'), $post->post_title ); ?></div>
-  	<div class="bid_panel" style="width:550px;height:450px">
+	<!--<h3><?php echo sprintf(__("Post bid on project: %s",'ProjectTheme'), $post->post_title ); ?></h3>-->
+	<h3>Post Your Bid</h3>
     <?php
 	
 	$do_not_show = 0;
@@ -106,27 +107,27 @@ function check_submits()
 	else
 	{
 		?>
-    
-                <div class="padd10">
+			<div class="formWrapper">
                 <form onsubmit="return check_submits();" method="post" action="<?php echo get_permalink($pid); ?>"> 
                 <input type="hidden" name="control_id" value="<?php echo base64_encode($pid); ?>" /> 
                 	<ul class="project-details" style="width:100%">
 		                           
                             <li>
-								<h3><?php _e('Your Bid','ProjectTheme'); ?></h3>
-								<p><input type="text" name="bid" id="bid" value="<?php echo $bid; ?>" size="10" /> 
                                 <?php 
 								
 								$currency = projectTheme_currency();
 								$currency = apply_filters('ProjectTheme_currency_in_bidding_panel', $currency);
 								
-								echo $currency; ?>
+								 ?>
+								<h4><?php _e('Your Bid','ProjectTheme'); ?> (<?php echo $currency; ?>)</h4>
+								<p>
+								<input type="text" name="bid" id="bid" value="<?php echo $bid; ?>" size="10" class="form-control" /> 
                                 </p>
 							</li>
                             
                             <li>
-								<h3><?php _e('Days to Complete','ProjectTheme'); ?></h3>
-								<p><input type="text" name="days_done" id="days_done" value="<?php echo $days_done; ?>" size="10" /> 
+								<h4><?php _e('Days to Complete','ProjectTheme'); ?></h4>
+								<p><input type="text" name="days_done" id="days_done" value="<?php echo $days_done; ?>" size="10" class="form-control" /> 
                               
                                 </p>
 							</li>
@@ -139,7 +140,7 @@ function check_submits()
 						   ?> 
                             
                             <li>
-								<h3><?php _e('Attach Files','ProjectTheme'); ?></h3>
+								<h4><?php _e('Attach Files','ProjectTheme'); ?></h4>
 								 
                                 <!-- ################### -->
                                 
@@ -258,10 +259,10 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
                             <?php endif; ?>
                             
                             <li>
-								<h3><?php _e('Description','ProjectTheme'); ?></h3>
+								<h4><?php _e('Description','ProjectTheme'); ?></h4>
 								<p>
                                 
-                                <textarea name="description2" cols="28" rows="3"><?php echo $description; ?></textarea><br/>
+                                <textarea name="description2" cols="28" rows="3" class="form-control"><?php echo $description; ?></textarea><br/>
                              
                                 <input type="hidden" name="control_id" value="<?php echo base64_encode($pid); ?>" />
                                 </p>
@@ -269,22 +270,20 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
                             
                             
                             <li>
-								<h3> </h3>
-								<p>
-                                
-                                
-                                <input type="checkbox" name="accept_trms" id="submits_crt_check" value="1" /><?php _e("I can perform work where/when described in post.",'ProjectTheme'); ?> </p>
+                                <label class="checkbox">
+									<input type="checkbox" name="accept_trms" id="submits_crt_check" value="1" /><span></span>
+									<?php _e("I can perform work where/when described in post.",'ProjectTheme'); ?> 
+								</label>
+								</p>
 							</li>
                             
                             <li>
 								<h3> </h3>
 								<p>
-                                
-                                
-                                <input class="my-buttons" id="submits_crt" type="submit" name="bid_now_reverse" value="<?php _e("Place Bid",'ProjectTheme'); ?>" /></p>
+                                <input class="btn btn-primary" id="submits_crt" type="submit" name="bid_now_reverse" value="<?php _e("Place Bid",'ProjectTheme'); ?>" /></p>
 							</li>
                             
                 	</ul>
                    </form>
                 </div> <?php } ?>
-                </div> <?php endif; ?>
+            </div> <?php endif; ?>
