@@ -8,16 +8,23 @@ function ProjectTheme_my_account_feedbacks_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">	
-	
-	
-	
-	
-	 <div class="my_box3">
-            	
-            
-            	<div class="box_title"><?php _e("Reviews I need to award",'ProjectTheme'); ?></div>
-                <div class="box_content">    
+    </div>
+    <!-- end navbar-collapse -->
+  </div>
+  <!-- end navbar -->
+</div>
+<!-- end col -->
+<div class="col-md-9 content item">
+  <div class="page">
+    <article>
+      <div class="page-header">
+        <h1>
+          <?php printf(__("Reviews/Feedback %s",'ProjectTheme'), "");?>
+        </h1>
+      </div>
+      <!-- end page-header -->
+
+      <h3><?php _e("Reviews I need to award",'ProjectTheme'); ?></h3>
 				
               	<?php
 					
@@ -27,7 +34,7 @@ function ProjectTheme_my_account_feedbacks_area_function()
 					
 					if(count($r) > 0)
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 							echo '<tr>';
 								echo '<th>&nbsp;</th>';	
 								echo '<th><b>'.__('Project Title','ProjectTheme').'</b></th>';
@@ -48,13 +55,13 @@ function ProjectTheme_my_account_feedbacks_area_function()
 							
 							echo '<tr>';
 								
-								echo '<th><img class="img_class" width="42" height="42" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
-                                alt="'.$post->post_title.'" /></th>';	
-								echo '<th><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></th>';	
-								echo '<th><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></th>';							
-								echo '<th>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</th>';								
-								echo '<th>'.projectTheme_get_show_price($bid->bid).'</th>';
-								echo '<th><a href="'.get_bloginfo('siteurl').'/?p_action=rate_user&rid='.$row->id.'">'.__('Rate User','ProjectTheme').'</a></th>';
+								echo '<td><img class="img_class" width="42" height="42" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
+                               alt="'.$post->post_title.'" /></td>';	
+								echo '<td><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></td>';	
+								echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';							
+								echo '<td>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</td>';								
+								echo '<td>'.projectTheme_get_show_price($bid->bid).'</td>';
+								echo '<td><a href="'.get_bloginfo('siteurl').'/?p_action=rate_user&rid='.$row->id.'">'.__('Rate User','ProjectTheme').'</a></td>';
 							
 							echo '</tr>';
 							
@@ -68,18 +75,8 @@ function ProjectTheme_my_account_feedbacks_area_function()
 					}
 				?>
                 
-                
-           </div>
-           </div>    
-           
-           <!-- ##### -->
-           <div class="clear10"></div>
-           
-           <div class="my_box3">
             
-            
-            	<div class="box_title"><?php _e("Reviews I am waiting ",'ProjectTheme'); ?></div>
-                <div class="box_content">    
+            	<h3><?php _e("Reviews I am waiting ",'ProjectTheme'); ?></h3>
 				
               	<?php
 					
@@ -89,7 +86,7 @@ function ProjectTheme_my_account_feedbacks_area_function()
 					
 					if(count($r) > 0)
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 							echo '<tr>';
 								echo '<th>&nbsp;</th>';	
 								echo '<th><b>'.__('Project Title','ProjectTheme').'</b></th>';								
@@ -109,13 +106,13 @@ function ProjectTheme_my_account_feedbacks_area_function()
 							$user 	= get_userdata($row->fromuser);
 							echo '<tr>';
 								
-								echo '<th><img class="img_class" width="42" height="42"  src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
-                                alt="'.$post->post_title.'" /></th>';	
-								echo '<th><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></th>';
-								echo '<th><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></th>';								
-								echo '<th>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</th>';								
-								echo '<th>'.projectTheme_get_show_price($bid->bid).'</th>';
-								//echo '<th><a href="#">Rate User</a></th>';
+								echo '<td><img class="img_class" width="42" height="42"  src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
+                                alt="'.$post->post_title.'" /></td>';	
+								echo '<td><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></td>';
+								echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';								
+								echo '<td>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</td>';								
+								echo '<td>'.projectTheme_get_show_price($bid->bid).'</td>';
+								//echo '<th><a href="#">Rate User</a></td>';
 							
 							echo '</tr>';
 							
@@ -130,16 +127,7 @@ function ProjectTheme_my_account_feedbacks_area_function()
 				?>
                 
                 
-           </div>
-           </div>    
-           
-           <div class="clear10"></div>
-           
-           <div class="my_box3">
-            	
-            
-            	<div class="box_title"><?php _e("Reviews I was awarded ",'ProjectTheme'); ?></div>
-                <div class="box_content">    
+            	<h3><?php _e("Reviews I was awarded ",'ProjectTheme'); ?></h3>
 				
               	<?php
 					
@@ -171,22 +159,22 @@ function ProjectTheme_my_account_feedbacks_area_function()
 							
 							echo '<tr>';
 								
-								echo '<th><img width="42" height="42" class="img_class" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
-                                alt="'.$post->post_title.'" /></th>';	
-								echo '<th><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></th>';
-								echo '<th><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></th>';								
-								echo '<th>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</th>';								
-								echo '<th>'.projectTheme_get_show_price($bid->bid).'</th>';
-								echo '<th>'.floor($row->grade/2).'/5</th>';
+								echo '<td><img width="42" height="42" class="img_class" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
+                                alt="'.$post->post_title.'" /></td>';	
+								echo '<td><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></td>';
+								echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';								
+								echo '<td>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</td>';								
+								echo '<td>'.projectTheme_get_show_price($bid->bid).'</td>';
+								echo '<td>'.floor($row->grade/2).'/5</td>';
 								
 							
 							echo '</tr>';
 							echo '<tr>';
-							echo '<th></th>';
-							echo '<th colspan="5"><b>'.__('Comment','ProjectTheme').':</b> '.$row->comment.'</th>'	;						
+							echo '<td></td>';
+							echo '<td colspan="5"><b>'.__('Comment','ProjectTheme').':</b> '.$row->comment.'</td>'	;						
 							echo '</tr>';
 							
-							echo '<tr><th colspan="6"><hr color="#eee" /></th></tr>';
+							echo '<tr><td colspan="6"><hr color="#eee" /></td></tr>';
 							
 						}
 						
@@ -197,20 +185,13 @@ function ProjectTheme_my_account_feedbacks_area_function()
 						_e("There are no reviews to be awarded.","ProjectTheme");	
 					}
 				?>
-                
-              
-           </div>
-           </div>    
-	
-	
-	
-	
-	
-		</div>
-        
+
+
+    </article>
+  </div>
+</div>
+
 <?php	
-		
-		ProjectTheme_get_users_links(); 
 		
 }
 

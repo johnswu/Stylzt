@@ -604,7 +604,7 @@ jQuery(document).ready(function(){
 						
 						if($show_stuff == 1):
 						
-							echo '<table id="my_bids" width="100%">';
+							echo '<table id="my_bids" width="100%" class="table table-striped table-hover">';
 							echo '<thead><tr>';
 								echo '<th>'.__('Username','ProjectTheme').'</th>';
 								echo '<th>'.__('Bid','ProjectTheme').'</th>';
@@ -647,38 +647,38 @@ jQuery(document).ready(function(){
 							
 							$user = get_userdata($row->uid);
 							echo '<tr>';
-							echo '<th><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></th>';
-							echo '<th>'.ProjectTheme_get_show_price($row->bid).'</th>';
-							echo '<th>'.date("d-M-Y H:i:s", $row->date_made).'</th>';
-							echo '<th>'. $row->days_done .'</th>';
+							echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';
+							echo '<td>'.ProjectTheme_get_show_price($row->bid).'</td>';
+							echo '<td>'.date("n-d-Y g:i A", $row->date_made).'</td>';
+							echo '<td>'. $row->days_done .'</td>';
 							if ($owner == 1 ) {
 								
 								$nr = 7;
 								if(empty($winner)) // == 0)
-									echo '<th><a href="'.get_bloginfo('siteurl').'/?p_action=choose_winner&pid='.get_the_ID().'&bid='.$row->id.'">'.__('Select','ProjectTheme').'</a></th>';						
+									echo '<td><a href="'.get_bloginfo('siteurl').'/?p_action=choose_winner&pid='.get_the_ID().'&bid='.$row->id.'">'.__('Select','ProjectTheme').'</a></td>';						
 								
 								if($ProjectTheme_enable_project_files != "no")
 								{
-									echo '<th>';
+									echo '<td>';
 									
 									if(projecttheme_see_if_project_files_bid(get_the_ID(), $row->uid) == true)
 									echo '<a href="#" class="get_files" rel="'.get_the_ID().'_'.$row->uid.'">'.__('Bid Files','ProjectTheme').'</a>';
 									else
 									_e('None','ProjectTheme');
 									
-									echo '</th>';
+									echo '</td>';
 								
 								}
-								echo '<th><a href="'.ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$row->uid.'&pid='.get_the_ID()).'">'.__('Send Message','ProjectTheme').'</a></th>';
+								echo '<td><a href="'.ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$row->uid.'&pid='.get_the_ID()).'">'.__('Send Message','ProjectTheme').'</a></td>';
 							}
 							else $nr = 4;
 							
-							if($closed == "1") { if($row->winner == 1) echo '<th>'.__('Yes','ProjectTheme').'</th>'; else echo '<th>&nbsp;</th>'; }
+							if($closed == "1") { if($row->winner == 1) echo '<td>'.__('Yes','ProjectTheme').'</td>'; else echo '<td>&nbsp;</td>'; }
 							
 							echo '</tr>';
 							
 							echo '<tr>';
-							echo '<th colspan="'.$nr.'" class="my_td_with_border">'.$row->description.'</th>';
+							echo '<td colspan="'.$nr.'" class="my_td_with_border">'.$row->description.'</td>';
 							echo '</tr>';
 							endif;
 						}
