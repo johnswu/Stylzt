@@ -44,7 +44,8 @@ function ProjectTheme_my_account_active_projects_area_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post_active();
+					//projectTheme_get_post_active();
+          projectTheme_get_post();
 				endwhile;
 				
 				if(function_exists('wp_pagenavi')):
@@ -59,7 +60,7 @@ function ProjectTheme_my_account_active_projects_area_function()
 				wp_reset_query();
 				
 				?>
-
+      <div style="clear:both;"></div>
     </article>
   </div>
 </div>

@@ -1215,7 +1215,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 }
 .page article {
   margin: 0 0 30px;
-  padding: 50px 30px 30px;
+  padding: 50px 10px 30px 30px;
   position: relative;
   background: #fff;
   -webkit-border-radius: 4px;
@@ -1392,7 +1392,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
   COMPONENTS
 ***************************************************/
 .page-header {
-  margin: -50px -30px 35px;
+  margin: -50px -10px 35px -30px;
   padding: 0 0 35px;
   border-bottom: 1px solid #e6e6e6;
 }
