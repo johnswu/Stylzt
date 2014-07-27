@@ -20,16 +20,21 @@ function ProjectTheme_my_account_outstanding_projects_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
-        
-        
-        	<div class="my_box3 border_bottom_0">
-            	
-            
-            	<div class="box_title"><?php _e("Outstanding Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-				
-                
+</div>
+<!-- end navbar-collapse -->
+</div>
+<!-- end navbar -->
+</div>
+<!-- end col -->
+<div class="col-md-9 content item">
+  <div class="page">
+    <article>
+      <div class="page-header">
+        <h1>
+          <?php _e("Outstanding Projects",'ProjectTheme'); ?>
+        </h1>
+      </div>
+      <!-- end page-header -->
                 <?php
 				global $current_user;
 				get_currentuserinfo();
@@ -60,7 +65,8 @@ function ProjectTheme_my_account_outstanding_projects_area_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post_outstanding_project();
+					// projectTheme_get_post_outstanding_project();
+					projectTheme_get_post();          
 				endwhile;
 				
 				if(function_exists('wp_pagenavi')):
@@ -75,16 +81,12 @@ function ProjectTheme_my_account_outstanding_projects_area_function()
 				wp_reset_query();
 				
 				?>
-                
-                
-               
-           </div>
-           </div>    
-        
-        
-  		</div>      
+
+      <div style="clear:both;"></div>
+    </article>
+  </div>
+</div>
 <?php
-		ProjectTheme_get_users_links();
 
 }
 	

@@ -18,16 +18,21 @@ function ProjectTheme_my_account_closed_projects_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
-        
-        
-                
-                <div class="my_box3 border_bottom_0">
-            	
-            
-            	<div class="box_title"><?php _e("My Closed Projects",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-				
+</div>
+<!-- end navbar-collapse -->
+</div>
+<!-- end navbar -->
+</div>
+<!-- end col -->
+<div class="col-md-9 content item">
+  <div class="page">
+    <article>
+      <div class="page-header">
+        <h1>
+          <?php _e("My Closed Projects",'ProjectTheme'); ?>
+        </h1>
+      </div>
+      <!-- end page-header -->
                 
                 <?php
 				global $wp_query;
@@ -54,17 +59,13 @@ function ProjectTheme_my_account_closed_projects_area_function()
 				wp_reset_query();
 				
 				?>
-                
-                
-               
-           </div>
-           </div>    
-		
-        
-        
-  		</div>      
+
+
+      <div style="clear:both;"></div>
+    </article>
+  </div>
+</div>
 <?php
-		ProjectTheme_get_users_links();
 
 }
 	

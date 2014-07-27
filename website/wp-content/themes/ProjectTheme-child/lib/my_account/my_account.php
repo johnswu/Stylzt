@@ -178,7 +178,8 @@ function ProjectTheme_my_account_area_main_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post_outstanding_project();
+					//projectTheme_get_post_outstanding_project();
+          projectTheme_get_post();
 				endwhile; else:
 				
 				_e("<p>There are no projects yet.</p>",'ProjectTheme');
