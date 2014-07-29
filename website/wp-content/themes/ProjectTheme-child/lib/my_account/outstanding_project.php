@@ -65,8 +65,8 @@ function ProjectTheme_my_account_outstanding_projects_area_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					// projectTheme_get_post_outstanding_project();
-					projectTheme_get_post();          
+					projectTheme_get_post_outstanding_project();
+					// projectTheme_get_post();          
 				endwhile;
 				
 				if(function_exists('wp_pagenavi')):

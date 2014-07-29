@@ -2751,7 +2751,7 @@ div.steps {
 }
 
 div.card {
-	height:345px;
+	min-height:345px;
 }
 
 div.fancyContainer {

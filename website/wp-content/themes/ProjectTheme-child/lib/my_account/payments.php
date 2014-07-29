@@ -30,6 +30,18 @@ function ProjectTheme_my_account_payments_area_function()
 					<h1><?php _e("Finances","ProjectTheme"); ?></h1>
 				  </div><!-- end page-header -->
 
+					<ul class="nav nav-pills">
+						<li><a href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>"><?php _e('Deposit Money','ProjectTheme'); ?></a></li>
+						<li><a href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>"><?php _e('Make Payment','ProjectTheme'); ?></a></li>
+					
+					<?php if(ProjectTheme_is_user_business($uid)): ?>
+						<li><a href="<?php echo ProjectTheme_get_payments_page_url('escrow'); ?>"><?php _e('Deposit Escrow','ProjectTheme'); ?></a></li>
+					<?php endif; ?>
+					
+						<li><a href="<?php echo ProjectTheme_get_payments_page_url('withdraw'); ?>"><?php _e('Withdraw Money','ProjectTheme'); ?></a></li>
+						<li><a href="<?php echo ProjectTheme_get_payments_page_url('transactions'); ?>"><?php _e('Transactions','ProjectTheme'); ?></a></li>
+						<!-- <li><a href="<?php echo ProjectTheme_get_payments_page_url('bktransfer'); ?>"><?php _e('Bank Transfer Details','ProjectTheme'); ?></a></li> -->
+					</ul>
             
             <?php
 			
@@ -39,113 +51,113 @@ function ProjectTheme_my_account_payments_area_function()
 			global $wpdb;
 			
 			if($_GET['pg'] == 'closewithdrawal')
-					{
-						$id = $_GET['id'];
-						
-						$s = "select * from ".$wpdb->prefix."project_withdraw where id='$id' AND uid='$uid'";
-						$r = $wpdb->get_results($s);
-						
-						if(count($r) == 1)
-						{
-							$row = $r[0];
-							$amount = $row->amount;
-							
-							$cr = projectTheme_get_credits($uid);
-							projectTheme_update_credits($uid, $cr + $amount);
-							
-							$s = "delete from ".$wpdb->prefix."project_withdraw where id='$id' AND uid='$uid'";
-							$wpdb->query($s);
-							
-							echo '<div class="">';
-							echo sprintf(__('Request canceled! <a href="%s">Return to payments</a>.','ProjectTheme'), get_permalink(get_option('ProjectTheme_my_account_payments_id')) );	
-							echo '</div>';
-						}
-					}
+			{
+				$id = $_GET['id'];
+				
+				$s = "select * from ".$wpdb->prefix."project_withdraw where id='$id' AND uid='$uid'";
+				$r = $wpdb->get_results($s);
+				
+				if(count($r) == 1)
+				{
+					$row = $r[0];
+					$amount = $row->amount;
+					
+					$cr = projectTheme_get_credits($uid);
+					projectTheme_update_credits($uid, $cr + $amount);
+					
+					$s = "delete from ".$wpdb->prefix."project_withdraw where id='$id' AND uid='$uid'";
+					$wpdb->query($s);
+					
+					echo '<div class="">';
+					echo sprintf(__('Request canceled! <a href="%s">Return to payments</a>.','ProjectTheme'), get_permalink(get_option('ProjectTheme_my_account_payments_id')) );	
+					echo '</div>';
+				}
+			}
 					
 					
-					if($_GET['pg'] == 'releasepayment')
-					{
-						$id = $_GET['id'];
-						
-						$s = "select * from ".$wpdb->prefix."project_escrow where id='$id' AND fromid='$uid'";
-						$r = $wpdb->get_results($s);
-						
-						if(count($r) == 1)
-						{
-							$row = $r[0];
-							$amount = $row->amount;
-							$toid = $row->toid;
-							$pid = $row->pid;
-							$my_pst = get_post($pid);
-							
-							$projectTheme_get_winner_bid = projectTheme_get_winner_bid($pid);				
-							ProjectTheme_send_email_when_on_completed_project($pid, $projectTheme_get_winner_bid->uid, $projectTheme_get_winner_bid->bid);
-							
-							//-------------------------------------------------------------------------------
-							
-							$projectTheme_fee_after_paid = get_option('projectTheme_fee_after_paid');
-							if(!empty($projectTheme_fee_after_paid)):
-							
-								$deducted = $amount*($projectTheme_fee_after_paid * 0.01);
-							else: 
-							
-								$deducted = 0;
-							
-							endif;
-							
-							
-							//-------------------------------------------------------------------------------
-							
-							$cr = projectTheme_get_credits($toid);
-							projectTheme_update_credits($toid, $cr + $amount - $deducted);
-							
-							$reason = sprintf(__('Escrow payment received from %s for the project <b>%s</b>','ProjectTheme'), $current_user->user_login, $my_pst->post_title);
-							projectTheme_add_history_log('1', $reason, $amount, $toid, $uid);
-							
-							
-							if($deducted > 0)
-							$reason = sprintf(__('Payment fee for project %s','ProjectTheme'), $my_pst->post_title);
-							projectTheme_add_history_log('0', $reason, $deducted, $toid );
-							
-							//-----------------------------
-							$email 		= get_bloginfo('admin_email');
-							$site_name 	= get_bloginfo('name');
-							
-							$usr = get_userdata($uid);
-							
-							$subject = __("Money Escrow Completed",'ProjectTheme');
-							$message = sprintf(__("You have released the escrow of: %s","ProjectTheme"), ProjectTheme_get_show_price($amount));
-	
-							//($usr->user_email, $subject , $message);
-							
-							//-----------------------------
-							
-							$usr = get_userdata($toid);
-							
-							$reason = sprintf(__('Escrow Payment completed, sent to %s for project <b>%s</b>','ProjectTheme'), $usr->user_login, $my_pst->post_title);
-							projectTheme_add_history_log('0', $reason, $amount, $uid, $toid);
-							
-							$subject = __("Money Escrow Completed","ProjectTheme");
-							$message = sprintf(__("You have received the amount of: %s","ProjectTheme"), ProjectTheme_get_show_price($amount));
-	
-							//($usr->user_email, $subject , $message);
-							
-							//-----------------------------
-							$tm = current_time('timestamp',0);
-							
-							update_post_meta($pid,'paid_user','1');
-							update_post_meta($pid,'paid_user_date',current_time('timestamp',0));
-							
-							$s = "update ".$wpdb->prefix."project_escrow set released='1', releasedate='$tm' where id='$id'";
-							$r = $wpdb->query($s);
-						
-							echo __('Escrow completed! Redirecting...','ProjectTheme'); echo '<br/><br/>';	
-							
-							$url_redir = ProjectTheme_get_payments_page_url();
-							echo '<meta http-equiv="refresh" content="2;url='.$url_redir.'" />';
-							
-						}
-					}
+			if($_GET['pg'] == 'releasepayment')
+			{
+				$id = $_GET['id'];
+				
+				$s = "select * from ".$wpdb->prefix."project_escrow where id='$id' AND fromid='$uid'";
+				$r = $wpdb->get_results($s);
+				
+				if(count($r) == 1)
+				{
+					$row = $r[0];
+					$amount = $row->amount;
+					$toid = $row->toid;
+					$pid = $row->pid;
+					$my_pst = get_post($pid);
+					
+					$projectTheme_get_winner_bid = projectTheme_get_winner_bid($pid);				
+					ProjectTheme_send_email_when_on_completed_project($pid, $projectTheme_get_winner_bid->uid, $projectTheme_get_winner_bid->bid);
+					
+					//-------------------------------------------------------------------------------
+					
+					$projectTheme_fee_after_paid = get_option('projectTheme_fee_after_paid');
+					if(!empty($projectTheme_fee_after_paid)):
+					
+						$deducted = $amount*($projectTheme_fee_after_paid * 0.01);
+					else: 
+					
+						$deducted = 0;
+					
+					endif;
+					
+					
+					//-------------------------------------------------------------------------------
+					
+					$cr = projectTheme_get_credits($toid);
+					projectTheme_update_credits($toid, $cr + $amount - $deducted);
+					
+					$reason = sprintf(__('Escrow payment received from %s for the project <b>%s</b>','ProjectTheme'), $current_user->user_login, $my_pst->post_title);
+					projectTheme_add_history_log('1', $reason, $amount, $toid, $uid);
+					
+					
+					if($deducted > 0)
+					$reason = sprintf(__('Payment fee for project %s','ProjectTheme'), $my_pst->post_title);
+					projectTheme_add_history_log('0', $reason, $deducted, $toid );
+					
+					//-----------------------------
+					$email 		= get_bloginfo('admin_email');
+					$site_name 	= get_bloginfo('name');
+					
+					$usr = get_userdata($uid);
+					
+					$subject = __("Money Escrow Completed",'ProjectTheme');
+					$message = sprintf(__("You have released the escrow of: %s","ProjectTheme"), ProjectTheme_get_show_price($amount));
+
+					//($usr->user_email, $subject , $message);
+					
+					//-----------------------------
+					
+					$usr = get_userdata($toid);
+					
+					$reason = sprintf(__('Escrow Payment completed, sent to %s for project <b>%s</b>','ProjectTheme'), $usr->user_login, $my_pst->post_title);
+					projectTheme_add_history_log('0', $reason, $amount, $uid, $toid);
+					
+					$subject = __("Money Escrow Completed","ProjectTheme");
+					$message = sprintf(__("You have received the amount of: %s","ProjectTheme"), ProjectTheme_get_show_price($amount));
+
+					//($usr->user_email, $subject , $message);
+					
+					//-----------------------------
+					$tm = current_time('timestamp',0);
+					
+					update_post_meta($pid,'paid_user','1');
+					update_post_meta($pid,'paid_user_date',current_time('timestamp',0));
+					
+					$s = "update ".$wpdb->prefix."project_escrow set released='1', releasedate='$tm' where id='$id'";
+					$r = $wpdb->query($s);
+				
+					echo __('Escrow completed! Redirecting...','ProjectTheme'); echo '<br/><br/>';	
+					
+					$url_redir = ProjectTheme_get_payments_page_url();
+					echo '<meta http-equiv="refresh" content="2;url='.$url_redir.'" />';
+					
+				}
+			}
 			
 			
 			if($pg == 'home'):
@@ -157,40 +169,33 @@ function ProjectTheme_my_account_payments_area_function()
                 
                 <?php
 				$bal = projectTheme_get_credits($uid);
-				echo '<h2>'.__("Your Current Balance is", "ProjectTheme").": ".ProjectTheme_get_show_price($bal,2)."</h2>"; 
+				echo '<h3>'.__("Your Current Balance is", "ProjectTheme").": ".ProjectTheme_get_show_price($bal,2)."</h3>"; 
 				
 				
 				?> 
             
-            
-            	<h2><?php _e('What do you want to do','ProjectTheme'); ?></h2>
-                
-                <a href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>" class="green_btn old_mm_k"><?php _e('Deposit Money','ProjectTheme'); ?></a>  
-                <a href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>" class="green_btn old_mm_k"><?php _e('Make Payment','ProjectTheme'); ?></a> 
+            <!-- 
+            	<h3><?php _e('What do you want to do','ProjectTheme'); ?></h3>
+                <ul class="nav nav-pills">
+					<li><a href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>"><?php _e('Deposit Money','ProjectTheme'); ?></a></li>
+                	<li><a href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>"><?php _e('Make Payment','ProjectTheme'); ?></a></li>
                 
                 <?php if(ProjectTheme_is_user_business($uid)): ?>
-                <a href="<?php echo ProjectTheme_get_payments_page_url('escrow'); ?>" class="green_btn old_mm_k"><?php _e('Deposit Escrow','ProjectTheme'); ?></a>  
+                	<li><a href="<?php echo ProjectTheme_get_payments_page_url('escrow'); ?>"><?php _e('Deposit Escrow','ProjectTheme'); ?></a></li>
                 <?php endif; ?>
                 
-                <a href="<?php echo ProjectTheme_get_payments_page_url('withdraw'); ?>" class="green_btn old_mm_k"><?php _e('Withdraw Money','ProjectTheme'); ?></a>  
-                <a href="<?php echo ProjectTheme_get_payments_page_url('transactions'); ?>" class="green_btn old_mm_k"><?php _e('Transactions','ProjectTheme'); ?></a>
-                <a href="<?php echo ProjectTheme_get_payments_page_url('bktransfer'); ?>" class="green_btn old_mm_k"><?php _e('Bank Transfer Details','ProjectTheme'); ?></a>    
-    
+                	<li><a href="<?php echo ProjectTheme_get_payments_page_url('withdraw'); ?>"><?php _e('Withdraw Money','ProjectTheme'); ?></a></li>
+                	<li><a href="<?php echo ProjectTheme_get_payments_page_url('transactions'); ?>"><?php _e('Transactions','ProjectTheme'); ?></a></li>
+                	<li><a href="<?php echo ProjectTheme_get_payments_page_url('bktransfer'); ?>"><?php _e('Bank Transfer Details','ProjectTheme'); ?></a></li> 
+				</ul>
+			-->
                   <?php do_action('ProjectTheme_financial_buttons_main') ?>
               
-            </div>
-            </div>
-            
             <!-- ###################### -->
-                        <div class="clear10"></div>
-            
-            <div class="my_box3">
             
             
-            	<div class="box_title"><?php _e('Pending Withdrawals','ProjectTheme'); ?></div>
-            	<div class="box_content">
+            	<h3><?php _e('Pending Withdrawals','ProjectTheme'); ?></h3>
                
-                
          				<?php
 				
 					global $wpdb;
@@ -203,7 +208,7 @@ function ProjectTheme_my_account_payments_area_function()
 					if(count($r) == 0) echo __('No withdrawals pending yet.','ProjectTheme');
 					else
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 						foreach($r as $row) // = mysql_fetch_object($r))
 						{
 
@@ -224,20 +229,9 @@ function ProjectTheme_my_account_payments_area_function()
 					}
 				
 				?>
-                  
-               
-            </div>
-            </div>
+                              
             
-            
-             <div class="clear10"></div>
-            
-            <div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e('Rejected Withdrawals','ProjectTheme'); ?></div>
-            	<div class="box_content">
-               
+            	<h3><?php _e('Rejected Withdrawals','ProjectTheme'); ?></h3>
                 
          				<?php
 				
@@ -251,7 +245,7 @@ function ProjectTheme_my_account_payments_area_function()
 					if(count($r) == 0) echo __('No withdrawals pending yet.','ProjectTheme');
 					else
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 						foreach($r as $row) // = mysql_fetch_object($r))
 						{
 
@@ -271,21 +265,8 @@ function ProjectTheme_my_account_payments_area_function()
 					}
 				
 				?>
-                  
-               
-            </div>
-            </div>
             
-            
-           <!-- ###################### -->
-                        <div class="clear10"></div>
-            
-            <div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e("Pending Incoming Payments","ProjectTheme"); ?></div>
-            	<div class="box_content">
-                
+            	<h3><?php _e("Pending Incoming Payments","ProjectTheme"); ?></h3>
                 
    				<?php
 				
@@ -295,7 +276,7 @@ function ProjectTheme_my_account_payments_area_function()
 					if(count($r) == 0) echo __('No payments pending yet.','ProjectTheme');
 					else
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 						foreach($r as $row) // = mysql_fetch_object($r))
 						{
 							$post = get_post($row->pid);
@@ -316,24 +297,12 @@ function ProjectTheme_my_account_payments_area_function()
 					}
 				
 				?>
-                  
-                
-            </div>
-            </div>
-         
          
                     <!-- ###################### -->
                    
                    <?php if(ProjectTheme_is_user_business($uid)): ?>
-                   
-                        <div class="clear10"></div>
-            
-            <div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e('Pending Outgoing Payments','ProjectTheme'); ?></div>
-            	<div class="box_content">
-                
+                               
+            	<h3><?php _e('Pending Outgoing Payments','ProjectTheme'); ?></h3>
                 
       				<?php
 				
@@ -343,14 +312,14 @@ function ProjectTheme_my_account_payments_area_function()
 					if(count($r) == 0) echo __('No payments pending yet.','ProjectTheme');
 					else
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 						
 						echo '<tr>';
-							echo '<td><b>'.__('User','ProjectTheme').'</b></td>';
-							echo '<td><b>'.__('Project','ProjectTheme').'</b></td>';
-							echo '<td><b>'.__('Date','ProjectTheme').'</b></td>';
-							echo '<td><b>'.__('Amount','ProjectTheme').'</b></td>';
-							echo '<td><b>'.__('Options','ProjectTheme').'</b></td>';
+							echo '<th><b>'.__('User','ProjectTheme').'</b></th>';
+							echo '<th><b>'.__('Project','ProjectTheme').'</b></th>';
+							echo '<th><b>'.__('Date','ProjectTheme').'</b></th>';
+							echo '<th><b>'.__('Amount','ProjectTheme').'</b></th>';
+							echo '<th><b>'.__('Options','ProjectTheme').'</b></th>';
 							
 							echo '</tr>';
 							
@@ -378,20 +347,12 @@ function ProjectTheme_my_account_payments_area_function()
 				?>
                   
                
-            </div>
-            </div> <?php endif; ?>
+             <?php endif; ?>
         <?php
 			elseif($pg == 'escrow'):
 		?>
-        
-        
-        <div class="my_box3">
-           
             
-            	<div class="box_title"><?php _e('Make Escrow Payment','ProjectTheme'); ?></div>
-            	<div class="box_content">
-              
-                
+            	<h3><?php _e('Make Escrow Payment','ProjectTheme'); ?></h3>
                 
                 <?php
 						
@@ -528,7 +489,7 @@ function ProjectTheme_my_account_payments_area_function()
                 
                 
     				<br /><br />
-                    <table>
+                    <table class="table table-striped table-hover">
                     <form method="post" action="">
                     <tr>
                     <td width="150"><?php _e('Escrow amount','ProjectTheme'); ?>:</td><td> <input value="0" type="hidden" 
@@ -542,26 +503,14 @@ function ProjectTheme_my_account_payments_area_function()
                     <tr>
                     <td></td>
                     <td>
-                    <input type="submit" name="escrowme" value="<?php _e('Make Escrow','ProjectTheme'); ?>" /></td></tr></form></table>
-    
-              
-            </div>
-            </div> 
-        
-        
-        
+                    <input type="submit" name="escrowme" class="btn btn-primary" value="<?php _e('Make Escrow','ProjectTheme'); ?>" /></td></tr></form></table>
+            
         <?php
 			elseif($pg == 'bktransfer'):
 		?>
         
-        
-        <div class="my_box3">
-        
             
-            	<div class="box_title"><?php _e('Set your Bank Transfer Details','ProjectTheme'); ?></div>
-            	<div class="box_content">
-                
-                
+            	<h3><?php _e('Set your Bank Transfer Details','ProjectTheme'); ?></h3>
                 
                 <?php
 						
@@ -579,7 +528,7 @@ function ProjectTheme_my_account_payments_area_function()
 	
 				?>
     				<br /><br />
-                    <table>
+                    <table class="table table-striped table-hover">
                     <form method="post">
                     <tr>
                     <td valign="top"><?php _e("Bank details","ProjectTheme"); ?>:</td>
@@ -593,24 +542,14 @@ function ProjectTheme_my_account_payments_area_function()
                     <input type="submit" name="submit" value="<?php _e("Save Details","ProjectTheme"); ?>" /></td></tr></form></table>
     			
                   
-            </div>
-            </div> 
-        
-        
-        
         <?php
 			elseif($pg == 'makepayment'):
 			
 			
 		?>
         
-          <div class="my_box3">
-           
             
-            	<div class="box_title"><?php echo __("Make Payment","ProjectTheme"); ?></div>
-            	<div class="box_content">
-             
-                
+            	<h3><?php echo __("Make Payment","ProjectTheme"); ?></h3>
                 
                 <?php
 						
@@ -719,12 +658,12 @@ function ProjectTheme_my_account_payments_area_function()
 				
 				?>
     				<br /><br />
-                    <table>
+                    <table class="table table-striped table-hover">
                     <form method="post" enctype="application/x-www-form-urlencoded">
                     <tr>
-                    <td><?php echo __("Payment amount","ProjectTheme"); ?>:</td>
+                    <td><?php echo __("Payment amount","ProjectTheme"); ?> (<?php echo projectTheme_currency(); ?>):</td>
                     <td> <input value="<?php echo $_POST['amount']; ?>" type="text" 
-                    size="10" name="amount" /> <?php echo projectTheme_currency(); ?></td>
+                    size="10" name="amount" /></td>
                     </tr>
                     <tr>
                     <td><?php echo __("Pay to user","ProjectTheme"); ?>:</td>
@@ -742,26 +681,15 @@ function ProjectTheme_my_account_payments_area_function()
                     <tr>
                     <td></td>
                     <td>
-                    <input type="submit" name="payme" value="<?php echo __("Make Payment","ProjectTheme"); ?>" /></td></tr></form></table>
-    
-              
-            </div>
-            </div> 
-        
-              
+                    <input type="submit" class="btn btn-primary" name="payme" value="<?php echo __("Make Payment","ProjectTheme"); ?>" /></td></tr></form></table>
+                  
         <?php    
             elseif($pg == 'withdraw'):	
 			
 		?>
-        
-        
-               <div class="my_box3">
-         
-            	<div class="box_title"><?php _e("Request Withdrawal","ProjectTheme"); ?></div>
-            	<div class="box_content">
-               
-                
-                
+		
+            	<h3><?php _e("Request Withdrawal","ProjectTheme"); ?></h3>
+
                 <?php
 						
 				$bal = projectTheme_get_credits($uid);
@@ -862,7 +790,7 @@ function ProjectTheme_my_account_payments_area_function()
 					
 				?>
     				<br /><br />
-                    <table>
+                    <table class="table table-striped table-hover">
                     <form method="post" enctype="application/x-www-form-urlencoded">
                     <input type="hidden" name="meth" value="PayPal" />
                     <tr>
@@ -878,7 +806,7 @@ function ProjectTheme_my_account_payments_area_function()
                     <tr>
                     <td></td>
                     <td>
-                    <input type="submit" name="withdraw" value="<?php echo __("Withdraw","ProjectTheme"); ?>" /></td></tr></form></table>
+                    <input type="submit" class="btn btn-primary" name="withdraw" value="<?php echo __("Withdraw","ProjectTheme"); ?>" /></td></tr></form></table>
                     
                     <?php
 					endif;
@@ -888,7 +816,7 @@ function ProjectTheme_my_account_payments_area_function()
 					
 					?>
                         <br /><br />
-                        <table>
+                        <table class="table table-striped table-hover">
                         <form method="post" enctype="application/x-www-form-urlencoded">
                         <input type="hidden" name="meth2" value="Moneybookers" />
                         <tr>
@@ -914,7 +842,7 @@ function ProjectTheme_my_account_payments_area_function()
 					
 					?>
                         <br /><br />
-                        <table>
+                        <table class="table table-striped table-hover">
                         <form method="post" enctype="application/x-www-form-urlencoded">
                         <input type="hidden" name="meth3" value="Payza" />
                         <tr>
@@ -937,10 +865,6 @@ function ProjectTheme_my_account_payments_area_function()
 					
                <?php do_action('ProjectTheme_add_new_withdraw_methods'); ?>	
                
-            </div>
-            </div>
-            
-        
             
         <?php    
             elseif($pg == 'deposit'):	
@@ -948,14 +872,8 @@ function ProjectTheme_my_account_payments_area_function()
 			global $USERID;
 			$USERID = $uid;
 		?>
-        
-        
-    
-        <div class="my_box3">
             
-            
-            	<div class="box_title"><?php _e('Deposit Money','ProjectTheme'); ?></div>
-            	<div class="box_content">
+            	<h3><?php _e('Deposit Money','ProjectTheme'); ?></h3>
                 
                 <?php
 				
@@ -981,8 +899,11 @@ function ProjectTheme_my_account_payments_area_function()
                 <strong><?php _e('Deposit money by PayPal','ProjectTheme'); ?></strong><br/><br/>
                 
                 <form method="post" action="<?php bloginfo('siteurl'); ?>/?p_action=paypal_deposit_pay">
-                <?php _e("Amount to deposit:","ProjectTheme"); ?> <input type="text" size="10" name="amount" /> <?php echo projectTheme_currency(); ?>
-                &nbsp; &nbsp; <input type="submit" name="deposit" value="<?php _e('Deposit','ProjectTheme'); ?>" /></form>
+                <?php _e("Amount to deposit:","ProjectTheme"); ?> (<?php echo projectTheme_currency(); ?>)
+				<br/><br/>
+				<input type="text" size="10" name="amount" /> 
+                <br/><br/>
+				<input type="submit" name="deposit" class="btn btn-primary" value="<?php _e('Deposit','ProjectTheme'); ?>" /></form>
     			<br/><br/>
                 <?php endif; ?>
                 
@@ -1006,21 +927,12 @@ function ProjectTheme_my_account_payments_area_function()
                 
     			<?php do_action('ProjectTheme_deposit_methods', $uid); ?>
                
-            </div>
-            </div>
-        
         <?php    
             elseif($pg == 'transactions'):	
 			
 		?>	
-		
-        		
-            <div class="my_box3">
-            
-            
-            	<div class="box_title"><?php _e('Payment Transactions','ProjectTheme'); ?> </div>
-            	<div class="box_content">
-            
+		            
+            	<h3><?php _e('Payment Transactions','ProjectTheme'); ?> </h3>            
                 
                 <?php
 				
@@ -1052,18 +964,9 @@ function ProjectTheme_my_account_payments_area_function()
 					}
 				
 				?>
-    
-                 
-            </div>
-            </div>
         <?php endif; ?>
             
             
-                
-        </div> <!-- end dif content -->
-        
-
-        
             </article>
 		  </div>
         </div>

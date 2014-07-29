@@ -52,42 +52,35 @@ if(!is_user_logged_in()) { wp_redirect(get_bloginfo('siteurl')."/wp-login.php");
 	
 	//---------------------------------
 	
-	get_header();
+	get_header('leftbar');
 
 ?>
-<div class="clear10"></div>
+			<div class="page">
+				<article>
+					<div class="page-header">
+						<h1>Deliver Project</h1>
+					</div><!-- end page-header -->
+					<h3><?php  printf(__("Mark the project delivered: %s",'ProjectTheme'), $post_pr->post_title); ?></h3>
+					<p>
+					<?php
+			   
+					printf(__("You are about to mark this project as delivered: %s",'ProjectTheme'), $post_pr->post_title); echo '<br/>';
+					_e("The project owner will be notified to accept the delivery and get you paid.",'ProjectTheme') ;
 
-	
-			<div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php  printf(__("Mark the project delivered: %s",'ProjectTheme'), $post_pr->post_title); ?></div>
-                <div class="box_content">   
-               <?php
-			   
-			   printf(__("You are about to mark this project as delivered: %s",'ProjectTheme'), $post_pr->post_title); echo '<br/>';
-			  _e("The project owner will be notified to accept the delivery and get you paid.",'ProjectTheme') ;
-			   
-			   ?> 
-                
-                <div class="clear10"></div>
-               
-               <form method="post"  > 
-                
-               <input type="submit" name="yes" value="<?php _e("Yes, Mark Delivered!",'ProjectTheme'); ?>" />
-               <input type="submit" name="no"  value="<?php _e("No",'ProjectTheme'); ?>" />
-                
-               </form>
-    </div>
+					?>  
+					</p>
+
+					<form method="post"> 
+
+						<input type="submit" name="yes" class="btn btn-primary" value="<?php _e("Yes, Mark Delivered!",'ProjectTheme'); ?>" />
+						<input type="submit" name="no" class="btn btn-grey" value="<?php _e("No",'ProjectTheme'); ?>" />
+
+					</form>
+				</article>
 			</div>
-			</div>
-        
-        
-        <div class="clear100"></div>
-            
-            
+
 <?php
 
-get_footer();
+get_footer('leftbar');
 
 ?>                        

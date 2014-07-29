@@ -383,7 +383,10 @@ function ProjectTheme_do_login_scr()
 				
 				
 		?>
+			<!-- START NEW DESIGN -->
 			
+			
+			<!-- END NEW DESIGN -->
             <div class="col-lg-12">
 				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
 					<div class="box_title"><?php _e("Login",$current_theme_locale_name); ?></div>

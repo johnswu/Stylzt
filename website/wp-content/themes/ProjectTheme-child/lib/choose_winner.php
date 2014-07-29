@@ -107,41 +107,35 @@ if(!is_user_logged_in()) { wp_redirect(get_bloginfo('siteurl')."/wp-login.php");
 	
 //==========================
 
-get_header();
+get_header('leftbar');
 
 ?>
-<div class="clear10"></div>
+			<div class="page">
+				<article>
+					<div class="page-header">
+						<h1>Award Project</h1>
+					</div><!-- end page-header -->
+            
+					<h3><?php  printf(__("Choose Winner for your project: %s",'ProjectTheme'), $post_p->post_title); ?></h3>
+					<p>
+					<?php
 
-	
-			<div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php  printf(__("Choose Winner for your project: %s",'ProjectTheme'), $post_p->post_title); ?></div>
-                <div class="box_content">   
-               <?php
-			   
-			   printf(__("You are about to choose a winner for your project: %s",'ProjectTheme'), $post_p->post_title);
-			   
-			   ?> 
-                
-                <div class="clear10"></div>
-               
-               <form method="post" enctype="application/x-www-form-urlencoded"> 
-                
-               <input type="submit" name="yes" value="<?php _e("Yes, Choose winner Now!",'ProjectTheme'); ?>" />
-               <input type="submit" name="no"  value="<?php _e("No",'ProjectTheme'); ?>" />
-                
-               </form>
-    </div>
+					printf(__("You are about to choose a winner for your project: %s",'ProjectTheme'), $post_p->post_title);
+
+					?> 
+					</p>
+
+					<form method="post" enctype="application/x-www-form-urlencoded"> 
+
+						<input type="submit" name="yes" class="btn btn-primary" value="<?php _e("Yes, Choose winner Now!",'ProjectTheme'); ?>" />
+						<input type="submit" name="no" class="btn btn-grey" value="<?php _e("No",'ProjectTheme'); ?>" />
+
+					</form>
+				</article>
 			</div>
-			</div>
-        
-        
-        <div class="clear100"></div>
-            
-            
+                        
 <?php
 
-get_footer();
+get_footer('leftbar');
 
 ?>                        

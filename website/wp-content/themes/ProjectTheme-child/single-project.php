@@ -673,7 +673,14 @@ jQuery(document).ready(function(){
 							}
 							else $nr = 4;
 							
-							if($closed == "1") { if($row->winner == 1) echo '<td>'.__('Yes','ProjectTheme').'</td>'; else echo '<td>&nbsp;</td>'; }
+							if($closed == "1") { 
+								if($row->winner == 1) {
+									echo '<td>'.__('Yes','ProjectTheme').'</td>'; 
+								} else {
+									echo '<td>&nbsp;</td>'; 
+								}
+								$nr = 5;
+							}
 							
 							echo '</tr>';
 							

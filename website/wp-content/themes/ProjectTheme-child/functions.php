@@ -4899,157 +4899,134 @@ function projectTheme_get_post_awaiting_compl_function()
 			$uid = $current_user->ID;
 			
 ?>
-				<div class="post" id="post-<?php the_ID(); ?>">
-                
+		<div class="panel panel-default" id="post-<?php the_ID(); ?>">
+			<div class="panel-heading">
+				<h3 style="margin:0px 0px 5px;"><a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php 
+					 the_title(); 
+					 ?></a></h3>
+			
                 <?php if($featured == "1"): ?>
                 <div class="featured-one"></div>
                 <?php endif; ?>
-                
-                
+				
                 <?php if($private_bids == "yes" or $private_bids == "1"): ?>
                 <div class="sealed-one"></div>
                 <?php endif; ?>
-                
-                
-                <div class="padd10_only_top">
-                <div class="image_holder">
-                 <?php
-				
-				$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
-				if($ProjectTheme_enable_images_in_projects == "yes"):
-					
-					$width 	= 40;
-					$height = 32;
-					$image_class = "image_class";
-					
-					
-					$width 			= apply_filters("ProjectTheme_awaiting_completion_proj_img_width", 	$width);
-					$height 		= apply_filters("ProjectTheme_awaiting_completion_proj_img_height", 	$height);
-					$image_class 	= apply_filters("ProjectTheme_awaiting_completion_proj_img_class", 	$image_class);
-					
-					
-				?>
-                
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img alt="<?php the_title(); ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
-                src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" /></a>
-               
-               <?php endif; ?>
-               
-                </div>
-                <div class="title_holder" > 
-                     <h2><a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-                        
-    
-                        
-                  <p class="mypostedon">
-                        <?php _e("Posted in",'ProjectTheme');?>: <?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
-                        <?php _e("by",'ProjectTheme');?>: <a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
-                  </p>
-                       
-                        
-              <p class="task_buttons">   
-                        
-		
-       				<?php if($mark_coder_delivered != "1"): ?>
-       
-                        <?php _e('The winner must mark this as delivered.','ProjectTheme'); ?>
-                        <?php
-						
-							if(!projecttheme_escrow_was_made_for_project_done(get_the_ID())):
-													
-						?> 
-                        <br/>
-                        <a href="<?php echo ProjectTheme_get_payments_page_url_redir('escrow') ?>" class="post_bid_btn"><?php _e('Make Escrow','ProjectTheme') ?></a>
-                        
-                        <?php else: echo '<br/>'; _e('Escrow was made for this project.','ProjectTheme'); endif;
-                   
-				     else: 
-				   
-				   		$dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
-				   		$dv = date_i18n('d-M-Y H:i:s',$dv);
-				   
-				   ?>
-                   
-                   <span class="zbk_zbk">
-                   <?php printf(__("Marked as delivered on: %s","ProjectTheme"), $dv); ?><br/>
-                   <?php _e('Accept this project and: ','ProjectTheme'); ?>
-                     <a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_completed&pid=<?php the_ID(); ?>" 
-                        class="post_bid_btn"><?php echo __("Mark Completed", "ProjectTheme");?></a>
-                   
-                   </span>
-                   
-                   <?php endif; ?>
-                   
 
-                  </p>
-      </div> 
-                     
-                  <div class="details_holder"> 
+				<?php _e("Posted in",'ProjectTheme');?> <?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
+				<?php _e("by",'ProjectTheme');?> <a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
+			</div>
+			<div class="panel-body">
+				<table width="100%" class="table table-hover" style="margin-bottom:0px;">
+					<tr>
+						<th>&nbsp;</th>
+						<!-- <th><?php echo __("Budget",'ProjectTheme'); ?></th> -->
+						<th><?php echo __("Winning Bid",'ProjectTheme'); ?></th>
+						<th><?php echo __("Winner",'ProjectTheme'); ?></th>
+						<th><?php echo __("Delivery On",'ProjectTheme'); ?></th>
+						<th>Actions</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="image_holder">
+							<?php
 
-                  
-                  <ul class="project-details1 project-details1_a">
-							<li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
-								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
-								<p><?php 
+								$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
+								if($ProjectTheme_enable_images_in_projects == "yes"):
+
+									$width 	= 40;
+									$height = 32;
+									$image_class = "image_class";
+
+									$width 			= apply_filters("ProjectTheme_awaiting_completion_proj_img_width", 	$width);
+									$height 		= apply_filters("ProjectTheme_awaiting_completion_proj_img_height", 	$height);
+									$image_class 	= apply_filters("ProjectTheme_awaiting_completion_proj_img_class", 	$image_class);
+
+							?>
+
+									<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img alt="<?php the_title(); ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
+									src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" /></a>
+
+							<?php endif; ?>
+
+							</div>
+						</td>
+						<!--
+						<td>
+							<?php 
 								
-								  $sel = get_post_meta(get_the_ID(), 'budgets', true);
+								$sel = get_post_meta(get_the_ID(), 'budgets', true);
 		  						echo ProjectTheme_get_budget_name_string_fromID($sel);
 								
-								 ?>
-                                
-                                </p>
-							</li>
-                            
-                            
-                            <li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
-								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
-								<p><?php 
+							?>
+						</td>
+						-->
+						<td>
+							<?php 
 								
 								$bid = projectTheme_get_winner_bid(get_the_ID());
 								echo ProjectTheme_get_show_price($bid->bid);
-								  
-								
-								 ?>
-                                
-                                </p>
-							</li>
-					
-             				
-                            <li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/location.png" width="15" height="15" /> 
-								<h3><?php echo __("Winner",'ProjectTheme'); ?>:</h3>
-								<p><?php 
+								 								
+							?>
+						</td>
+						<td>
+							<?php 
 								
 								$winner = get_post_meta(get_the_ID(), 'winner', true);
 								$winner = get_userdata($winner);
 								
-								echo '<a href="'.ProjectTheme_get_user_profile_link($winner->ID).'">'.$winner->user_login.'</a>';
-								
-								?></p>
-							</li>
-                        
-							
-                            <li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
-								<h3><?php echo __("Delivery On",'ProjectTheme'); ?>:</h3>
-								<p><?php 
-								
+								echo '<a href="'.ProjectTheme_get_user_profile_link($winner->ID).'">'.$winner->user_login.'</a>';								
+							?>
+						</td>
+						<td>
+							<?php 
+									
 								$tm_d = get_post_meta(get_the_ID(), 'expected_delivery', true);							
 								echo date_i18n('d-M-Y H:i:s', $tm_d);
 								
-								?></p>
-							</li>
-							
-					
-                    
-						</ul>
-                      
-               
-                  </div>   
-                     
-                     </div></div> <?php		
+							?>
+						</td>
+						<td>
+						
+							<?php if($mark_coder_delivered != "1"): ?>
+
+								<?php _e('The winner must mark this as delivered.','ProjectTheme'); ?>
+								<?php
+
+								if(!projecttheme_escrow_was_made_for_project_done(get_the_ID())):
+
+								?> 
+									<br/>
+									<a href="<?php echo ProjectTheme_get_payments_page_url_redir('escrow') ?>" class="post_bid_btn"><?php _e('Make Escrow','ProjectTheme') ?></a>
+
+								<?php else: echo '<br/>'; _e('Escrow was made for this project.','ProjectTheme'); 
+								
+								endif;
+
+							else: 
+
+								$dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
+								$dv = date_i18n('d-M-Y H:i:s',$dv);
+
+							?>
+
+								<span class="zbk_zbk">
+								<?php printf(__("Marked as delivered on: %s","ProjectTheme"), $dv); ?><br/>
+								<?php _e('Accept this project and: ','ProjectTheme'); ?>
+								<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_completed&pid=<?php the_ID(); ?>" 
+								class="post_bid_btn"><?php echo __("Mark Completed", "ProjectTheme");?></a>
+
+								</span>
+
+							<?php endif; ?>
+                   
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+			
+<?php		
 	
 }
 /*************************************************************
@@ -5083,139 +5060,116 @@ function projectTheme_get_post_outstanding_project_function()
 			do_action('ProjectTheme_outstanding_proj_post_before');
 			
 ?>
-				<div class="post" id="post-<?php the_ID(); ?>">
-                
-                <?php if($featured == "1"): ?>
-                <div class="featured-one"></div>
-                <?php endif; ?>
-                
-                
-                <?php if($private_bids == "yes" or $private_bids == "1"): ?>
-                <div class="sealed-one"></div>
-                <?php endif; ?>
-                
-                
-                <div class="padd10_only_top">
-                <div class="image_holder">
-                 <?php
-				
-				$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
-				if($ProjectTheme_enable_images_in_projects == "yes"):
-					
-					$width 	= 40;
-					$height = 32;
-					$image_class = "image_class";
-					
-					
-					$width 			= apply_filters("ProjectTheme_outstanding_proj_img_width", 	$width);
-					$height 		= apply_filters("ProjectTheme_outstanding_proj_img_height", $height);
-					$image_class 	= apply_filters("ProjectTheme_outstanding_proj_img_class", 	$image_class);
-					
-				?>
-                
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
-                src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" alt="<?php the_title(); ?>" /></a>
-               
-               <?php endif; ?>
-                </div>
-                <div class="title_holder" > 
-                     <h2><a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php 
+		<div class="panel panel-default" id="post-<?php the_ID(); ?>">
+			<div class="panel-heading">
+				<h3 style="margin:0px 0px 5px;"><a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php 
 					 do_action('ProjectTheme_outstanding_proj_title_before');
 					 the_title(); 
 					 do_action('ProjectTheme_outstanding_proj_title_after');
-					 ?></a></h2>
-                        
-    
-                        
-                  <p class="mypostedon">
-                        <?php _e("Posted in",'ProjectTheme');?>: <?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
-                        <?php _e("by",'ProjectTheme');?>: <a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
-                  </p>
-                       
-                        
-              <p class="task_buttons">   
-                    <?php do_action('ProjectTheme_outstanding_proj_buttons'); ?>    
-		
-       				<?php if($mark_coder_delivered != "1"): ?>
-       
-                        <a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>" 
-                        class="post_bid_btn"><?php echo __("Mark Delivered", "ProjectTheme");?></a>
-                   
-				   <?php else: 
-				   
-				   		$dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
-				   		$dv = date_i18n('d-M-Y H:i:s',$dv);
-				   
-				   ?>
-                   
-                   <span class="zbk_zbk">
-                   <?php printf(__("Awaiting buyer response.<br/>Marked as delivered on: %s","ProjectTheme"), $dv); ?>
-                   </span>
-                   
-                   <?php endif; ?>
-                   
+					 ?></a></h3>
+				
+                <?php if($featured == "1"): ?>
+                <div class="featured-one"></div>
+                <?php endif; ?>
+				
+                <?php if($private_bids == "yes" or $private_bids == "1"): ?>
+                <div class="sealed-one"></div>
+                <?php endif; ?>
 
-                  </p>
-      </div> 
-                     
-                  <div class="details_holder"> 
+				<?php _e("Posted in",'ProjectTheme');?> <?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
+				<?php _e("by",'ProjectTheme');?> <a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
+			</div>
+			<div class="panel-body">
+				<table width="100%" class="table table-hover" style="margin-bottom:0px;">
+					<tr>
+						<th>&nbsp;</th>
+						<th><?php echo __("Budget",'ProjectTheme'); ?></th>
+						<th><?php echo __("Winning Bid",'ProjectTheme'); ?></th>
+						<th><?php echo __("Delivery On",'ProjectTheme'); ?></th>
+						<th>Actions</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="image_holder">
+								<?php
 
-                  
-                  <ul class="project-details1 project-details1_a">
-                  
-                  			<?php do_action('ProjectTheme_outstanding_proj_details_before'); ?> 
-                  		
-                  
-							<li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
-								<h3><?php echo __("Budget",'ProjectTheme'); ?>:</h3>
-								<p><?php 
+								$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
+								if($ProjectTheme_enable_images_in_projects == "yes"):
+
+								$width 	= 40;
+								$height = 32;
+								$image_class = "image_class";
+
+
+								$width 			= apply_filters("ProjectTheme_outstanding_proj_img_width", 	$width);
+								$height 		= apply_filters("ProjectTheme_outstanding_proj_img_height", $height);
+								$image_class 	= apply_filters("ProjectTheme_outstanding_proj_img_class", 	$image_class);
+
+								?>
+
+								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
+								src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" alt="<?php the_title(); ?>" /></a>
+
+								<?php endif; ?>
+							</div>
+						</td>
+						<td>
+							<?php 
 								
 								$sel = get_post_meta(get_the_ID(), 'budgets', true);
 		  						echo ProjectTheme_get_budget_name_string_fromID($sel);
 								
-								 ?>
-                                
-                                </p>
-							</li>
-                            
-                            
-                            <li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/price.png" width="15" height="15" /> 
-								<h3><?php echo __("Winning Bid",'ProjectTheme'); ?>:</h3>
-								<p><?php 
+							?>
+						</td>
+						<td>
+							<?php 
 								
 								$bid = projectTheme_get_winner_bid(get_the_ID());
 								echo ProjectTheme_get_show_price($bid->bid);
 								 								
-								 ?>
-                                
-                                </p>
-							</li>
-					
-             
-                        
-							<li>
-								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/clock.png" width="15" height="15" /> 
-								<h3><?php echo __("Delivery On",'ProjectTheme'); ?>:</h3>
-								<p><?php 
-								
+							?>
+						</td>
+						<td>
+							<?php 
+									
 								$tm_d = get_post_meta(get_the_ID(), 'expected_delivery', true);							
 								echo date_i18n('d-M-Y H:i:s', $tm_d);
 								
-								?></p>
-							</li>
-							
+							?>
+						</td>
+						<td>
+						
+							<?php do_action('ProjectTheme_outstanding_proj_buttons'); ?>    
+
+							<?php if($mark_coder_delivered != "1"): ?>
+
+								<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>">
+									<?php echo __("Mark Delivered", "ProjectTheme");?>
+								</a>
+
+							<?php else: 
+
+								$dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
+								$dv = date_i18n('d-M-Y H:i:s',$dv);
+
+							?>
+
+							<span class="zbk_zbk">
+								<?php printf(__("Awaiting buyer response.<br/>Marked as delivered on: %s","ProjectTheme"), $dv); ?>
+							</span>
+
+							<?php endif; ?>
 							<?php do_action('ProjectTheme_outstanding_proj_details_after'); ?> 
-                    
-						</ul>
-                      
-               
-                  </div>   
-                     
-                     </div></div> <?php	
+                   
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+<?php	
 					 
-					 do_action('ProjectTheme_outstanding_proj_post_after');
+	do_action('ProjectTheme_outstanding_proj_post_after');
 					 
 }
 /*************************************************************

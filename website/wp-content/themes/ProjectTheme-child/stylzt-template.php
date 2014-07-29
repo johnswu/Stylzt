@@ -23,12 +23,12 @@ Template Name: Stylzt Page Template
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
 
-		//wp_head();
+		wp_head();
 
 	?>	
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
 	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
 	-->
 	
