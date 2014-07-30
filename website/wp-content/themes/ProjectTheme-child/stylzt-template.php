@@ -61,7 +61,7 @@ Template Name: Stylzt Page Template
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
               <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" style="width:223px;" /></a>
-              <p class="brand-text">The Simple and Trusted Way to Book Photoshoots</p>
+              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">

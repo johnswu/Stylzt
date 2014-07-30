@@ -492,8 +492,8 @@ function ProjectTheme_my_account_payments_area_function()
                     <table class="table table-striped table-hover">
                     <form method="post" action="">
                     <tr>
-                    <td width="150"><?php _e('Escrow amount','ProjectTheme'); ?>:</td><td> <input value="0" type="hidden" 
-                    size="10" name="amount" id="amount" /> <span id="my_escrow_amount"><?php _e('Select your project.','ProjectTheme'); ?></span></td>
+                    <td width="150"><?php _e('Escrow amount','ProjectTheme'); ?>:</td><td> <input value="0" type="text" 
+                    size="10" name="amount" id="amount" class="form-control" /> <span id="my_escrow_amount"><?php _e('Select your project.','ProjectTheme'); ?></span></td>
                     </tr>
                     <tr>
                     <td><?php _e('Escrow for Project','ProjectTheme'); ?>:</td><td> <?php $st = ProjectTheme_get_my_awarded_projects($uid);

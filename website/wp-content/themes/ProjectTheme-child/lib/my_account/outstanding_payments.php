@@ -18,14 +18,21 @@ function ProjectTheme_my_account_outstanding_payments_area_function()
 		$uid = $current_user->ID;
 		
 ?>
-    	<div id="content">
-        
-        
-        		        <div class="my_box3 border_bottom_0">
-            	
-            	<div class="box_title"><?php _e("Projects I need to pay",'ProjectTheme'); ?></div>
-                <div class="box_content">    
-				
+</div>
+<!-- end navbar-collapse -->
+</div>
+<!-- end navbar -->
+</div>
+<!-- end col -->
+<div class="col-md-9 content item">
+  <div class="page">
+    <article>
+      <div class="page-header">
+        <h1>
+          <?php _e("Projects I need to pay",'ProjectTheme'); ?>
+        </h1>
+      </div>
+      <!-- end page-header -->
                 
                 <?php
 				
@@ -78,13 +85,12 @@ function ProjectTheme_my_account_outstanding_payments_area_function()
 				?>
                 
              
-           </div>
+           </article>
            </div>    
         
         
   		</div>      
 <?php
-		ProjectTheme_get_users_links();
 
 }
 	
