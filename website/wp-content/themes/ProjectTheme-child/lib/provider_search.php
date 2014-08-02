@@ -135,7 +135,7 @@ function ProjectTheme_display_provider_search_page_disp()
                 <?php
 					
 					$width 	= 250;
-					$height = 250;
+					$height = 142;
 					$image_class = "image_class";
 					
 					
@@ -145,7 +145,7 @@ function ProjectTheme_display_provider_search_page_disp()
 					
 				?>
                 <img alt="<?php echo $author_info->user_login; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
-					src="<?php echo ProjectTheme_get_avatar($author->ID,250,250); ?>" />
+					src="<?php echo ProjectTheme_get_avatar($author->ID,$width,$height); ?>" />
                 <span class="overlay"><span class="fa fa-search"></span></span>
               </a>
               <div class="card-body">

@@ -71,7 +71,7 @@ get_header( 'leftbar' );
               <div class="row">
                 <div class="col-md-4" style="text-align:center;">
                   <ul class="list-unstyled post-meta">
-                    <li><img class="imgImg" width="100" height="100" src="<?php echo ProjectTheme_get_avatar($uid,100,100); ?>" /></li>
+                    <li><img class="imgImg" width="200" height="113" src="<?php echo ProjectTheme_get_avatar($uid,200,113); ?>" /></li>
 					<li><?php 
 						  $pr = get_user_meta($uid, 'per_hour', true);
 						  if(empty($pr)) 

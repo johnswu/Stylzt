@@ -35,17 +35,15 @@
  
  		//-------------------------
  
- 		get_header();
+ 		get_header('leftbar');
  ?> 
- 
- 
- <div id="content" >
-        	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php printf(__("Review User %s for project %s",'ProjectTheme'), $user->user_login, $post_pr->post_title ) ; ?></div>
-                <div class="box_content"> 
+ 			<div class="page">
+				<article>
+					<div class="page-header">
+						<h1>Review User</h1>
+					</div><!-- end page-header -->
+
+					<h3><?php printf(__("Review User %s for project %s",'ProjectTheme'), $user->user_login, $post_pr->post_title ) ; ?></h3>
             	
                 <?php
 			$nok = 1;
@@ -116,35 +114,15 @@
 		
 		?>
         <form method="post">	
-             	   <ul class="post-new3">
-            <li>
-        	<h2><?php echo __('Your Rating','ProjectTheme'); ?>:</h2>
-        	<p><select class="do_input" name="rating"><?php for($i=5;$i>0;$i--) echo '<option value="'.($i*2).'">'.$i.'</option>'; ?></select></p>
-        </li>
-        
-        <li>
-        	<h2><?php echo __('Your Comment','ProjectTheme'); ?>:</h2>
-        	<p><textarea name="commenta" class="do_input" rows="5" cols="40" ></textarea></p>
-        </li>
-        
-        
-        
-           <li>
+        	<h3><?php echo __('Your Rating','ProjectTheme'); ?>:</h3>
+        	<p><select class="form-control" name="rating"><?php for($i=5;$i>0;$i--) echo '<option value="'.($i*2).'">'.$i.'</option>'; ?></select></p>
+        	<h3><?php echo __('Your Comment','ProjectTheme'); ?>:</h3>
+        	<p><textarea name="commenta" class="form-control" rows="5" cols="40" ></textarea></p>
         	<h2>&nbsp;</h2>
-        	<p><input type="submit" name="rateme" value="<?php _e("Submit Rating","ProjectTheme"); ?>"  /></p>
-        </li>
-        
-        
-        
-        </ul>
+        	<p><input type="submit" name="rateme" class="btn btn-primary" value="<?php _e("Submit Rating","ProjectTheme"); ?>"  /></p>
          </form> <?php } ?>      
                 
-                
-                                </div>
-                </div>
-                </div>
-                </div>
-                
-	<?php ProjectTheme_get_users_links(); ?>
+			</article>
+		</div>
 
-<?php get_footer(); ?>
+<?php get_footer('leftbar'); ?>

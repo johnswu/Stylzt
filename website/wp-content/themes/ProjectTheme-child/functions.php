@@ -2085,7 +2085,7 @@ function ProjectTheme_create_post_type() {
 function ProjectTheme_get_avatar($uid, $w = 25, $h = 25)
 {
 	$av = get_user_meta($uid, 'avatar', true);
-	if(empty($av)) return get_stylesheet_directory_uri()."/images/noav.jpg";
+	if(empty($av)) return ProjectTheme_generate_thumb('defaultheader.png', $w, $h);//get_stylesheet_directory_uri()."/images/defaultheader.png";
 	else return ProjectTheme_generate_thumb($av, $w, $h);
 }
 
