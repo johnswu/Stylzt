@@ -166,7 +166,13 @@
 
 function wsl_alter_hook_provider_icon_markup_function($provider_id) {
 	?>
-	THIS IS A TEST
+			<div class="row<?php if ($provider_id == 'Facebook') echo ' mg-btm' ?>">
+				<div class="col-md-12">
+					<a href="#" class="btn btn-block btn-<?php echo strtolower($provider_id) ?>">
+						<i class="fa fa-<?php echo strtolower($provider_id) ?>"></i> &nbsp;&nbsp;&nbsp;Sign in with <?php echo $provider_id ?>
+					</a>
+				</div>
+			</div>
 	<?php
 }
 	

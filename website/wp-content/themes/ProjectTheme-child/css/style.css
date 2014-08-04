@@ -43,7 +43,7 @@
 ****************************************************/
 body {
   font-family: 'PT Sans', Helvetica, Arial, ans-serif;
-  background-color: #222;
+  background-color: #dddddd;
 }
 a {
   color: #1abc9c;
@@ -695,6 +695,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
   background-color: #233678 !important;
   border-color: #132255;
 }
+/*
 .btn-facebook:focus,
 .btn-facebook:hover {
   background-color: #465eb1 !important;
@@ -715,6 +716,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 .btn-twitter.active {
   background-color: #2d86b8 !important;
 }
+*/
 .btn > .icon-only {
   margin: 0;
   vertical-align: middle;

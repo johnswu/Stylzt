@@ -4,6 +4,10 @@ Template Name: Home
 */
 ?>
 <?php
+// redirect for now
+header("Location: http://www.stylzt.com/advanced-search/");
+
+
 get_header();
 ?>
     <!-- Carousel

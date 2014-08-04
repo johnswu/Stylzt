@@ -33,8 +33,10 @@ Template Name: Stylzt Page Template
     <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
 	
 	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>    
-	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.simpleplaceholder.js"></script>
+	
+	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
 	-->
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
@@ -62,15 +64,15 @@ Template Name: Stylzt Page Template
           <div class="navbar" role="navigation">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
-              <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png" style="width:223px;" /></a>
-              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots</p>
+              <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo-gray.png" style="width:223px;" /></a>
+              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots<br/>ALPHA TEST</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">
 				<li class="title">Main Menu</li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_advanced_search_page_id')); ?>"><?php _e('Project Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_provider_search_page_id')); ?>"><?php _e('Provider Search','ProjectTheme'); ?></a></li>
-                <li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php echo __("Post New",'ProjectTheme'); ?></a></li>
+                <!--<li><a href="<?php echo projectTheme_post_new_link(); ?>"><?php echo __("Post New",'ProjectTheme'); ?></a></li>-->
 	<?php if(get_option('projectTheme_enable_blog') == "yes") { ?>
                 <li><a href="<?php echo projectTheme_blog_link(); ?>"><?php echo __("Blog",'ProjectTheme'); ?></a></li>
 	<?php } ?>
