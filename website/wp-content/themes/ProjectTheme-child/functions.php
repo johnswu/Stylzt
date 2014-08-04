@@ -159,11 +159,17 @@
 	add_filter("projectTheme_get_post_awaiting_compl_function", 		'projectTheme_get_post_awaiting_compl_function', 1);
 	add_filter("projectTheme_get_post_awaiting_payment_function", 		'projectTheme_get_post_awaiting_payment_function', 1);
 
+	add_filter('wp_mail_from',		'ProjectTheme_1_mail_from');
+	add_filter('wp_mail_from_name',	'ProjectTheme_1_mail_from_name');
 
+	add_filter('wsl_alter_hook_provider_icon_markup', 'wsl_alter_hook_provider_icon_markup_function');	
 
-add_filter('wp_mail_from',		'ProjectTheme_1_mail_from');
-add_filter('wp_mail_from_name',	'ProjectTheme_1_mail_from_name');
-
+function wsl_alter_hook_provider_icon_markup_function($provider_id) {
+	?>
+	THIS IS A TEST
+	<?php
+}
+	
 //add_action( 'pre_get_posts', 'PT_foo_modify_query_for_stuff' );
 function PT_foo_modify_query_for_stuff( $query ) {
    
