@@ -355,7 +355,7 @@ jQuery(document).ready(function(){
 						
 					} else { 
 						echo '<div class="carousel-inner">';
-						echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb($image, -1,600).'\');">&nbsp;</div>';
+						echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb('defaultheader.png', -1,600).'\');">&nbsp;</div>';
 						echo '</div>';
 					}
 						

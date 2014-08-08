@@ -30,36 +30,49 @@
 			
 				$sanitized_user_login = $user_login;
 		
-			
-				
 				$errors = Project_register_new_user_sitemile($user_login, $user_email);
 				
-					if (!is_wp_error($errors)) 
-					{	
-						$ok_reg = 1;						
-					}	
+				if (!is_wp_error($errors)) 
+				{	
+					$ok_reg = 1;						
+				}	
 					
 				
-			  if ( 1 == $ok_reg ) 
-			  {//continues after the break; 
+				if ( 1 == $ok_reg ) 
+				{//continues after the break; 
 		
-				get_header('leftbar');
-				global $current_theme_locale_name;	
+					get_header('leftbar');
+					global $current_theme_locale_name;	
 				
 		?>
-				
-            <div class="col-lg-12">
-				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
-					<div class="box_title"><?php _e('Registration Complete',$current_theme_locale_name) ?></div>
-							<p><?php printf(__('Username: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_login) . "</strong>") ?><br />
-							<?php printf(__('Password: %s',$current_theme_locale_name), '<strong>' . __('emailed to you',$current_theme_locale_name) . '</strong>') ?> <br />
-							<?php printf(__('E-mail: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_email) . "</strong>") ?><br /><br />
-							<?php _e("Please check your <strong>Junk Mail</strong> if your account information does not appear within 5 minutes.",$current_theme_locale_name); ?>
-                            </p>
-
-							<p class="submit"><a href="wp-login.php"><?php _e('Login', $current_theme_locale_name); ?> &raquo;</a></p>
+			<!-- START NEW DESIGN -->
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css" />
+	<form class="form-signin">
+		<h3 class="heading-desc"><?php _e('Registration Complete',$current_theme_locale_name) ?></h3>
+		<div class="main">    
+			<p>
+				<?php printf(__('Username: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_login) . "</strong>") ?><br />
+				<?php printf(__('Password: %s',$current_theme_locale_name), '<strong>' . __('emailed to you',$current_theme_locale_name) . '</strong>') ?> <br />
+				<?php printf(__('E-mail: %s',$current_theme_locale_name), "<strong>" . wp_specialchars($user_email) . "</strong>") ?><br /><br />
+				<?php _e("Please check your <strong>Junk Mail</strong> if your account information does not appear within 5 minutes.",$current_theme_locale_name); ?>
+			</p>
+			<span class="clearfix"></span>    
+		</div>
+        <div class="login-footer">
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<div class="left-section">
+						&nbsp;
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 pull-right">
+					<a href="wp-login.php" class="btn btn-large btn-danger pull-right"><?php _e('Login', $current_theme_locale_name); ?></a>
 				</div>
 			</div>
+		</div>
+	</form>
+ 			<!-- END NEW DESIGN -->
 		<?php
 								
 				
@@ -78,96 +91,72 @@
 			<!-- START NEW DESIGN -->
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/login.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css" />
-			<!-- END NEW DESIGN -->
+	
+	<form class="form-signin" id="registerform" action="<?php echo esc_url( site_url('wp-login.php?action=register', 'login_post') ); ?>" method="post">
+		<input type="hidden" name="action" value="register" />	
+        <h3 class="heading-desc"><?php _e("Register",$current_theme_locale_name); ?> with <?php echo get_bloginfo('name'); ?></h3>
+		
+		<?php do_action('register_form'); ?>
+
+        <div class="main">    
+			<?php if ( isset($errors) && isset($_POST['action']) ) : ?>
+			<div class="error">
+				<ul>
+				<?php
+				foreach($errors as $error) {
+				if(count($error) > 0) {
+				
+				foreach($error as $e) echo "<li>".$e[0]."</li>";
+				
+				
+				}
+				}
+				?>
+				</ul>
+			</div>
+			<?php endif; ?>
+ 
+			<input type="text" class="form-control" placeholder="<?php _e('Username:',$current_theme_locale_name) ?>" name="user_login" id="user_login" value="<?php echo wp_specialchars(stripslashes($user_login), 1); ?>" autofocus />
+			<input type="text" class="form-control" placeholder="<?php _e('E-mail:',$current_theme_locale_name) ?>" name="user_email" id="user_email" value="<?php echo wp_specialchars($user_email); ?>" />
+			<p style="margin-bottom:0;"><?php _e('A password will be emailed to you.',$current_theme_locale_name) ?></p>
 			
-            <div class="col-lg-12">
-				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
-            
-					<div class="box_title"><?php _e("Register",$current_theme_locale_name); ?> - <?php echo  get_bloginfo('name'); ?></div>
-					<div class="box_content">                                          
-						  
-						<?php if ( isset($errors) && isset($_POST['action']) ) : ?>
-						<div class="error">
-							<ul>
-							<?php
-							foreach($errors as $error) {
-							if(count($error) > 0) {
-							
-							foreach($error as $e) echo "<li>".$e[0]."</li>";
-							
-							
-							}
-							}
-							?>
-							</ul>
-						</div>
-						  <?php endif; ?>
-						<div class="login-submit-form">
-                          
-                          
-                          <form method="post" id="registerform" action="<?php echo esc_url( site_url('wp-login.php?action=register', 'login_post') ); ?>">
-						  <input type="hidden" name="action" value="register" />	
-							
-							<p>
-                            <label for="register-username"><?php _e('Username:',$current_theme_locale_name) ?></label>
-							<input type="text" class="do_input" name="user_login" id="user_login" size="30" maxlength="20" value="<?php echo wp_specialchars($user_login); ?>" />
-							</p>							
+			<span class="clearfix"></span>    
+        </div>
+        <div class="login-footer">
+			<div class="row">
+				<?php
+				
+					$ProjectTheme_enable_2_user_tp = get_option('ProjectTheme_enable_2_user_tp');
+					if($ProjectTheme_enable_2_user_tp == "yes"):
 					
-							<p>							 
-							<label for="register-email"><?php _e('E-mail:',$current_theme_locale_name) ?></label>
-							<input type="text" class="do_input" name="user_email" id="user_email" size="30" maxlength="100" value="<?php echo wp_specialchars($user_email); ?>" />
-							</p>
-							
-                            <?php
-							
-								$ProjectTheme_enable_2_user_tp = get_option('ProjectTheme_enable_2_user_tp');
-								if($ProjectTheme_enable_2_user_tp == "yes"):
-								
-								$enbl = true;
-								$enbl = apply_filters('ProjectTheme_enbl_two_user_types_thing',$enbl);
-								
-								if($enbl):
-							?>                           
-                            
-                            <p>							 
-							<label for="register-email"><?php _e('User Type:',$current_theme_locale_name) ?></label>
-							<input type="radio" class="do_input" name="user_tp" id="user_tp" value="service_provider" checked="checked" /> <?php _e('Service Provider',$current_theme_locale_name); ?><br/>
-                            <input type="radio" class="do_input" name="user_tp" id="user_tp" value="business_owner" /> <?php _e('Service Contractor',$current_theme_locale_name); ?><br/>
-							</p>
-                            
-                            
-                            
-                            <?php endif; endif; ?>
-                            
-                           
-							
-                        
-							<?php do_action('register_form'); ?>
+						$enbl = true;
+						$enbl = apply_filters('ProjectTheme_enbl_two_user_types_thing',$enbl);
+						
+						if($enbl):
+				?>                           
+				
+				<p>							 
+				<label for="register-email"><?php _e('User Type:',$current_theme_locale_name) ?></label>
+				<input type="radio" class="do_input" name="user_tp" id="user_tp" value="service_provider" checked="checked" /> <?php _e('Service Provider',$current_theme_locale_name); ?><br/>
+				<input type="radio" class="do_input" name="user_tp" id="user_tp" value="business_owner" /> <?php _e('Service Contractor',$current_theme_locale_name); ?><br/>
+				</p>
+				
+				<?php endif; endif; ?>
+			
+				<div class="col-xs-6 col-md-6">
+					<div class="left-section">
+						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php"><?php _e('Login',$current_theme_locale_name) ?></a>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 pull-right">
+					<button type="submit" name="submits" id="submits" class="btn btn-large btn-danger pull-right"><?php _e('Register',$current_theme_locale_name) ?></button>
+				</div>
+			</div>
+ 
+        </div>
+	</form>
 
-							<p><label for="submitbtn">&nbsp;</label>
-							<?php _e('A password will be emailed to you.',$current_theme_locale_name) ?></p>
-							
-
-                          
-							
-						<p class="submit">
-                        <label for="submitbtn">&nbsp;</label>
-							 <input type="submit" class="submit_bottom" value="<?php _e('Register',$current_theme_locale_name) ?>" id="submits" name="submits" />
-						</p>
-                          
-						  <ul id="logins">
-							<li><a href="<?php bloginfo('home'); ?>/" title="<?php _e('Are you lost?',$current_theme_locale_name) ?>"><?php _e('Home',$current_theme_locale_name) ?></a></li>
-							<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php"><?php _e('Login',$current_theme_locale_name) ?></a></li>
-							<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword" title="<?php _e('Password Lost?',$current_theme_locale_name) ?>"><?php _e('Lost your password?',$current_theme_locale_name) ?></a></li>
-						  </ul>
-						</div>
-                        
-                        
-                        
-                    </div>
-                </div>
-            </div>
-                        
+			<!-- END NEW DESIGN -->
                         
 		<?php
 				

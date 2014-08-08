@@ -52,7 +52,7 @@ function ProjectTheme_post_new_area_function()
                 
             	
     			<?php
-				
+				/*
 					echo '<div id="steps">';
 						echo '<ul>';
 							echo '<li '.($new_Project_step == '1' ? "class='active_step' " : "").'>'.__("STEP 1", 'ProjectTheme').'</li>';
@@ -61,7 +61,7 @@ function ProjectTheme_post_new_area_function()
 							echo '<li '.($new_Project_step == '3' ? "class='active_step' " : "").'>'.__("STEP 3", 'ProjectTheme').'</li>';
 						echo '</ul>';		
 					echo '</div><br/>';
-
+				*/
 
 //****************************************************************************************
 

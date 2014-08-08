@@ -90,47 +90,44 @@ function ProjectTheme_do_login_scr()
 		  
 				
 		?>
-		<div class="page">
-			<article>
-				<div class="page-header">
-					<h1><?php _e("Retrieve Password",$current_theme_locale_name); ?></h1>
-				</div><!-- end page-header -->
-            
-            	<h3><?php _e("Retrieve Password",$current_theme_locale_name); ?> - <?php echo  get_bloginfo('name'); ?></h3>
-
-				<form name="lostpass" action="<?php echo esc_url( site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post" id="loginform">
+			<!-- START NEW DESIGN -->
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css" />
+	
+	<form class="form-signin" id="loginform" name="lostpass" action="<?php echo esc_url( site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
+		<input type="hidden" name="action" value="retrievepassword" />
+        <h3 class="heading-desc"><?php _e("Retrieve Password",$current_theme_locale_name); ?> for <?php echo  get_bloginfo('name'); ?></h3>
+		
+        <div class="main">    
+ 
+			<p><?php _e('Please enter your information here. We will send you a new password.',$current_theme_locale_name); ?></p>
+			<?php if ($errors) {echo "<div class='errors'>".$errors->get_error_message()."</div>";} ?>
+		
+			<?php do_action('lostpassword_form'); ?>
+			
+			<input type="text" class="form-control" placeholder="<?php _e('Username or Email:',$current_theme_locale_name) ?>" name="user_login" id="user_login" autofocus />
 					
-               
-					<p><?php _e('Please enter your information here. We will send you a new password.',$current_theme_locale_name); ?></p>
-					<?php if ($errors) {echo "<div class='errors'>".$errors->get_error_message()."</div>";} ?>
-					<input type="hidden" name="action" value="retrievepassword" />
-					  
-					  
-					<p>
-					<label><?php _e('Username or Email:',$current_theme_locale_name) ?></label>
-                    <input type="text" class="form-control" name="user_login" id="user_login" value="" size="30" tabindex="1" />
-                    </p>
-                 
-                  
-                  	<?php do_action('lostpassword_form'); ?>
-                  
-					<p><label>&nbsp;</label>
-					<input type="submit" name="submit" id="submit" value="<?php _e('Retrieve Password',$current_theme_locale_name); ?>"  class="btn btn-primary" tabindex="3" />
-                    </p>
-                   
-				</form>
-                                        
-                    
-					<ul id="logins">
-					<li><a href="<?php bloginfo('home'); ?>/" title="<?php _e('Are you lost?',$current_theme_locale_name) ?>">&laquo; <?php _e('Home',$current_theme_locale_name) ?></a></li>
-					<?php if (get_settings('users_can_register')) : ?>
-					<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a></li>
-					<?php endif; ?>
-					<li><a href="<?php bloginfo('wpurl'); ?>/wp-login.php"><?php _e('Login',$current_theme_locale_name) ?></a></li>
-					</ul>
-				             
-				</article>
+			<span class="clearfix"></span>    
+        </div>
+        <div class="login-footer">
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<div class="left-section">
+						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php"><?php _e('Login',$current_theme_locale_name) ?></a>
+				  <?php if (get_option('users_can_register')) : ?>
+						<br/><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
+				  <?php endif; ?>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 pull-right">
+					<button type="submit" name="submit" id="submit" class="btn btn-large btn-danger pull-right"><?php _e('Retrieve Password',$current_theme_locale_name); ?></button>
+				</div>
 			</div>
+ 
+        </div>
+	</form>
+	
+			<!-- END NEW DESIGN -->
 			
 		<?php
 				
@@ -383,36 +380,24 @@ function ProjectTheme_do_login_scr()
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/login.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css" />
 	
-           		<?php
-				if(isset($_GET['checkemail']) && $_GET['checkemail'] == "confirm"):
-				?>
-					
-                    <div class="check-email-div"><div class="padd10">
-                    <?php _e('We have sent a confirmation message to your email address.<br/>
-					Please follow the instructions in the email and get back to this page.',$current_theme_locale_name); ?>                    
-                    </div></div>
-                
-				
-				<?php	
-				endif;
-				
-				
-				?>
-
-				<?php if (! empty($error) ) : ?>
-					<div class="error"><ul>
-					<?php echo "<li>$error</li>"; ?>
-					</ul>
-					</div>
-				<?php endif; ?>
-                 	
- 
      <form class="form-signin" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
-        <h3 class="heading-desc"><?php _e("Login",$current_theme_locale_name); ?> to STYLZT</h3>
+        <h3 class="heading-desc"><?php _e("Login",$current_theme_locale_name); ?> to <?php echo  get_bloginfo('name'); ?></h3>
 		
 		<?php do_action('login_form'); ?>
 
         <div class="main">    
+		<?php if(isset($_GET['checkemail']) && $_GET['checkemail'] == "confirm"): ?>
+			<p>
+			<?php _e('We have sent a confirmation message to your email address.<br/>
+			Please follow the instructions in the email and get back to this page.',$current_theme_locale_name); ?>                    
+			</p>
+		<?php endif;?>
+		<?php if (! empty($error) ) : ?>
+			<div class="error"><ul>
+			<?php echo "<li>$error</li>"; ?>
+			</ul>
+			</div>
+		<?php endif; ?>
  
         <input type="text" class="form-control" placeholder="<?php _e('Username:',$current_theme_locale_name) ?>" name="log" id="log" value="<?php echo wp_specialchars(stripslashes($user_login), 1); ?>" autofocus />
         <input type="password" class="form-control" placeholder="<?php _e('Password:',$current_theme_locale_name); ?>" name="pwd" id="login_password" value="" />
@@ -420,21 +405,20 @@ function ProjectTheme_do_login_scr()
         <span class="clearfix"></span>    
         </div>
         <div class="login-footer">
-        <div class="row">
-                        <div class="col-xs-6 col-md-6">
-                            <div class="left-section">
-                                <a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword"><?php _e('Lost your password?',$current_theme_locale_name) ?></a>
-						  <?php if (get_option('users_can_register')) : ?>
-                                <a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
-						  <?php endif; ?>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-md-6 pull-right">
-                            <button type="submit" name="submits" id="submits" class="btn btn-large btn-danger pull-right">Login</button>
-							<input type="hidden" name="redirect_to" value="<?php echo wp_specialchars($redirect_to); ?>" />
-                        </div>
-                    </div>
- 
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<div class="left-section">
+						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword"><?php _e('Lost your password?',$current_theme_locale_name) ?></a>
+				  <?php if (get_option('users_can_register')) : ?>
+						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
+				  <?php endif; ?>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 pull-right">
+					<button type="submit" name="submits" id="submits" class="btn btn-large btn-danger pull-right">Login</button>
+					<input type="hidden" name="redirect_to" value="<?php echo wp_specialchars($redirect_to); ?>" />
+				</div>
+			</div>
         </div>
       </form>
 			
