@@ -43,7 +43,7 @@
 			  if ( 1 == $ok_reg ) 
 			  {//continues after the break; 
 		
-				get_header();
+				get_header('leftbar');
 				global $current_theme_locale_name;	
 				
 		?>
@@ -63,19 +63,23 @@
 		<?php
 								
 				
-				get_footer();
+				get_footer('leftbar');
 		
 				die();
 			break;
 			  }//continued from the error check above
 		
 			default:
-			get_header();
+			get_header('leftbar');
 			
 		
 				
 				?>
-				
+			<!-- START NEW DESIGN -->
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css" />
+			<!-- END NEW DESIGN -->
+			
             <div class="col-lg-12">
 				<div class="col-md-offset-2 col-md-4 belowCenterHeader">
             
@@ -168,13 +172,13 @@
 		<?php
 				
 				
-	 			  get_footer();
+	 			  get_footer('leftbar');
 		
 			  die();
 			break;
 			case 'disabled':
      
-	 			  get_header();
+	 			  get_header('leftbar');
 				
 			
 		?>
@@ -191,7 +195,7 @@
 			</div>
 		<?php
 				
-				 get_footer();
+				 get_footer('leftbar');
 		
 			  die();
 			break;

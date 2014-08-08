@@ -424,7 +424,7 @@ function ProjectTheme_do_login_scr()
                         <div class="col-xs-6 col-md-6">
                             <div class="left-section">
                                 <a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword"><?php _e('Lost your password?',$current_theme_locale_name) ?></a>
-						  <?php if (get_settings('users_can_register')) : ?>
+						  <?php if (get_option('users_can_register')) : ?>
                                 <a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
 						  <?php endif; ?>
                             </div>
