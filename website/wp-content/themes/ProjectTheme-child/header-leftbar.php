@@ -31,12 +31,11 @@ Template Name: Stylzt Page Template
     <!-- Add fancyBox -->
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
     <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
-	
-	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/jquery.uploadify-3.1.js"></script>    
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.simpleplaceholder.js"></script>
 	
 	<!--
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
+	
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
 	-->
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>

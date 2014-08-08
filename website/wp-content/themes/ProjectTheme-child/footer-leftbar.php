@@ -3,8 +3,7 @@
     </div><!-- end wrapper -->
     
     <footer class="hidden-xs">
-      <p class="pull-left">&copy; Copyright 2014. Rebound.</p>
-      <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p>
+      <p class="pull-left">&copy; Copyright 2014. STYLZT</p>
     </footer>
     
     <!-- Le javascript
@@ -13,11 +12,11 @@
     
     <script type="text/javascript">
       
-      $(document).ready(function() {
+      jQuery(document).ready(function() {
         
-        // $('.dropdown-toggle').dropdown();
+        jQuery('.dropdown-toggle').dropdown();
         
-        var $container = $('.portfolio-wrapper');
+        var $container = jQuery('.portfolio-wrapper');
         
         $container.imagesLoaded( function(){
           $container.isotope({
@@ -46,7 +45,7 @@
         }
 
     
-        $(window).smartresize(function() {
+        jQuery(window).smartresize(function() {
           setWidths();
           $container.isotope({
             masonry: {
@@ -55,10 +54,10 @@
           });
         });
         
-        $('.filter-portfolio li a').click(function(){
-          $('.filter-portfolio li.active').removeClass('active');
-          $(this).parent('li').addClass('active');
-          var selector = $(this).attr('data-filter');
+        jQuery('.filter-portfolio li a').click(function(){
+          jQuery('.filter-portfolio li.active').removeClass('active');
+          jQuery(this).parent('li').addClass('active');
+          var selector = jQuery(this).attr('data-filter');
           $container.isotope({
             filter: selector,
             masonry: {  }
@@ -66,7 +65,7 @@
           return false;
         });
         // update columnWidth on window resize
-        $(window).smartresize(function(){
+        jQuery(window).smartresize(function(){
           $container.isotope({
             // update columnWidth to a percentage of container width
             masonry: {  }
@@ -75,10 +74,10 @@
         
       });
       
-		$('textarea[placeholder]').simplePlaceholder();
-		$('input:text[placeholder]').simplePlaceholder(); // classic input[type=text]
-		$('input:email[placeholder]').simplePlaceholder(); // email fields input[type=email]
-		$('input:password[placeholder]').simplePlaceholder();
+		jQuery('textarea[placeholder]').placeholder();
+		jQuery('input:text[placeholder]').placeholder(); // classic input[type=text]
+		jQuery('input:email[placeholder]').placeholder(); // email fields input[type=email]
+		jQuery('input:password[placeholder]').placeholder();
     </script>
 
   </body>
