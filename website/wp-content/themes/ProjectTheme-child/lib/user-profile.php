@@ -18,14 +18,7 @@ get_header( 'leftbar' );
             <article>
               <div class="page-header">
                 <div id="portfolio-carousel" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#portfolio-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#portfolio-carousel" data-slide-to="1"></li>
-                    <li data-target="#portfolio-carousel" data-slide-to="2"></li>
-                  </ol>
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner">
+				
 				  <?php
 
 						$args = array(
@@ -44,6 +37,23 @@ get_header( 'leftbar' );
 						$active = 'active';
 
 						if ($attachments) {
+							if(sizeof($attachments) > 1) {
+								echo '<ol class="carousel-indicators">';
+								foreach ($attachments as $attachment) {
+									echo '<li data-target="#portfolio-carousel" data-slide-to="'.$count.'" class="'.$active.'"></li>';
+									$active = '';
+									$count++;
+								}
+								echo '</ol>';
+							}
+						
+							
+						?>
+						
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+						
+						<?php
 							foreach ($attachments as $attachment) {
 							$url = wp_get_attachment_url($attachment->ID);
 							
@@ -55,9 +65,18 @@ get_header( 'leftbar' );
 									break;
 								}
 							}
-						}
-					?>
+						?>
                   </div>
+				  
+						<?php
+						} else {
+						echo '<div class="carousel-inner">';
+						echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb('defaultheader.png', -1,600).'\');">&nbsp;</div>';
+						echo '</div>';
+						}
+						
+						if ($count > 1) {
+						?>
                   <!-- Controls -->
                   <a class="left carousel-control" href="#portfolio-carousel" data-slide="prev">
                     <span class="fa fa-chevron-left"></span>
@@ -65,6 +84,9 @@ get_header( 'leftbar' );
                   <a class="right carousel-control" href="#portfolio-carousel" data-slide="next">
                     <span class="fa fa-chevron-right"></span>
                   </a>
+						<?php
+						}
+						?>
                 </div><!-- end carousel -->
                 <h1><?php echo html_entity_decode($username); ?></h1>
               </div><!-- end page-header -->
