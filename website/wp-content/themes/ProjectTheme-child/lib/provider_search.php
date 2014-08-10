@@ -59,7 +59,7 @@ function ProjectTheme_display_provider_search_page_disp()
 			$pg = $_GET['pg'];
 			if(empty($pg)) $pg = 1;
 			
-			$nrRes = 15;
+			$nrRes = 12;
 			
 			//------------------
 			
@@ -168,6 +168,14 @@ function ProjectTheme_display_provider_search_page_disp()
 				
 				<?php
 				}
+?>
+    
+
+                     
+                    <div style="clear:both;"></div>
+          <div class="pagination-wrapper">
+            <ul class="pagination">
+                     <?php
 				
 				$totalPages = $nrPages;
 				$my_page = $pg;
@@ -210,25 +218,34 @@ function ProjectTheme_display_provider_search_page_disp()
 		
 				if($my_page > 1)
 				{
-					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$previous_pg.'" class="bighi"><< '.__('Previous','ProjectTheme').'</a>';
-					echo '<a href="'.projectTheme_provider_search_link() .'pg='.$start_me.'" class="bighi"><<</a>';
+					echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$start_me.'">|<</a></li>';
+					echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$previous_pg.'"><<</a></li>';
+				} else {
+					echo '<li class="disabled"><a href="">|<</a></li>';
+					echo '<li class="disabled"><a href=""><<</a></li>';
 				}
 				
-					for($i=$start;$i<=$end;$i++)
-					{
-						if($i == $pg)
-						echo '<a href="#" class="bighi" id="activees">'.$i.'</a>';
-						else
-						echo '<a href="'.projectTheme_provider_search_link() .'pg='.$i.'" class="bighi">'.$i.'</a>';	
-					}	
+				for($i=$start;$i<=$end;$i++)
+				{
+					if($i == $pg)
+					echo '<li class="active"><a href="#" id="activees">'.$i.'</a></li>';
+					else
+					echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$i.'">'.$i.'</a></li>';	
+				}	
 				
-				if($totalPages > $my_page)
-				echo '<a href="'.projectTheme_provider_search_link() .'pg='.$end_me.'" class="bighi">>></a>';
-				
+				if($totalPages > $my_page) {
+					echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$next_pg.'">>></a></li>';						
+					echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$end_me.'">>|</a></li>';
+				} else {
+					echo '<li class="disabled"><a href="">>></a></li>';						
+					echo '<li class="disabled"><a href="">>|</a></li>';
+				}
+				/*
 				if($page < $totalPages)
-				echo '<a href="'.projectTheme_provider_search_link() .'pg='.$next_pg.'" class="bighi">'.__('Next','ProjectTheme').' >></a>';						
-					
-				echo '</div>';
+				echo '<li><a href="'.projectTheme_provider_search_link() .'pg='.$next_pg.'" class="bighi">'.__('Next','ProjectTheme').' >></a></li>';						
+				*/
+				
+				echo '</ul></div><!-- end pagination-wrapper -->';
 				
 			} else {
 				echo 'No authors found';

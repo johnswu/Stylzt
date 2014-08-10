@@ -169,7 +169,7 @@ function ProjectTheme_advanced_search_area_main_function()
  
 //orderby price - meta_value_num
 
-	$nrpostsPage = 10;	
+	$nrpostsPage = 12;	
 	$nrpostsPage = apply_filters('ProjectTheme_advanced_search_posts_per_page',$nrpostsPage);
 
 	$args = array( 'posts_per_page' => $nrpostsPage, 'paged' => $pj, 'post_type' => 'project', 'order' => $order , 
@@ -278,8 +278,6 @@ function ProjectTheme_advanced_search_area_main_function()
         </div><!-- end col -->
         <div class="col-md-9 content">
           <div class="portfolio-wrapper">
-		  
-	<div id="content" >
         	
 <?php
 	
@@ -304,7 +302,8 @@ function ProjectTheme_advanced_search_area_main_function()
 
                      
                     <div style="clear:both;"></div>
-                     <div class="div_class_div">
+          <div class="pagination-wrapper">
+            <ul class="pagination">
                      <?php
 					 	
 
@@ -345,19 +344,20 @@ function ProjectTheme_advanced_search_area_main_function()
 		
 		if($my_page > 1)
 		{
-			echo '<a class="bighi" href="'.projectTheme_advanced_search_link_pgs($previous_pg).'">'.
-			__("<< Previous","ProjectTheme").'</a>';
-			echo '<a class="bighi" href="'.projectTheme_advanced_search_link_pgs($start_me).'"><<</a>';
+			echo '<li><a href="'.projectTheme_advanced_search_link_pgs($start_me).'">|<</a></li>';
+			echo '<li><a href="'.projectTheme_advanced_search_link_pgs($previous_pg).'"><<</a></li>';
+		} else {
+			echo '<li class="disabled"><a href="">|<</a></li>';
+			echo '<li class="disabled"><a href=""><<</a></li>';
 		}
-		
 		
 		for($i = $start; $i <= $end; $i ++) {
 			if ($i == $pj) {
-				echo '<a class="bighi" id="activees" href="#">'.$i.'</a>';
+				echo '<li class="active"><a id="activees" href="#">'.$i.'</a></li>';
 			} else {
 				
 			 
-				echo '<a class="bighi" href="'.projectTheme_advanced_search_link_pgs($i).'">'.$i.'</a>';
+				echo '<li><a href="'.projectTheme_advanced_search_link_pgs($i).'">'.$i.'</a></li>';
 			}
 		}
 		
@@ -368,17 +368,22 @@ function ProjectTheme_advanced_search_area_main_function()
 		$next_pg = $pjsk+1;
 		
 						
+		if($page < $totalPages) {
+			echo '<li><a href="'.projectTheme_advanced_search_link_pgs($next_pg).'">>></a></li>';
+			echo '<li><a href="'.projectTheme_advanced_search_link_pgs($end_me).'">>|</a></li>';
+		} else {
+			echo '<li class="disabled"><a href="">>></a></li>';
+			echo '<li class="disabled"><a href="">>|</a></li>';
+		}
+		/*
 		if($totalPages > $my_page)
-		echo '<a class="bighi" href="'.projectTheme_advanced_search_link_pgs($end_me).'">>></a>';
-		
-		if($page < $totalPages)
-		echo '<a class="bighi" href="'.projectTheme_advanced_search_link_pgs($next_pg).'">'.
-		__("Next >>","ProjectTheme").'</a>';
-						
+		echo '<li><a href="'.projectTheme_advanced_search_link_pgs($end_me).'">>|</a></li>';
+		*/
 						
 				
 					 ?>
-                     </div>
+            </ul>
+          </div><!-- end pagination-wrapper -->
                   <?php  
                                           
      	else:
@@ -393,7 +398,6 @@ function ProjectTheme_advanced_search_area_main_function()
 					 
 		?>
 
-</div>
 
 <?php	
 	
