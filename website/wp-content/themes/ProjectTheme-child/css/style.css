@@ -2513,6 +2513,10 @@ footer p {
   .navbar .brand-text {
     display: none;
   }
+  .navbar .navbar-brand  img {
+	max-width:50%;
+	margin-top:10px;
+  }
   .navbar .navbar-form {
     margin-bottom: 15px;
     margin-left: auto;
@@ -2643,6 +2647,10 @@ footer p {
   }
   .navbar .navbar-brand {
     font-size: 42px;
+  }
+  .navbar .navbar-brand  img {
+	max-width:187px;
+	margin-top:10px;
   }
   .navbar .navbar-toggle {
     margin-top: 5px;
