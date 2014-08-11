@@ -61,7 +61,7 @@ function ProjectTheme_my_account_feedbacks_area_function()
 								echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';							
 								echo '<td>'.date_i18n('d-M-Y H:i:s',get_post_meta($row->pid,'closed_date',true)).'</td>';								
 								echo '<td>'.projectTheme_get_show_price($bid->bid).'</td>';
-								echo '<td><a href="'.get_bloginfo('siteurl').'/?p_action=rate_user&rid='.$row->id.'">'.__('Rate User','ProjectTheme').'</a></td>';
+								echo '<td><a href="'.get_bloginfo('siteurl').'/?p_action=rate_user&rid='.$row->id.'" class="btn btn-default">'.__('Rate User','ProjectTheme').'</a></td>';
 							
 							echo '</tr>';
 							

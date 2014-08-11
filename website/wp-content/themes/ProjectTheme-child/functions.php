@@ -844,6 +844,7 @@ function ProjectTheme_add_theme_styles()
 	wp_register_script( 'uploadify_js', get_stylesheet_directory_uri().'/lib/uploadify/jquery.uploadify-3.1.js');
 	
 	wp_register_script( 'rebound', get_stylesheet_directory_uri().'/js/rebound.js');
+	wp_register_script( 'stylzt', get_stylesheet_directory_uri().'/js/stylzt.js');
 
 	wp_enqueue_script( 'jqueryhoverintent', get_stylesheet_directory_uri() . '/js/jquery.hoverIntent.minified.js', array('jquery') );
 	wp_enqueue_script( 'dcjqmegamenu', get_stylesheet_directory_uri() . '/js/jquery.dcmegamenu.1.3.4.min.js', array('jquery') );
@@ -861,6 +862,7 @@ function ProjectTheme_add_theme_styles()
 	wp_enqueue_script( 'jqueryhoverintent' );
 	wp_enqueue_script( 'dcjqmegamenu' );
 	wp_enqueue_script( 'rebound' );
+	wp_enqueue_script( 'stylzt' );
 		 
 	wp_enqueue_style( 'mega_menu_thing' );
  
@@ -2568,20 +2570,21 @@ function ProjectTheme_get_users_links()
 	?>
     
 	<ul class="nav navbar-nav">
-		<li class="title"><?php _e("My Account Menu",'ProjectTheme'); ?></li>
-        <li><a href="<?php echo projectTheme_my_account_link(); ?>" <?php echo ($current_page == "home" ? "class='active'" : ""); 
-				?>><?php _e("MyAccount Home",'ProjectTheme');?></a></li>
-		<?php $pmnts_lnk = get_permalink(get_option('ProjectTheme_my_account_payments_id'));
-				$pmnts_lnk = apply_filters('ProjectTheme_my_account_payments_id_link', $pmnts_lnk);
-				
-			 ?>             
-        <li><a href="<?php echo $pmnts_lnk; ?>"><?php _e("Finances",'ProjectTheme');?></a></li>                
-        <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_private_messages_id')); ?>"><?php echo sprintf(__("Private Messages %s",'ProjectTheme'),$ssk);?></a></li>
-        <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_personal_info_id')); ?>"><?php _e("Personal Info",'ProjectTheme');?></a></li>
-        <li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_feedback_id')); ?>"><?php printf(__("Reviews/Feedback %s",'ProjectTheme'), $ttl_fdbks2);?></a></li>
-		<li><a href="<?php echo wp_logout_url(); ?>"><?php echo __("Log Out",'ProjectTheme'); ?></a></li>
-		<?php do_action('ProjectTheme_my_account_main_menu'); ?>
-		
+		<li class="title"><a href="#" onclick="toggleSubNav('MyAccountSubMenu');return false;"><i class="fa fa-caret-right" id="MyAccountSubMenuCaret"></i>&nbsp;&nbsp;<?php _e("My Account Menu",'ProjectTheme'); ?></a></li>
+		<ul class="subnav" id="MyAccountSubMenu">
+			<li><a href="<?php echo projectTheme_my_account_link(); ?>" <?php echo ($current_page == "home" ? "class='active'" : ""); 
+					?>><?php _e("MyAccount Home",'ProjectTheme');?></a></li>
+			<?php $pmnts_lnk = get_permalink(get_option('ProjectTheme_my_account_payments_id'));
+					$pmnts_lnk = apply_filters('ProjectTheme_my_account_payments_id_link', $pmnts_lnk);
+					
+				 ?>             
+			<li><a href="<?php echo $pmnts_lnk; ?>"><?php _e("Finances",'ProjectTheme');?></a></li>                
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_private_messages_id')); ?>"><?php echo sprintf(__("Private Messages %s",'ProjectTheme'),$ssk);?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_personal_info_id')); ?>"><?php _e("Personal Info",'ProjectTheme');?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_feedback_id')); ?>"><?php printf(__("Reviews/Feedback %s",'ProjectTheme'), $ttl_fdbks2);?></a></li>
+			<li class="last"><a href="<?php echo wp_logout_url(); ?>"><?php echo __("Log Out",'ProjectTheme'); ?></a></li>
+			<?php do_action('ProjectTheme_my_account_main_menu'); ?>
+		</ul>
 	</ul>
             
             <!-- ###### -->
@@ -2591,7 +2594,7 @@ function ProjectTheme_get_users_links()
 			
 			?>
 	<ul class="nav navbar-nav">
-        <li class="title"><?php _e("Service Contractor Menu",'ProjectTheme'); ?></li>
+        <li class="title"><a href="#" onclick="toggleSubNav('HiringSubMenu');return false;"><i class="fa fa-caret-right" id="HiringSubMenuCaret"></i>&nbsp;&nbsp;<?php _e("Service Contractor Menu",'ProjectTheme'); ?></a></li>
 			<?php
 				
 				global $wpdb;	
@@ -2647,16 +2650,17 @@ function ProjectTheme_get_users_links()
 					$compl = "<span class='notif_a'>".$ttl_prj2."</span>";	
 				
 			?>
-		<li><a href="<?php echo projectTheme_post_new_link(); ?>" ><?php _e("Post New Project",'ProjectTheme');?></a></li>  
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_active_projects_id')); ?>"><?php _e("Active Projects",'ProjectTheme');?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_closed_projects_id')); ?>"><?php _e("Closed Projects",'ProjectTheme');?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_unpublished_projects_id')); ?>"><?php printf(__("Unpublished Projects %s",'ProjectTheme'), $scn2);?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_completion_id')); ?>"><?php printf(__("Awaiting Completion %s",'ProjectTheme'), $compl);?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_payments_id')); ?>"><?php printf(__("Outstanding Payments %s",'ProjectTheme'), $scn);?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_completed_payments_id')); ?>"><?php _e("Completed Payments",'ProjectTheme');?></a></li>
+		<ul class="subnav" id="HiringSubMenu">
+			<li><a href="<?php echo projectTheme_post_new_link(); ?>" ><?php _e("Post New Project",'ProjectTheme');?></a></li>  
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_active_projects_id')); ?>"><?php _e("Active Projects",'ProjectTheme');?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_closed_projects_id')); ?>"><?php _e("Closed Projects",'ProjectTheme');?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_unpublished_projects_id')); ?>"><?php printf(__("Unpublished Projects %s",'ProjectTheme'), $scn2);?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_completion_id')); ?>"><?php printf(__("Awaiting Completion %s",'ProjectTheme'), $compl);?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_payments_id')); ?>"><?php printf(__("Outstanding Payments %s",'ProjectTheme'), $scn);?></a></li>
+			<li class="last"><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_completed_payments_id')); ?>"><?php _e("Completed Payments",'ProjectTheme');?></a></li>
 
-		<?php do_action('ProjectTheme_my_account_service_contractor_menu'); ?>
-                 
+			<?php do_action('ProjectTheme_my_account_service_contractor_menu'); ?>
+		</ul>			 
 	</ul>
             <!-- ###### -->
 			<?php
@@ -2666,7 +2670,7 @@ function ProjectTheme_get_users_links()
 			
 			?>
 	<ul class="nav navbar-nav">
-        <li class="title"><?php _e("Service Provider Menu",'ProjectTheme'); ?></li>
+        <li class="title"><a href="#" onclick="toggleSubNav('FindWorkSubMenu');return false;"><i class="fa fa-caret-right" id="FindWorkSubMenuCaret"></i>&nbsp;&nbsp;<?php _e("Service Provider Menu",'ProjectTheme'); ?></a></li>
 			<?php
 			
 			
@@ -2716,16 +2720,16 @@ function ProjectTheme_get_users_links()
 					$awnr = "<span class='notif_a'>".$awnr."</span>"; else $awnr = '';
 			
 			?>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_won_projects_id')); ?>"><?php _e("Won Projects",'ProjectTheme');?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_projects_id')); ?>"><?php printf(__("Outstanding Projects %s",'ProjectTheme'), $outsnr); ?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_payments_id')); ?>"><?php printf(__("Awaiting Payments %s",'ProjectTheme'), $awnr);?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_delivered_projects_id')); ?>"><?php _e("Delivered & Paid Projects",'ProjectTheme');?></a></li>
-		<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("Projects I bid",'ProjectTheme');?></a></li>
+		<ul class="subnav" id="FindWorkSubMenu">
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_won_projects_id')); ?>"><?php _e("Won Projects",'ProjectTheme');?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_projects_id')); ?>"><?php printf(__("Outstanding Projects %s",'ProjectTheme'), $outsnr); ?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_payments_id')); ?>"><?php printf(__("Awaiting Payments %s",'ProjectTheme'), $awnr);?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_delivered_projects_id')); ?>"><?php _e("Delivered & Paid Projects",'ProjectTheme');?></a></li>
+			<li class="last"><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("Projects I bid",'ProjectTheme');?></a></li>
 
-		<?php do_action('ProjectTheme_my_account_service_provider_menu'); ?>
-                 
+			<?php do_action('ProjectTheme_my_account_service_provider_menu'); ?>
+        </ul>         
     </ul>
-             
             <?php endif; ?>
             
 		<?php	
@@ -5125,7 +5129,7 @@ function projectTheme_get_post_outstanding_project_function()
 
 							<?php if($mark_coder_delivered != "1"): ?>
 
-								<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>">
+								<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>" class="btn btn-default">
 									<?php echo __("Mark Delivered", "ProjectTheme");?>
 								</a>
 

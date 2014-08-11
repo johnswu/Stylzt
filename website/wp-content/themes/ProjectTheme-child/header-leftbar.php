@@ -64,10 +64,10 @@ Template Name: Stylzt Page Template
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
               <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo-gray.png" style="width:100%;" /></a>
-              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots<br/>ALPHA TEST</p>
+              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav" style="margin-bottom:30px;">
 				<li class="title">Main Menu</li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_advanced_search_page_id')); ?>"><?php _e('Project Search','ProjectTheme'); ?></a></li>
                 <li><a href="<?php echo get_permalink(get_option('ProjectTheme_provider_search_page_id')); ?>"><?php _e('Provider Search','ProjectTheme'); ?></a></li>

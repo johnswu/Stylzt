@@ -1115,7 +1115,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
   max-height: 1000000px;
 }
 .navbar .navbar-nav {
-  margin: 0 0 30px;
+  margin: 0px; /*0 0 30px;*/
   display: block;
   width: 100%;
   position: relative;
@@ -2776,4 +2776,15 @@ div.fancyContainer {
 ul.project-details {
 	list-style-type:none;
 	padding-left:0px;
+}
+.navbar-nav .subnav {
+	display:none;
+	padding-left:10px;
+}
+.navbar-nav  li.last,
+.navbar-nav  .subnav  li.last{
+	margin-bottom:30px;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td  {
+	vertical-align:middle;
 }

@@ -186,20 +186,24 @@ function ProjectTheme_advanced_search_area_main_function()
 //===============*********=======================
 	
 ?>
-
+			  <div style="clear:both;"></div>
+			  <br/>
 			  <!-- Start filtering form controls -->
               <form class="navbar-form" role="search" id="searchForm">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" value="" name="term" />
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="ref-search" onclick="$('#searchForm').submit();"><span class="fa fa-search"></span></button>
+                    <button class="btn btn-default" type="button" name="ref-search" onclick="jQuery('#searchForm').submit();"><span class="fa fa-search"></span></button>
                   </span>
                 </div><!-- end input group -->
-
+				<div style="clear:both;"></div>
+				<br/>
 				<ul class="nav navbar-nav filter-portfolio">
+					<!--
 					<li class="title">
 						<?php _e('Filter Options','ProjectTheme'); ?>
 					</li>
+					-->
 					<li>
 						<?php _e('Price',"ProjectTheme"); ?>:<br/>
 						<?php echo ProjecTheme_get_budgets_dropdown($_GET['budgets'], 'form-control filterDropDown', 1); ?>
@@ -218,7 +222,8 @@ function ProjectTheme_advanced_search_area_main_function()
 					</li>
 				</ul>
 			  </form>
-				<div style="float:left;width:100%">
+			  <div style="clear:both;"></div>
+				<div style="text-align:center;width:100%;margin-top:15px;">
                     <?php
 					
 						$ge = 'order='.($_GET['order'] == 'ASC' ? "DESC" : "ASC").'&meta_key=budgets&orderby=meta_value_num';
