@@ -11,18 +11,13 @@
 	function sitemile_filter_ttl($title){return __("User Feedback",'ProjectTheme')." - ";}
 	add_filter( 'wp_title', 'sitemile_filter_ttl', 10, 3 );	
 	
-get_header();
+get_header('leftbar');
 ?>
-
-
-	<div id="content">
-    		<div class="my_box3">
-            <div class="padd10">
-            
-            	<div class="box_title"><?php _e("User Feedback",'ProjectTheme'); ?> - <?php echo $username; ?></div>
-            	<div class="box_content">	
-               <!-- ####### -->
-                
+          <div class="page">
+            <article>
+              <div class="page-header">
+                <h1><?php _e("User Feedback",'ProjectTheme'); ?> - <?php echo $username; ?></h1>
+              </div><!-- end page-header -->
                 
                 <?php
 					
@@ -44,14 +39,14 @@ get_header();
 					
 					if(count($r) > 0)
 					{
-						echo '<table width="100%">';
+						echo '<table width="100%" class="table table-striped table-hover">';
 							echo '<tr>';
 								echo '<th>&nbsp;</th>';	
-								echo '<th><b>'.__('Project Title','ProjectTheme').'</b></th>';								
-								echo '<th><b>'.__('From User','ProjectTheme').'</b></th>';	
-								echo '<th><b>'.__('Aquired on','ProjectTheme').'</b></th>';								
-								echo '<th><b>'.__('Price','ProjectTheme').'</b></th>';
-								echo '<th><b>'.__('Rating','ProjectTheme').'</b></th>';
+								echo '<th>'.__('Project Title','ProjectTheme').'</th>';								
+								echo '<th>'.__('From User','ProjectTheme').'</th>';	
+								echo '<th>'.__('Aquired on','ProjectTheme').'</th>';								
+								echo '<th>'.__('Price','ProjectTheme').'</th>';
+								echo '<th>'.__('Rating','ProjectTheme').'</th>';
 								
 							
 							echo '</tr>';	
@@ -69,22 +64,22 @@ get_header();
 							
 							echo '<tr>';
 								
-								echo '<th><img class="img_class" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
-                                alt="'.$post->post_title.'" width="42" /></th>';	
-								echo '<th><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></th>';
-								echo '<th><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></th>';								
-								echo '<th>'.date_i18n('d-M-Y H:i:s', $dts).'</th>';								
-								echo '<th>'.projectTheme_get_show_price($bid->bid).'</th>';
-								echo '<th>'.ProjectTheme_get_project_stars(floor($row->grade/2)).' ('.floor($row->grade/2).'/5)</th>';
+								echo '<td><img class="img_class" src="'.ProjectTheme_get_first_post_image($row->pid, 42, 42).'" 
+                                alt="'.$post->post_title.'" width="42" /></td>';	
+								echo '<td><a href="'.get_permalink($row->pid).'">'.$post->post_title.'</a></td>';
+								echo '<td><a href="'.ProjectTheme_get_user_profile_link($user->ID).'">'.$user->user_login.'</a></td>';								
+								echo '<td>'.date_i18n('d-M-Y H:i:s', $dts).'</td>';								
+								echo '<td>'.projectTheme_get_show_price($bid->bid).'</td>';
+								echo '<td>'.ProjectTheme_get_project_stars(floor($row->grade/2)).' ('.floor($row->grade/2).'/5)</td>';
 								
 							
 							echo '</tr>';
 							echo '<tr>';
 							echo '<th></th>';
-							echo '<th colspan="5"><b>'.__('Comment','ProjectTheme').':</b> '.$row->comment.'</th>'	;						
+							echo '<td colspan="5"><b>'.__('Comment','ProjectTheme').':</b> '.$row->comment.'</td>'	;						
 							echo '</tr>';
 							 
-							echo '<tr><th colspan="6"><hr color="#eee" /></th></tr>';
+							echo '<tr><td colspan="6"><hr color="#eee" /></td></tr>';
 							
 						}
 						echo '<tr>';
@@ -101,24 +96,14 @@ get_header();
                 
                 
 				<!-- ####### -->
-                </div>
+                </article>
                 
             </div>
-            </div>
-                
-
-  </div>
-
-<div id="right-sidebar">
-	<ul class="xoxo">
-	<?php dynamic_sidebar( 'other-page-area' ); ?>
-	</ul>
-</div>
 
 <?php
 
 	//sitemile_after_content(); 
 	
-	get_footer();
+	get_footer('leftbar');
 	
 ?>

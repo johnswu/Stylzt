@@ -2710,6 +2710,10 @@ footer p {
 }
 
 /* BEGIN Customizations */
+ul, ol {
+	padding-left:0px;
+}
+
 .filterDropDown {
 	width:100% !important;
 }

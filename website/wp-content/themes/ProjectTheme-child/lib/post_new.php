@@ -128,7 +128,6 @@ if($new_Project_step == "1")
         <?php do_action('ProjectTheme_step1_before_ending'); ?>
         
         <li>
-        <h3>
         
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
@@ -145,7 +144,7 @@ if($new_Project_step == "1")
 		<script type="text/javascript" language="javascript" src="<?php echo get_bloginfo('template_url'); ?>/js/timepicker.js"></script>
           
 
-       <?php _e("Project Ending On",'ProjectTheme'); ?>:</h3>
+        <h3><?php _e("Project Ending On",'ProjectTheme'); ?>:</h3>
        <?php 
 	   
 	   $dt = get_post_meta($pid,'ending',true);
