@@ -818,7 +818,6 @@ function ProjectTheme_add_theme_styles()
 	wp_register_style( 'bootstrap_style3', get_stylesheet_directory_uri().'/css/bootstrap_responsive.css', array(), '20120822', 'all' );
 	wp_register_style( 'bootstrap_ie6', 	get_stylesheet_directory_uri().'/css/bootstrap_ie6.css', array(), '20120822', 'all' );
 	wp_register_style( 'bootstrap_gal', 	get_stylesheet_directory_uri().'/css/bootstrap_gal.css', array(), '20120822', 'all' );
-	wp_register_style( 'bootstrap_datetimepicker', 	get_stylesheet_directory_uri().'/css/bootstrap-datetimepicker.min.css', array(), '20120822', 'all' );
 	wp_register_style( 'fileupload_ui', 	get_stylesheet_directory_uri().'/css/fileupload_ui.css', array(), '20120822', 'all' );
 	wp_register_style( 'mega_menu_thing', 	get_stylesheet_directory_uri().'/css/menu.css', array(), '20120822', 'all' );
 	wp_register_style( 'uploadify_css', 	get_stylesheet_directory_uri().'/lib/uploadify/uploadify.css', array(), '20120822', 'all' );
@@ -839,7 +838,6 @@ function ProjectTheme_add_theme_styles()
 	wp_register_script( 'fileupload_main', get_stylesheet_directory_uri().'/js/jquery.fileupload.js');
 	wp_register_script( 'fileupload_fp', get_stylesheet_directory_uri().'/js/jquery.fileupload-fp.js');
 	wp_register_script( 'fileupload_ui', get_stylesheet_directory_uri().'/js/jquery.fileupload-ui.js');
-	wp_register_script( 'datetimepicker', get_stylesheet_directory_uri().'/js/bootstrap-datetimepicker.min.js');
 	
 	wp_register_script( 'locale_thing', get_stylesheet_directory_uri().'/js/locale.js');
 	wp_register_script( 'main_thing', get_stylesheet_directory_uri().'/js/main.js');
@@ -871,7 +869,7 @@ function ProjectTheme_add_theme_styles()
 	global $post;
 	$ssl = get_option('ProjectTheme_my_account_personal_info_id');
 	
-	if($new_Project_step == "1" or $new_Project_step == "2" or $p_action == "edit_project" or $p_action == "repost_project" or $post->ID == $ssl ):
+	if($new_Project_step == "2" or $p_action == "edit_project" or $p_action == "repost_project" or $post->ID == $ssl ):
 
 	  	// enqueing:
 	  	wp_enqueue_style( 'bootstrap_style1' );
@@ -879,7 +877,6 @@ function ProjectTheme_add_theme_styles()
 		wp_enqueue_style( 'bootstrap_style3' );
 		wp_enqueue_style( 'bootstrap_ie6' );
 		wp_enqueue_style( 'bootstrap_gal' );
-		wp_enqueue_style( 'bootstrap_datetimepicker' );
 		wp_enqueue_style( 'fileupload_ui' );
 		wp_enqueue_style( 'uploadify_css' );
 		
@@ -894,7 +891,6 @@ function ProjectTheme_add_theme_styles()
 		 wp_enqueue_script( 'fileupload_main' );
 		 wp_enqueue_script( 'fileupload_fp' );
 		 wp_enqueue_script( 'fileupload_ui' );
-		 wp_enqueue_script( 'datetimepicker' );
 		 wp_enqueue_script( 'locale_thing' );
 		 wp_enqueue_script( 'main_thing' );
 		 wp_enqueue_script( 'uploadify_js' );

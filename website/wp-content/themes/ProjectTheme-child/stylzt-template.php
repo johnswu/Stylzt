@@ -26,7 +26,6 @@ Template Name: Stylzt Page Template
 		wp_head();
 
 	?>	
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.simpleplaceholder.js"></script>
 	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
@@ -186,10 +185,10 @@ Template Name: Stylzt Page Template
         
       });
       
-		jQuery('textarea[placeholder]').simplePlaceholder();
-		jQuery('input:text[placeholder]').simplePlaceholder(); // classic input[type=text]
-		jQuery('input:email[placeholder]').simplePlaceholder(); // email fields input[type=email]
-		jQuery('input:password[placeholder]').simplePlaceholder();
+		jQuery('textarea[placeholder]').placeholder();
+		jQuery('input:text[placeholder]').placeholder(); // classic input[type=text]
+		jQuery('input:email[placeholder]').placeholder(); // email fields input[type=email]
+		jQuery('input:password[placeholder]').placeholder();
     </script>
 
   </body>
