@@ -153,7 +153,18 @@ if($new_Project_step == "1")
 	   $dt = date_i18n('d-m-Y H:i',$dt);
 	   
 	   ?>
-       <p><input type="text" name="ending" id="ending" class="form-control" value="<?php echo $dt; ?>"  /></p>
+		<div class="well">
+			<div id="ending" class="input-append">
+				<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" name="ending" class="form-control" value="<?php echo $dt; ?>"></input>
+				<span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					</i>
+				</span>
+			</div>
+		</div>
+		<!--
+		<p><input type="text" name="ending" id="ending" class="form-control" value="<?php echo $dt; ?>"  /></p>
+		-->
        </li>
         
  		<script>
@@ -167,6 +178,14 @@ if($new_Project_step == "1")
 			var myDate=new Date();
 			myDate.setDate(myDate.getDate()+<?php echo $dd; ?>);
 			
+			  $(function() {
+				$('#ending').datetimepicker({
+				  language: 'en',
+				  pick12HourFormat: true
+				});
+			  });
+			
+			/*
 			$(document).ready(function() {
 				 $('#ending').datetimepicker({
 				showSecond: false,
@@ -187,7 +206,8 @@ if($new_Project_step == "1")
 					timezoneText: '<?php _e('Time Zone','ProjectTheme'); ?>'
 			
 			});});
- 
+			*/
+			
  		</script>
         
         <?php do_action('ProjectTheme_step1_before_location'); ?>
