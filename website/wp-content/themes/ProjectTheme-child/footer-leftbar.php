@@ -14,12 +14,12 @@
       
       jQuery(document).ready(function() {
         
-        jQuery('.dropdown-toggle').dropdown();
+        // jQuery('.dropdown-toggle').dropdown();
         
-        var $container = jQuery('.portfolio-wrapper');
+        var container = jQuery('.portfolio-wrapper');
         
-        $container.imagesLoaded( function(){
-          $container.isotope({
+        container.imagesLoaded( function(){
+          container.isotope({
             itemSelector : '.card',
             layoutMode : 'fitRows'
           });
@@ -30,9 +30,9 @@
           var width,
           windowWidth = $(window).width();
           if( windowWidth <= 480 ) {
-            width = Math.floor( $container.width() );
+            width = Math.floor( container.width() );
           } else if( windowWidth <= 768 ) {
-            width = Math.floor( $container.width() );
+            width = Math.floor( container.width() );
           } else {
             width = Math.floor( 250 );
           }
@@ -41,13 +41,13 @@
 
         function setWidths() {
           var colWidth = getColWidth();
-          $container.children().css({ width: colWidth });
+          container.children().css({ width: colWidth });
         }
 
     
         jQuery(window).smartresize(function() {
           setWidths();
-          $container.isotope({
+          container.isotope({
             masonry: {
               columnWidth: getColWidth()
             }
@@ -58,7 +58,7 @@
           jQuery('.filter-portfolio li.active').removeClass('active');
           jQuery(this).parent('li').addClass('active');
           var selector = jQuery(this).attr('data-filter');
-          $container.isotope({
+          container.isotope({
             filter: selector,
             masonry: {  }
           });
@@ -66,7 +66,7 @@
         });
         // update columnWidth on window resize
         jQuery(window).smartresize(function(){
-          $container.isotope({
+          container.isotope({
             // update columnWidth to a percentage of container width
             masonry: {  }
           });

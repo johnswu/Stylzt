@@ -26,7 +26,6 @@ Template Name: Stylzt Page Template
 		wp_head();
 
 	?>	
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.simpleplaceholder.js"></script>
 	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
@@ -125,12 +124,12 @@ Template Name: Stylzt Page Template
       
       jQuery(document).ready(function() {
 
-		jQuery('.dropdown-toggle').dropdown();
+		// jQuery('.dropdown-toggle').dropdown();
         
-        var $container = $('.portfolio-wrapper');
+        var container = jQuery('.portfolio-wrapper');
         
-        $container.imagesLoaded( function(){
-          $container.isotope({
+        container.imagesLoaded( function(){
+          container.isotope({
             itemSelector : '.card',
             layoutMode : 'fitRows'
           });
@@ -141,9 +140,9 @@ Template Name: Stylzt Page Template
           var width,
           windowWidth = $(window).width();
           if( windowWidth <= 480 ) {
-            width = Math.floor( $container.width() );
+            width = Math.floor( container.width() );
           } else if( windowWidth <= 768 ) {
-            width = Math.floor( $container.width() );
+            width = Math.floor( container.width() );
           } else {
             width = Math.floor( 250 );
           }
@@ -152,13 +151,13 @@ Template Name: Stylzt Page Template
 
         function setWidths() {
           var colWidth = getColWidth();
-          $container.children().css({ width: colWidth });
+          container.children().css({ width: colWidth });
         }
 
     
         jQuery(window).smartresize(function() {
           setWidths();
-          $container.isotope({
+          container.isotope({
             masonry: {
               columnWidth: getColWidth()
             }
@@ -169,7 +168,7 @@ Template Name: Stylzt Page Template
           jQuery('.filter-portfolio li.active').removeClass('active');
           jQuery(this).parent('li').addClass('active');
           var selector = jQuery(this).attr('data-filter');
-          $container.isotope({
+          container.isotope({
             filter: selector,
             masonry: {  }
           });
@@ -177,18 +176,18 @@ Template Name: Stylzt Page Template
         });
         // update columnWidth on window resize
         jQuery(window).smartresize(function(){
-          $container.isotope({
+          container.isotope({
             // update columnWidth to a percentage of container width
             masonry: {  }
           });
         });
         
-      });
-      
 		jQuery('textarea[placeholder]').placeholder();
 		jQuery('input:text[placeholder]').placeholder(); // classic input[type=text]
 		jQuery('input:email[placeholder]').placeholder(); // email fields input[type=email]
 		jQuery('input:password[placeholder]').placeholder();
+      });
+      
     </script>
 
   </body>

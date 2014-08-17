@@ -129,15 +129,16 @@ if($new_Project_step == "1")
         
         <li>
         
-        <link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap-datetimepicker.min.css' type='text/css' media='all' />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <link rel='stylesheet' href='<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap-datetimepicker.css' type='text/css' media='all' />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
         <script src="<?php echo get_bloginfo('template_url'); ?>/js/jquery.iframe-transport.js"></script>
         <script src="<?php echo get_bloginfo('template_url'); ?>/js/jquery.fileupload.js"></script>
         <script src="<?php echo get_bloginfo('template_url'); ?>/js/jquery.fileupload-ui.js"></script>
-        <script src="<?php echo get_bloginfo('template_url'); ?>/js/application.js"></script>  	
-		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/application.js"></script>
+		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/moment.js"></script>
+		<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap-datetimepicker.js"></script>
         	
         
         <link rel="stylesheet" media="all" type="text/css" href="<?php echo get_bloginfo('template_url'); ?>/css/ui_thing.css" />
@@ -154,35 +155,41 @@ if($new_Project_step == "1")
 	   $dt = date_i18n('d-m-Y H:i',$dt);
 	   
 	   ?>
+		<div class='input-group date'>
+			<input type='text' class="form-control" id='datetimepicker1' />
+			<span class="input-group-addon datepickerbutton"><span class="glyphicon glyphicon-calendar"></span>
+			</span>
+		</div>
+        <script type="text/javascript">
+			<?php
+			
+				$dd = get_option('projectTheme_project_period');
+				if(empty($dd)) $dd = 7;
+			
+			?>
+		
+			var myDate=new Date();
+			myDate.setDate(myDate.getDate()+<?php echo $dd; ?>); 
+			
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+					//maxDate: myDate
+				});
+            });
+        </script>		<!--
 		<div id="bidEnding" class="input-append input-group">
 			<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" name="ending" class="form-control" value="<?php echo $dt; ?>"></input>
 			<span class="add-on input-group-addon">
 				<i class="fa fa-calendar"></i>
 			</span>
 		</div>
+		-->
 		<!--
 		<p><input type="text" name="ending" id="ending" class="form-control" value="<?php echo $dt; ?>"  /></p>
 		-->
        </li>
         
  		<script>
-		<?php
-		
-			$dd = get_option('projectTheme_project_period');
-			if(empty($dd)) $dd = 7;
-		
-		?>
-		
-			var myDate=new Date();
-			myDate.setDate(myDate.getDate()+<?php echo $dd; ?>);
-			
-			  jQuery(function() {
-				jQuery('#bidEnding').get(0).datetimepicker({
-				  language: 'en',
-				  pick12HourFormat: true
-				});
-			  });
-			
 			/*
 			$(document).ready(function() {
 				 $('#ending').datetimepicker({
