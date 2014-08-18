@@ -35,10 +35,9 @@ Template Name: Stylzt Page Template
 	
 	<!--
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/rebound.js"></script>
-	
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js"></script>
-	-->
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.isotope.min.js"></script>
+	-->
     <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/typeahead.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

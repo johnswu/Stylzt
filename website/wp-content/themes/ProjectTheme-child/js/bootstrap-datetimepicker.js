@@ -290,7 +290,7 @@ THE SOFTWARE.
                 placePosition;
 
             picker.width = picker.component ? picker.component.outerWidth() : picker.element.outerWidth();
-            offset.top = offset.top + picker.element.outerHeight();
+            offset.top = offset.top + picker.element.outerHeight(false);
 
             if (picker.options.direction === 'up') {
                 placePosition = 'top';
@@ -844,8 +844,10 @@ THE SOFTWARE.
                         if (collapseData && collapseData.transitioning) {
                             return;
                         }
-                        expanded.collapse('hide');
-                        closed.collapse('show');
+                        //expanded.collapse('hide'); //Don't know why collapse won't work
+                        expanded.slideToggle();
+                        //closed.collapse('show');
+                        closed.slideToggle();
                         $this.find('span').toggleClass(picker.options.icons.time + ' ' + picker.options.icons.date);
                         if (picker.component) {
                             picker.component.find('span').toggleClass(picker.options.icons.time + ' ' + picker.options.icons.date);
