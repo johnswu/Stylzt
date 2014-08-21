@@ -2574,6 +2574,7 @@ footer p {
     -webkit-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none;
+	max-width:794px;
   }
   .page .carousel .carousel-control .fa {
     left: 15px;

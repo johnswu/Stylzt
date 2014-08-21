@@ -34,8 +34,7 @@ Template Name: Stylzt Page Template
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/style.css" />
 
     <!-- Add fancyBox -->
-    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

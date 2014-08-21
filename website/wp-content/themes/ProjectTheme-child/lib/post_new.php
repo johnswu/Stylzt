@@ -279,8 +279,8 @@ if($new_Project_step == "1")
         
         <li>
         <h2>&nbsp;</h2>
-        <p> 
-        <input type="submit" name="project_submit1" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <p style="text-align:center;"> 
+        <input type="submit" name="project_submit1" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> &raquo;" /></p>
         </li>
     	
         <?php do_action('ProjectTheme_step1_after_submit'); ?>
@@ -376,19 +376,19 @@ if($new_Project_step == "2")
             <div class="span7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
+                    <i class="fa fa-plus"></i>
                     <span><?php _e('Add Images','ProjectTheme'); ?></span>
                     <input type="file" name="files[]" multiple>
                 </span>
              
                 <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
+                    <i class="fa fa-ban"></i>
                     <span><?php _e('Cancel upload','ProjectTheme'); ?></span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
+                    <i class="fa fa-trash-o"></i>
                     <span><?php _e('Delete','ProjectTheme'); ?></span>
-                </button>
+                </button>&nbsp;&nbsp;
                 <input type="checkbox" class="toggle">
             </div>
             <!-- The global progress information -->
@@ -425,7 +425,7 @@ if($new_Project_step == "2")
             </td>
             <td class="start">{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i>
+                    <i class="fa fa-upload"></i>
                     <span>{%=locale.fileupload.start%}</span>
                 </button>
             {% } %}</td>
@@ -434,7 +434,7 @@ if($new_Project_step == "2")
         {% } %}
         <td class="cancel">{% if (!i) { %}
             <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i>
+                <i class="fa fa-ban"></i>
                 <span>{%=locale.fileupload.cancel%}</span>
             </button>
         {% } %}</td>
@@ -462,10 +462,10 @@ if($new_Project_step == "2")
         {% } %}
         <td class="delete">
             <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-                <i class="icon-trash icon-white"></i>
+                <i class="fa fa-trash-o"></i>
                 <span>{%=locale.fileupload.destroy%}</span>
-            </button>
-            <input type="checkbox" name="delete" value="1">
+            </button>&nbsp;&nbsp;
+            <input type="checkbox" name="delete" value="1" style="vertical-align: middle;">
         </td>
     </tr>
 {% } %}
@@ -523,8 +523,8 @@ if($new_Project_step == "2")
 		$("#fileUpload3").uploadify({
 			height        : 30,
 			auto:			true,
-			swf           : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploadify.swf',
-			uploader      : '<?php echo get_bloginfo('template_url'); ?>/lib/uploadify/uploady2.php',
+			swf           : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.swf',
+			uploader      : '<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploady2.php',
 			width         : 120,
 			fileTypeExts  : '*.zip;*.pdf;*.doc;*.docx',
 			fileTypeDesc : '<?php _e('Select Project Files','ProjectTheme'); ?>',
@@ -611,12 +611,18 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 			
 				for($i=0;$i<count($arr);$i++)
 				{
-					
-							echo '<li>';
-							echo '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
-							echo '<p>'.$arr[$i]['value'].'</p>';
-							echo '</li>';
-					
+					if ($arr[$i]['field_name'] == 'Dates needed')
+					{
+						echo '<li>';
+						echo '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
+						echo '<p>'.$arr[$i]['value'].'</p>';
+						echo '</li>';
+					} else {
+						echo '<li>';
+						echo '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
+						echo '<p>'.$arr[$i]['value'].'</p>';
+						echo '</li>';
+					}
 					
 				}	
 		
@@ -713,8 +719,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		$stp = apply_filters('ProjectTheme_filter_go_back_stp2', $stp);
 		
 		?>
-        <p><a href="<?php echo ProjectTheme_post_new_with_pid_stuff_thg($pid, $stp); ?>" class="btn btn-default" ><?php _e('Go Back','ProjectTheme'); ?></a> 
-        <input type="submit" name="project_submit2" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> >>" /></p>
+        <p style="text-align:center;"><a href="<?php echo ProjectTheme_post_new_with_pid_stuff_thg($pid, $stp); ?>" class="btn btn-default" style="text-decoration:none;">&laquo; <?php _e('Go Back','ProjectTheme'); ?></a> 
+        &nbsp;&nbsp;<input type="submit" name="project_submit2" class="btn btn-primary" value="<?php _e("Next Step", 'ProjectTheme'); ?> &raquo;" /></p>
         </li>
     
     
@@ -962,7 +968,7 @@ if($new_Project_step == "3")
 	
 	//----------------------------------------
 	
-	echo '<table style="margin-top:25px">';
+	echo '<table class="table table-striped table-hover">';
 	
 	$show_payment_table = true;
 	$show_payment_table = apply_filters('ProjectTheme_filter_payment_show_table', $show_payment_table, $pid);
@@ -1025,7 +1031,7 @@ if($new_Project_step == "3")
 			
 			echo '<tr>';
 			echo '<td></td>';
-			echo '<td><a href="'.get_permalink(get_option('ProjectTheme_my_account_page_id')).'" class="btn btn-default">'.__('Go to your account','ProjectTheme') .'</a></td>';
+			echo '<td><a href="'.get_permalink(get_option('ProjectTheme_my_account_page_id')).'" class="btn btn-default" style="text-decoration:none;">'.__('Go to your account','ProjectTheme') .'</a></td>';
 			echo '</tr>';	
 				
 		endif;
@@ -1072,13 +1078,15 @@ if($new_Project_step == "3")
 	echo '<div class="clear10"></div>';
 	echo '<div class="clear10"></div>';
 	
+	echo '<p style="text-align:center;">';
 	if($finalize == false)
-	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '2') .'" class="btn btn-default" >'.__('Go Back','ProjectTheme').'</a>';
+	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '2') .'" class="btn btn-default" style="text-decoration:none;">&laquo; '.__('Go Back','ProjectTheme').'</a>&nbsp;&nbsp;&nbsp;';
 	
 	if($total == 0 && $finalize == false)
 	echo '<a href="'. ProjectTheme_post_new_with_pid_stuff_thg($pid, '3', 'finalize').'" 
-	class="btn btn-default" >'.__('Finalize Project Posting','ProjectTheme').'</a>';
+	class="btn btn-primary" style="text-decoration:none;">'.__('Finalize Project Posting','ProjectTheme').'</a>';
 	
+	echo '</p>';
 
 
 }

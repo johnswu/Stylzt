@@ -560,11 +560,11 @@ function ProjectTheme_add_max_nr_of_images()
 	?>
 	
     <!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
     
     <!-- Add fancyBox -->
-    <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="<?php bloginfo('template_url') ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/lib/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     
     <!-- Optionally add helpers - button, thumbnail and/or media -->
     <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/lib/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
@@ -884,9 +884,9 @@ function ProjectTheme_add_theme_styles()
 	if($new_Project_step == "2" or $p_action == "edit_project" or $p_action == "repost_project" or $post->ID == $ssl ):
 
 	  	// enqueing:
-	  	wp_enqueue_style( 'bootstrap_style1' );
+	  	// wp_enqueue_style( 'bootstrap_style1' );
 	 	// wp_enqueue_style( 'bootstrap_style2' );
-		wp_enqueue_style( 'bootstrap_style3' );
+		// wp_enqueue_style( 'bootstrap_style3' );
 		wp_enqueue_style( 'bootstrap_ie6' );
 		wp_enqueue_style( 'bootstrap_gal' );
 		wp_enqueue_style( 'fileupload_ui' );

@@ -20,7 +20,6 @@ Template Name: Stylzt Page Template
     <!--[if IE 7]>
       <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
     <![endif]-->
-	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/lib/uploadify/uploadify.css" type="text/css" />
 	
 	<?php wp_enqueue_script("jquery"); ?>
 	<?php
