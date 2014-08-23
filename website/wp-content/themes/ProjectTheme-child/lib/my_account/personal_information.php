@@ -200,6 +200,17 @@ function ProjectTheme_my_account_personal_info_function()
             
              <form method="post"  enctype="multipart/form-data">
              
+        	<h3><?php echo __('Profile Avatar','ProjectTheme'); ?>:</h3>
+            <img width="100" height="100" border="0" src="<?php echo ProjectTheme_get_avatar($uid,100,100); ?>" style="float:left;margin-right:30px;" /> 
+			<div style="display:inline-block;vertical-align:middle;height:100px;margin-right:30px;">
+				<br><br>
+				<input type="file" name="avatar" />
+				<?php _e('max file size: 1mb. Formats: jpeg, jpg, png, gif' ,'ProjectTheme'); ?>
+			</div>
+			<input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" style="vertical-align:middle;" />
+			<div style="clear:both;"></div>
+			<br/><br/>        
+   
         	<h3><?php echo __('Username','ProjectTheme'); ?>:</h3>
         	<input type="text" size="35" value="<?php echo $user->user_login; ?>" disabled="disabled" class="form-control" />
 			<br/>
@@ -224,12 +235,14 @@ function ProjectTheme_my_account_personal_info_function()
             <script>
 			
 			jQuery(document).ready(function(){
+			/*
 			tinyMCE.init({
 					mode : "specific_textareas",
 					theme : "modern", 
-					/*plugins : "autolink, lists, spellchecker, style, layer, table, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, template",*/
+					plugins : "autolink, lists, spellchecker, style, layer, table, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, template",
 					editor_selector :"tinymce-enabled"
 				});
+			*/
 			});
 						
 			</script>    
@@ -287,12 +300,6 @@ function ProjectTheme_my_account_personal_info_function()
         
         <?php do_action('ProjectTheme_pers_info_fields_1'); ?>
         
-        	<h3><?php echo __('Profile Avatar','ProjectTheme'); ?>:</h3>
-            <img width="100" height="100" border="0" src="<?php echo ProjectTheme_get_avatar($uid,100,100); ?>" /> 
-        	<input type="file" name="avatar" /> <br/>
-           <?php _e('max file size: 1mb. Formats: jpeg, jpg, png, gif' ,'ProjectTheme'); ?>
-            <br/>
-   
    <?php
    
    if(function_exists('cimy_extract_ExtraFields'))
@@ -301,10 +308,6 @@ function ProjectTheme_my_account_personal_info_function()
    ?>
         
         
-        <h3>&nbsp;</h3>
-        <input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" />
-        <br/><br/>
-            
         <!-- <h3><?php _e("Other Information",'ProjectTheme'); ?></h3> -->
                 
         <?php do_action('ProjectTheme_pers_info_fields_2'); ?>
@@ -404,7 +407,7 @@ function ProjectTheme_my_account_personal_info_function()
 			//alert(data);
 			var bar = data.split("|");
 			
-jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img width="70" class="image_class" height="70" src="' + bar[0] + '" /><a href="javascript: void(0)" onclick="delete_this('+ bar[1] +')"><img border="0" src="<?php echo get_bloginfo('template_url'); ?>/images/delete_icon.png" border="0" /></a></div>');
+jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img width="70" class="image_class" height="70" src="' + bar[0] + '" />&nbsp;<a class="deleteXimg" href="javascript: void(0)" style="color:#e45f56;" onclick="delete_this('+ bar[1] +')"><i class="fa fa-times-circle fa-lg"></i></a></div>');
 }
 	
 			
@@ -420,10 +423,12 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
     <style type="text/css">
 	.div_div
 	{
-		margin-left:5px; float:left; 
-		width:110px;margin-top:10px;
+		border: 1px solid #ccc;
+		float: left;
+		margin-right: 20px;
+		margin-top: 10px;
+		width: 101px;
 	}
-	
 	</style>
     
     <div id="fileUpload4" style="width:100%">You have a problem with your javascript</div>
@@ -451,8 +456,8 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		$url = wp_get_attachment_url($attachment->ID);
 		
 			echo '<div class="div_div"  id="image_ss'.$attachment->ID.'"><img width="70" class="image_class" height="70" src="' .
-			ProjectTheme_generate_thumb($url, 70, 70). '" />
-			<a href="javascript: void(0)" onclick="delete_this(\''.$attachment->ID.'\')"><img border="0" src="'.get_bloginfo('template_url').'/images/delete_icon.png" /></a>
+			ProjectTheme_generate_thumb($url, 70, 70). '" />&nbsp;
+			<a class="deleteXimg" href="javascript: void(0)" style="color:#e45f56;" onclick="delete_this(\''.$attachment->ID.'\')"><i class="fa fa-times-circle fa-lg"></i></a>
 			</div>';
 	  
 	}
@@ -474,7 +479,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		?>
                     
                         <h3><?php echo __('Emails Alerts','ProjectTheme'); ?>:</h3>
-                        <p><div style="border:1px solid #ccc;background:#f2f2f2; overflow:auto; width:350px; border-radius:5px; height:160px;">
+                        <p><div style="border:1px solid #ccc;background:#f2f2f2;padding: 4px 10px;overflow:auto; width:350px; border-radius:5px; height:160px;">
                         
                         <?php
 							
@@ -522,7 +527,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
 		
 		?>
                         <h3>Location Alerts:</h3>
-                        <p><div style="border:1px solid #ccc;background:#f2f2f2; overflow:auto; width:350px; border-radius:5px; height:160px;">
+                        <p><div style="border:1px solid #ccc;background:#f2f2f2;padding: 4px 10px; overflow:auto; width:350px; border-radius:5px; height:160px;">
                         
                         <?php
 							
@@ -576,7 +581,7 @@ jQuery('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" ><img
         			
         <h3>&nbsp;</h3> 
 		<input type="hidden" value="<?php echo $uid; ?>" name="user_id" />
-        <p><input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
+        <p style="text-align:center;"><input type="submit" name="save-info" class="btn btn-primary" value="<?php _e("Save" ,'ProjectTheme'); ?>" /></p>
                 
             
 		</form>

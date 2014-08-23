@@ -872,7 +872,7 @@ function ProjectTheme_add_theme_styles()
 	wp_enqueue_script( 'jqueryhoverintent' );
 	wp_enqueue_script( 'dcjqmegamenu' );
 	wp_enqueue_script( 'bootstrap' );
-	//wp_enqueue_script( 'isotope' );
+	//wp_enqueue_script( 'isotope' ); this messes up pagination right now
 	wp_enqueue_script( 'rebound' );
 	wp_enqueue_script( 'stylzt' );
 		 

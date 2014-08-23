@@ -183,7 +183,7 @@ Template Name: Stylzt Page Template
         
 		jQuery('textarea[placeholder]').placeholder();
 		jQuery('input:text[placeholder]').placeholder(); // classic input[type=text]
-		jQuery('input:email[placeholder]').placeholder(); // email fields input[type=email]
+		//jQuery('input:email[placeholder]').placeholder(); // email fields input[type=email]
 		jQuery('input:password[placeholder]').placeholder();
       });
       
