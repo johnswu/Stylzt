@@ -410,7 +410,7 @@ function ProjectTheme_do_login_scr()
 					<div class="left-section">
 						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=lostpassword"><?php _e('Lost your password?',$current_theme_locale_name) ?></a>
 				  <?php if (get_option('users_can_register')) : ?>
-						<a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
+						<br/><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><?php _e('Register',$current_theme_locale_name) ?></a>
 				  <?php endif; ?>
 					</div>
 				</div>

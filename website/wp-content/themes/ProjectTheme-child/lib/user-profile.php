@@ -42,7 +42,6 @@ get_header( 'leftbar' );
 								foreach ($attachments as $attachment) {
 									echo '<li data-target="#portfolio-carousel" data-slide-to="'.$count.'" class="'.$active.'"></li>';
 									$active = '';
-									$count++;
 								}
 								echo '</ol>';
 							}
@@ -54,28 +53,24 @@ get_header( 'leftbar' );
 				  <div class="carousel-inner">
 						
 						<?php
+							$active = 'active';
 							foreach ($attachments as $attachment) {
-							$url = wp_get_attachment_url($attachment->ID);
-							
-								if ($count < 3) {
-									echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb($url, -1,600).'\');">&nbsp;</div>';
-									$active = '';
-									$count++;
-								} else {
-									break;
-								}
+								$url = wp_get_attachment_url($attachment->ID);
+								echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb($url, -1,600).'\');">&nbsp;</div>';
+								$active = '';
 							}
 						?>
                   </div>
 				  
 						<?php
 						} else {
-						echo '<div class="carousel-inner">';
-						echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb('defaultheader.png', -1,600).'\');">&nbsp;</div>';
-						echo '</div>';
+							echo '<div class="carousel-inner">';
+							echo '<div class="item '.$active.' portfolioSlide" style="background-image:url(\''.ProjectTheme_generate_thumb('defaultheader.png', -1,600).'\');">&nbsp;</div>';
+							echo '</div>';
 						}
 						
-						if ($count > 1) {
+						if ($attachments) {
+							if(sizeof($attachments) > 1) {
 						?>
                   <!-- Controls -->
                   <a class="left carousel-control" href="#portfolio-carousel" data-slide="prev">
@@ -85,6 +80,7 @@ get_header( 'leftbar' );
                     <span class="fa fa-chevron-right"></span>
                   </a>
 						<?php
+							}
 						}
 						?>
                 </div><!-- end carousel -->
