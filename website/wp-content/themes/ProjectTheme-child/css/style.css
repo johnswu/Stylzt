@@ -1178,6 +1178,8 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 .wrapper {
   clear: both;
   position: relative;
+  max-width:1280px;
+  margin:0 auto;
 }
 .wrapper:before,
 .wrapper:after {

@@ -4,6 +4,9 @@
     
     <footer class="hidden-xs">
       <p class="pull-left">&copy; Copyright 2014. STYLZT</p>
+      <p class="pull-right">
+		<a href="/Contact">Contact Us</a>
+	  </p>
     </footer>
     
     <!-- Le javascript
