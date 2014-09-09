@@ -86,9 +86,13 @@ function ProjectTheme_my_account_area_main_function()
 			//	"&posts_per_page=".$post_per_page."&paged=".$query_vars['paged'] );
 
 				if(have_posts()) :
+				
+				_e("<table class='table table-striped table-hover'>");
+				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
+					projectTheme_get_post_table();
 				endwhile;
+				_e("</table>");
 				
 				//if(function_exists('wp_pagenavi')):
 				//wp_pagenavi(); endif;
@@ -111,9 +115,14 @@ function ProjectTheme_my_account_area_main_function()
 				query_posts( "post_status=draft&meta_key=paid&meta_value=0&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
 				
 				if(have_posts()) :
+				_e("<table class='table table-striped table-hover'>");
+				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post(array('unpaid'));
-				endwhile; else:
+					projectTheme_get_post_table(array('unpaid'));
+				endwhile; 
+				_e("</table>");
+				
+				else:
 				
 				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
@@ -132,9 +141,14 @@ function ProjectTheme_my_account_area_main_function()
 				query_posts( "meta_key=closed&meta_value=1&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
 
 				if(have_posts()) :
+				_e("<table class='table table-striped table-hover'>");
+				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
 				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
-				endwhile; else:
+					projectTheme_get_post_table();
+				endwhile; 
+				_e("</table>");
+				
+				else:
 				
 				_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
@@ -178,8 +192,8 @@ function ProjectTheme_my_account_area_main_function()
 
 				if(have_posts()) :
 				while ( have_posts() ) : the_post();
-					//projectTheme_get_post_outstanding_project();
-          projectTheme_get_post();
+					projectTheme_get_post_outstanding_project();
+					//projectTheme_get_post();
 				endwhile; else:
 				
 				_e("<p>There are no projects yet.</p>",'ProjectTheme');

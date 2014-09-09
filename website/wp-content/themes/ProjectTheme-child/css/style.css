@@ -2586,7 +2586,7 @@ footer p {
     right: 15px;
   }
   .post-content ul {
-    margin-left: -20px;
+    margin-left: 20px;
   }
   .pager {
     margin: 30px 20px;

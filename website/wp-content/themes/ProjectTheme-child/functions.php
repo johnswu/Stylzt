@@ -156,6 +156,7 @@
 	add_filter("projectTheme_get_post_outstanding_project_function", 	'projectTheme_get_post_outstanding_project_function', 1);
 	add_filter("projectTheme_get_post_paid_function", 					'projectTheme_get_post_paid_function', 1);
 	add_filter("projectTheme_get_post_pay_function", 					'projectTheme_get_post_pay_function', 1);
+	add_filter("projectTheme_get_post_table_function", 					'projectTheme_get_post_table_function', 1);
 	add_filter("projectTheme_get_post_awaiting_compl_function", 		'projectTheme_get_post_awaiting_compl_function', 1);
 	add_filter("projectTheme_get_post_awaiting_payment_function", 		'projectTheme_get_post_awaiting_payment_function', 1);
 
@@ -5027,6 +5028,71 @@ function projectTheme_get_post_awaiting_compl_function()
 <?php		
 	
 }
+
+function projectTheme_get_post_table($arr = '')
+{
+	do_action('projectTheme_get_post_table_function', $arr);	
+}
+
+function projectTheme_get_post_table_function($arr = '')
+{
+			$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+			$sec 				= $ending - current_time('timestamp',0);
+			$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+			$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+			
+			$post				= get_post(get_the_ID());
+
+			
+			global $current_user;
+			get_currentuserinfo();
+			$uid = $current_user->ID;
+			
+?>
+	<tr>
+		<td>
+			<div class="image_holder">
+			<?php
+
+				$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
+				if($ProjectTheme_enable_images_in_projects == "yes"):
+
+					$width 	= 40;
+					$height = 32;
+					$image_class = "image_class";
+
+					$width 			= apply_filters("ProjectTheme_awaiting_completion_proj_img_width", 	$width);
+					$height 		= apply_filters("ProjectTheme_awaiting_completion_proj_img_height", 	$height);
+					$image_class 	= apply_filters("ProjectTheme_awaiting_completion_proj_img_class", 	$image_class);
+
+			?>
+
+				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img alt="<?php the_title(); ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
+				src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" /></a>
+
+			<?php endif; ?>
+			</div>		
+		</td>
+		<td>
+			<a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>">
+				<?php the_title(); ?>
+			</a>
+		</td>
+		<td>
+			<?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
+		</td>
+		<td>
+			<a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
+		</td>
+		<td>
+			<?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) : __("Expired/Closed",'ProjectTheme')); ?>
+		</td>
+			
+<?php		
+	
+}
+
+
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function
