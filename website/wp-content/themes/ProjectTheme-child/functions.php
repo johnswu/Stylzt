@@ -154,6 +154,7 @@
 	add_action( 'pre_get_posts', 										'ProjectTheme_my_backend_projects_orderby' ); 
 	add_filter("ProjectTheme_get_post_blog_function", 					'ProjectTheme_get_post_blog_function', 1);
 	add_filter("projectTheme_get_post_outstanding_project_function", 	'projectTheme_get_post_outstanding_project_function', 1);
+	add_filter("projectTheme_get_post_won_project_function", 	'projectTheme_get_post_won_project_function', 1);
 	add_filter("projectTheme_get_post_paid_function", 					'projectTheme_get_post_paid_function', 1);
 	add_filter("projectTheme_get_post_pay_function", 					'projectTheme_get_post_pay_function', 1);
 	add_filter("projectTheme_get_post_table_function", 					'projectTheme_get_post_table_function', 1);
@@ -2667,7 +2668,7 @@ function ProjectTheme_get_users_links()
 			<li><a href="<?php echo projectTheme_post_new_link(); ?>" ><?php _e("Post New Project",'ProjectTheme');?></a></li>  
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_active_projects_id')); ?>"><?php _e("Active Projects",'ProjectTheme');?></a></li>
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_closed_projects_id')); ?>"><?php _e("Closed Projects",'ProjectTheme');?></a></li>
-			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_unpublished_projects_id')); ?>"><?php printf(__("Unpublished Projects %s",'ProjectTheme'), $scn2);?></a></li>
+			<!--<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_unpublished_projects_id')); ?>"><?php printf(__("Unpublished Projects %s",'ProjectTheme'), $scn2);?></a></li>-->
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_completion_id')); ?>"><?php printf(__("Awaiting Completion %s",'ProjectTheme'), $compl);?></a></li>
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_payments_id')); ?>"><?php printf(__("Outstanding Payments %s",'ProjectTheme'), $scn);?></a></li>
 			<li class="last"><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_completed_payments_id')); ?>"><?php _e("Completed Payments",'ProjectTheme');?></a></li>
@@ -2734,11 +2735,10 @@ function ProjectTheme_get_users_links()
 			
 			?>
 		<ul class="subnav" id="FindWorkSubMenu">
-			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_won_projects_id')); ?>"><?php _e("Won Projects",'ProjectTheme');?></a></li>
+			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("Projects I bid",'ProjectTheme');?></a></li>
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_outstanding_projects_id')); ?>"><?php printf(__("Outstanding Projects %s",'ProjectTheme'), $outsnr); ?></a></li>
 			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_awaiting_payments_id')); ?>"><?php printf(__("Awaiting Payments %s",'ProjectTheme'), $awnr);?></a></li>
-			<li><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_delivered_projects_id')); ?>"><?php _e("Delivered & Paid Projects",'ProjectTheme');?></a></li>
-			<li class="last"><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_bid_projects_id')); ?>"><?php _e("Projects I bid",'ProjectTheme');?></a></li>
+			<li class="last"><a href="<?php echo get_permalink(get_option('ProjectTheme_my_account_delivered_projects_id')); ?>"><?php _e("Delivered & Paid Projects",'ProjectTheme');?></a></li>
 
 			<?php do_action('ProjectTheme_my_account_service_provider_menu'); ?>
         </ul>         
@@ -5236,6 +5236,153 @@ function projectTheme_get_post_outstanding_project_function()
 	do_action('ProjectTheme_outstanding_proj_post_after');
 					 
 }
+
+/*************************************************************
+*
+*	ProjectTheme (c) sitemile.com - function
+*
+**************************************************************/
+
+function projectTheme_get_post_won_project()
+{
+	do_action('projectTheme_get_post_won_project_function');	
+}
+
+function projectTheme_get_post_won_project_function()
+{
+	
+			$ending 			= get_post_meta(get_the_ID(), 'ending', true);
+			$sec 				= $ending - current_time('timestamp',0);
+			$location 			= get_post_meta(get_the_ID(), 'Location', true);		
+			$closed 			= get_post_meta(get_the_ID(), 'closed', true);
+			$featured 			= get_post_meta(get_the_ID(), 'featured', true);
+			
+			$mark_coder_delivered 			= get_post_meta(get_the_ID(), 'mark_coder_delivered', true);
+			$post							= get_post(get_the_ID());
+
+			global $current_user;
+			get_currentuserinfo();
+			$uid = $current_user->ID;
+			
+			$bids = "select * from ".$wpdb->prefix."project_bids where pid='".get_the_ID()."' AND uid='".$uid."' order by id DESC";
+			$res  = $wpdb->get_results($bids);
+			
+			do_action('ProjectTheme_won_project_post_before');
+			
+?>
+		<div class="panel panel-default" id="post-<?php the_ID(); ?>">
+			<div class="panel-heading">
+				<h3 style="margin:0px 0px 5px;"><a class="post-title-class" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php 
+					 do_action('ProjectTheme_won_project_title_before');
+					 the_title(); 
+					 do_action('ProjectTheme_won_project_title_after');
+					 ?></a></h3>
+				
+                <?php if($featured == "1"): ?>
+                <div class="featured-one"></div>
+                <?php endif; ?>
+				
+                <?php if($private_bids == "yes" or $private_bids == "1"): ?>
+                <div class="sealed-one"></div>
+                <?php endif; ?>
+
+				<?php _e("Posted in",'ProjectTheme');?> <?php echo get_the_term_list( get_the_ID(), 'project_cat', '', ', ', '' ); ?> 
+				<?php _e("by",'ProjectTheme');?> <a href="<?php bloginfo('siteurl'); ?>?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a> 
+			</div>
+			<div class="panel-body">
+				<table width="100%" class="table table-hover" style="margin-bottom:0px;">
+					<tr>
+						<th>&nbsp;</th>
+						<th><?php echo __("Budget",'ProjectTheme'); ?></th>
+						<th>My Bid</th>
+						<th><?php echo __("Delivery On",'ProjectTheme'); ?></th>
+						<th>Actions</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="image_holder">
+								<?php
+
+								$ProjectTheme_enable_images_in_projects = get_option('ProjectTheme_enable_images_in_projects');
+								if($ProjectTheme_enable_images_in_projects == "yes"):
+
+								$width 	= 40;
+								$height = 32;
+								$image_class = "image_class";
+
+
+								$width 			= apply_filters("ProjectTheme_outstanding_proj_img_width", 	$width);
+								$height 		= apply_filters("ProjectTheme_outstanding_proj_img_height", $height);
+								$image_class 	= apply_filters("ProjectTheme_outstanding_proj_img_class", 	$image_class);
+
+								?>
+
+								<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img width="<?php echo $width; ?>" height="<?php echo $height; ?>" class="<?php echo $image_class; ?>" 
+								src="<?php echo ProjectTheme_get_first_post_image(get_the_ID(),$width,$height); ?>" alt="<?php the_title(); ?>" /></a>
+
+								<?php endif; ?>
+							</div>
+						</td>
+						<td>
+							<?php 
+								
+								$sel = get_post_meta(get_the_ID(), 'budgets', true);
+		  						echo ProjectTheme_get_budget_name_string_fromID($sel);
+								
+							?>
+						</td>
+						<td>
+							<?php 
+								
+								$bid = projectTheme_get_winner_bid(get_the_ID());
+								echo ProjectTheme_get_show_price($bid->bid);
+								 								
+							?>
+						</td>
+						<td>
+							<?php 
+									
+								$tm_d = get_post_meta(get_the_ID(), 'expected_delivery', true);							
+								echo date_i18n('d-M-Y H:i:s', $tm_d);
+								
+							?>
+						</td>
+						<td>
+						
+							<?php do_action('ProjectTheme_outstanding_proj_buttons'); ?>    
+
+							<?php if($mark_coder_delivered != "1"): ?>
+
+								<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=mark_delivered&pid=<?php the_ID(); ?>" class="btn btn-default">
+									<?php echo __("Mark Delivered", "ProjectTheme");?>
+								</a>
+
+							<?php else: 
+
+								$dv = get_post_meta(get_the_ID(), 'mark_coder_delivered_date', true);
+								$dv = date_i18n('d-M-Y H:i:s',$dv);
+
+							?>
+
+							<span class="zbk_zbk">
+								<?php printf(__("Awaiting buyer response.<br/>Marked as delivered on: %s","ProjectTheme"), $dv); ?>
+							</span>
+
+							<?php endif; ?>
+							<?php do_action('ProjectTheme_won_project_details_after'); ?> 
+                   
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+<?php	
+					 
+	do_action('ProjectTheme_won_project_post_after');
+					 
+}
+
 /*************************************************************
 *
 *	ProjectTheme (c) sitemile.com - function

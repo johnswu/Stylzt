@@ -87,8 +87,8 @@ function ProjectTheme_my_account_area_main_function()
 
 				if(have_posts()) :
 				
-				_e("<table class='table table-striped table-hover'>");
-				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
+				_e("<table class='table table-alternative table-hover'>");
+				_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
 				while ( have_posts() ) : the_post();
 					projectTheme_get_post_table();
 				endwhile;
@@ -108,15 +108,15 @@ function ProjectTheme_my_account_area_main_function()
 				
 				?>
           <div style="clear:both;"></div> 
-           
+<!--           
           <h3><?php _e("My Unpublished &amp; Unpaid Projects",'ProjectTheme'); ?></h3>
 				<?php
 
 				query_posts( "post_status=draft&meta_key=paid&meta_value=0&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
 				
 				if(have_posts()) :
-				_e("<table class='table table-striped table-hover'>");
-				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
+				_e("<table class='table table-alternative table-hover'>");
+				_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
 				while ( have_posts() ) : the_post();
 					projectTheme_get_post_table(array('unpaid'));
 				endwhile; 
@@ -133,7 +133,7 @@ function ProjectTheme_my_account_area_main_function()
 				?>
 			
           <div style="clear:both;"></div> 
-            
+-->            
 		  <h3><?php _e("My Latest Closed Projects",'ProjectTheme'); ?></h3>
 		  
 				<?php
@@ -141,8 +141,8 @@ function ProjectTheme_my_account_area_main_function()
 				query_posts( "meta_key=closed&meta_value=1&post_type=project&order=DESC&orderby=id&author=".$uid."&posts_per_page=3" );
 
 				if(have_posts()) :
-				_e("<table class='table table-striped table-hover'>");
-				_e("<tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th>");
+				_e("<table class='table table-alternative table-hover'>");
+				_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
 				while ( have_posts() ) : the_post();
 					projectTheme_get_post_table();
 				endwhile; 
@@ -212,31 +212,17 @@ function ProjectTheme_my_account_area_main_function()
 				query_posts( "meta_key=bid&meta_value=".$uid."&post_type=project&order=DESC&orderby=id&posts_per_page=3" );
 
 				if(have_posts()) :
-				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
-				endwhile; else:
+					_e("<table class='table table-alternative table-hover'>");
+					_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
+					while ( have_posts() ) : the_post();
+						// projectTheme_get_post();
+						projectTheme_get_post_table();
+					endwhile; 
+					_e("</table>");
+					
+				else:
 				
-				_e("<p>There are no projects yet.</p>",'ProjectTheme');
-				
-				endif;
-				wp_reset_query();
-				
-				?>
-
-          <div style="clear:both;"></div> 
-            
-          <h3><?php _e("My Latest Won Projects",'ProjectTheme'); ?></h3>
-			
-				<?php
-
-				query_posts( "meta_key=winner&meta_value=".$uid."&post_type=project&order=DESC&orderby=id&posts_per_page=3" );
-
-				if(have_posts()) :
-				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
-				endwhile; else:
-				
-				_e("<p>There are no projects yet.</p>",'ProjectTheme');
+					_e("<p>There are no projects yet.</p>",'ProjectTheme');
 				
 				endif;
 				wp_reset_query();
@@ -244,7 +230,6 @@ function ProjectTheme_my_account_area_main_function()
 				?>
 
           <div style="clear:both;"></div> 
-            
         
         <?php endif; ?>   
                 				

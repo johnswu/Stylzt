@@ -43,9 +43,12 @@ function ProjectTheme_my_account_closed_projects_area_function()
 				"&posts_per_page=".$post_per_page."&paged=".$query_vars['paged'] );
 
 				if(have_posts()) :
-				while ( have_posts() ) : the_post();
-					projectTheme_get_post();
-				endwhile;
+					_e("<table class='table table-alternative table-hover'>");
+					_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
+					while ( have_posts() ) : the_post();
+						projectTheme_get_post_table();
+					endwhile;
+					_e("</table>");
 				
 				if(function_exists('wp_pagenavi')):
 				wp_pagenavi(); endif;
