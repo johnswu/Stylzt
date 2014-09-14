@@ -16,6 +16,8 @@ function ProjectTheme_display_provider_search_page_disp()
 {
 	
 ?>	
+			  <div style="clear:both;"></div>
+			  <br/>
 			  <!-- Start filtering form controls -->
               <form class="navbar-form" role="search" id="searchForm" method="get">
                 <div class="input-group">
@@ -126,8 +128,7 @@ function ProjectTheme_display_provider_search_page_disp()
 				{
 					// get all the user's data
 					$author_info = get_userdata($author->ID);
-				
-				
+					
 					// BEGIN card code
 				?>
             <div class="card film art">

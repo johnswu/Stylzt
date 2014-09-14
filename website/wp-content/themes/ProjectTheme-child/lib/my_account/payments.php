@@ -31,15 +31,15 @@ function ProjectTheme_my_account_payments_area_function()
 				  </div><!-- end page-header -->
 
 					<ul class="nav nav-pills">
-						<li><a href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>"><?php _e('Deposit Money','ProjectTheme'); ?></a></li>
-						<li><a href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>"><?php _e('Make Payment','ProjectTheme'); ?></a></li>
+						<li><a class="btn btn-lg btn-default" href="<?php echo ProjectTheme_get_payments_page_url('deposit'); ?>"><?php _e('Deposit Money','ProjectTheme'); ?></a></li>
+						<li><a class="btn btn-lg btn-default" href="<?php echo ProjectTheme_get_payments_page_url('makepayment'); ?>"><?php _e('Make Payment','ProjectTheme'); ?></a></li>
 					
 					<?php if(ProjectTheme_is_user_business($uid)): ?>
-						<li><a href="<?php echo ProjectTheme_get_payments_page_url('escrow'); ?>"><?php _e('Deposit Escrow','ProjectTheme'); ?></a></li>
+						<li><a class="btn btn-lg btn-default" href="<?php echo ProjectTheme_get_payments_page_url('escrow'); ?>"><?php _e('Deposit Escrow','ProjectTheme'); ?></a></li>
 					<?php endif; ?>
 					
-						<li><a href="<?php echo ProjectTheme_get_payments_page_url('withdraw'); ?>"><?php _e('Withdraw Money','ProjectTheme'); ?></a></li>
-						<li><a href="<?php echo ProjectTheme_get_payments_page_url('transactions'); ?>"><?php _e('Transactions','ProjectTheme'); ?></a></li>
+						<li><a class="btn btn-lg btn-default" href="<?php echo ProjectTheme_get_payments_page_url('withdraw'); ?>"><?php _e('Withdraw Money','ProjectTheme'); ?></a></li>
+						<li><a class="btn btn-lg btn-default" href="<?php echo ProjectTheme_get_payments_page_url('transactions'); ?>"><?php _e('Transactions','ProjectTheme'); ?></a></li>
 						<!-- <li><a href="<?php echo ProjectTheme_get_payments_page_url('bktransfer'); ?>"><?php _e('Bank Transfer Details','ProjectTheme'); ?></a></li> -->
 					</ul>
             
@@ -943,7 +943,7 @@ function ProjectTheme_my_account_payments_area_function()
 					else
 					{
 						$i = 0;
-						echo '<table width="100%" cellpadding="5">';
+						echo '<table width="100%" class="table table-hover" cellpadding="5">';
 						foreach($r as $row) // = mysql_fetch_object($r))
 						{
 							if($row->tp == 0){ $class="redred"; $sign = "-"; }

@@ -175,9 +175,12 @@ get_header( 'leftbar' );
 							
 						// The Loop
 						if($the_query->have_posts()):
+						_e("<table class='table table-alternative table-hover'>");
+						_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
 						while ( $the_query->have_posts() ) : $the_query->the_post();
-							projectTheme_get_post();
+							projectTheme_get_post_table();
 						endwhile;
+						_e("</table>");
 						
 						if(function_exists('wp_pagenavi'))
 							wp_pagenavi( array( 'query' => $the_query ) );
@@ -204,9 +207,12 @@ get_header( 'leftbar' );
 						// The Loop
 						
 						if($the_query->have_posts()):
+						_e("<table class='table table-alternative table-hover'>");
+						_e("<thead><tr><th></th><th>Project Name</th><th>Category</th><th>Posted By</th><th>Time Remaining</th></tr></thead>");
 						while ( $the_query->have_posts() ) : $the_query->the_post();							
-							projectTheme_get_post();
+							projectTheme_get_post_table();
 						endwhile;
+						_e("</table>");
 						
 						if(function_exists('wp_pagenavi'))
 						wp_pagenavi( array( 'query' => $the_query ) );

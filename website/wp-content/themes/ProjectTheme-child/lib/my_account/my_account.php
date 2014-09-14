@@ -55,6 +55,8 @@ function ProjectTheme_my_account_area_main_function()
 			
 			?>
 
+		<h2>My Hiring</h2>
+		
 		<h3><?php _e("My Latest Posted Projects", "ProjectTheme"); ?></h3>
             	
                  <?php
@@ -158,6 +160,8 @@ function ProjectTheme_my_account_area_main_function()
 				?>
 
           <div style="clear:both;"></div> 
+		
+		<h2>My Work</h2>
 		
         <?php endif; ?>
         

@@ -11,7 +11,7 @@
 *
 ***************************************************************************/
  
-	load_theme_textdomain( 'ProjectTheme',  TEMPLATEPATH . '/languages' );
+	load_theme_textdomain( 'ProjectTheme',  get_stylesheet_directory() . '/languages' );
 	// load the theme template for translation
 	
 	DEFINE("PROJECTTHEME_VERSION", "1.4.2b");
@@ -2562,7 +2562,7 @@ function ProjectTheme_get_users_links()
 		global $current_user, $wpdb;
 				get_currentuserinfo();
 				$rd = projectTheme_get_unread_number_messages($current_user->ID);
-				if($rd > 0) $ssk = "<span class='notif_a'>".$rd."</span>"; else $ssk = '';
+				if($rd > 0) $ssk = "<span>(".$rd.")</span>"; else $ssk = '';
 	
 
 				$uid = $current_user->ID;
@@ -2575,7 +2575,7 @@ function ProjectTheme_get_users_links()
 					$ttl_fdbks = count($r);
 					
 					if($ttl_fdbks > 0) 
-						$ttl_fdbks2 = "<span class='notif_a'>".$ttl_fdbks."</span>";
+						$ttl_fdbks2 = "<span>(".$ttl_fdbks.")</span>";
 		
 		$ProjectTheme_enable_2_user_tp = get_option('ProjectTheme_enable_2_user_tp');
 		$user_tp = get_user_meta($uid, 'user_tp', true);
@@ -2629,7 +2629,7 @@ function ProjectTheme_get_users_links()
 					$ttl_prj = count($pageposts);
 					
 				if($ttl_prj > 0)
-					$scn = "<span class='notif_a'>".$ttl_prj."</span>";
+					$scn = "<span>(".$ttl_prj.")</span>";
 				
 				//------------------------------------------------
 				
@@ -2645,7 +2645,7 @@ function ProjectTheme_get_users_links()
 					$ttl_prj2 = count($pageposts);
 					
 				if($ttl_prj2 > 0)
-					$scn2 = "<span class='notif_a'>".$ttl_prj2."</span>";
+					$scn2 = "<span>(".$ttl_prj2.")</span>";
 					
 				//------------------------------------------------
 				
@@ -2661,7 +2661,7 @@ function ProjectTheme_get_users_links()
 					$ttl_prj2 = count($pageposts);
 					
 				if($ttl_prj2 > 0)
-					$compl = "<span class='notif_a'>".$ttl_prj2."</span>";	
+					$compl = "<span>(".$ttl_prj2.")</span>";	
 				
 			?>
 		<ul class="subnav" id="HiringSubMenu">
@@ -2706,7 +2706,7 @@ function ProjectTheme_get_users_links()
 					$outsnr = count($pageposts);
 					
 				if($outsnr > 0)
-					$outsnr = "<span class='notif_a'>".$outsnr."</span>"; else $outsnr = '';
+					$outsnr = "<span>(".$outsnr.")</span>"; else $outsnr = '';
 					
 					//---------------------------------------
 					
@@ -2731,7 +2731,7 @@ function ProjectTheme_get_users_links()
 					$awnr = count($pageposts);
 					
 				if($awnr > 0)
-					$awnr = "<span class='notif_a'>".$awnr."</span>"; else $awnr = '';
+					$awnr = "<span>(".$awnr.")</span>"; else $awnr = '';
 			
 			?>
 		<ul class="subnav" id="FindWorkSubMenu">

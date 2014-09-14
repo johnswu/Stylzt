@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ProjectTheme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-27 02:11-0800\n"
-"PO-Revision-Date: 2014-09-14 04:44-0800\n"
+"PO-Revision-Date: 2014-06-27 17:53-0800\n"
 "Last-Translator: John Wu <john@johnwu.me>\n"
 "Language-Team: Stylzt <john@johnwu.me>\n"
 "Language: en_US\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: C:\\Users\\johnwu\\Documents\\GitHub\\Stylzt\\website\\wp-"
 "content\\themes\\ProjectTheme\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SearchPath-0: C:\\Users\\johnwu\\Documents\\GitHub\\Stylzt\\website"
 "\\wp-content\\themes\\ProjectTheme\n"
 
@@ -448,12 +448,12 @@ msgstr "My Account Menu"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2449
 msgid "MyAccount Home"
-msgstr "My Account"
+msgstr "MyAccount Home"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2455
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/payments.php:155
 msgid "Finances"
-msgstr "Payments"
+msgstr "Finances"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2456
 #, php-format
@@ -462,28 +462,28 @@ msgstr "Private Messages %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2457
 msgid "Personal Info"
-msgstr "Profile"
+msgstr "Personal Info"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2458
 #, php-format
 msgid "Reviews/Feedback %s"
-msgstr "Reviews %s"
+msgstr "Reviews/Feedback %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2474
 msgid "Service Contractor Menu"
-msgstr "Hiring Menu"
+msgstr "Service Contractor Menu"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2532
 msgid "Post New Project"
-msgstr "Post a New Project"
+msgstr "Post New Project"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2533
 msgid "Active Projects"
-msgstr "Active Posts"
+msgstr "Active Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2534
 msgid "Closed Projects"
-msgstr "Expired Posts"
+msgstr "Closed Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2535
 #, php-format
@@ -493,21 +493,21 @@ msgstr "Unpublished Projects %s"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2536
 #, php-format
 msgid "Awaiting Completion %s"
-msgstr "Current Projects %s"
+msgstr "Awaiting Completion %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2537
 #, php-format
 msgid "Outstanding Payments %s"
-msgstr "Awaiting Payment %s"
+msgstr "Outstanding Payments %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2538
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/completed_projects.php:27
 msgid "Completed Payments"
-msgstr "Finished/Paid Projects"
+msgstr "Completed Payments"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2554
 msgid "Service Provider Menu"
-msgstr "Work Menu"
+msgstr "Service Provider Menu"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2607
 msgid "Won Projects"
@@ -516,12 +516,12 @@ msgstr "Won Projects"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2608
 #, php-format
 msgid "Outstanding Projects %s"
-msgstr "Current Projects %s"
+msgstr "Outstanding Projects %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2609
 #, php-format
 msgid "Awaiting Payments %s"
-msgstr "Awaiting Payment %s"
+msgstr "Awaiting Payments %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2610
 msgid "Delivered & Paid Projects"
@@ -529,7 +529,7 @@ msgstr "Delivered & Paid Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2613
 msgid "Projects I bid"
-msgstr "My Bids"
+msgstr "Projects I bid"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4193
 msgid "(No rating)"
@@ -861,15 +861,15 @@ msgstr "Advanced Search"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:225
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/post_new.php:33
 msgid "Post New"
-msgstr "Post a Project"
+msgstr "POST A JOB"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:229
 msgid "Blog"
-msgstr "Blog"
+msgstr "BLOG"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:244
 msgid "MyAccount"
-msgstr "My Account"
+msgstr "MyAccount"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:245
 msgid "Log Out"
@@ -890,11 +890,11 @@ msgstr "Log In"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:323
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/advanced_search.php:194
 msgid "Project Search"
-msgstr "Find Projects"
+msgstr "FIND WORK"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:334
 msgid "Provider Search"
-msgstr "Browse Members"
+msgstr "BROWSE TALENT"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:345
 msgid "All Projects"
@@ -3144,7 +3144,7 @@ msgstr "No messages posted yet."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/active_projects.php:28
 msgid "My Active Projects"
-msgstr "Active Posts"
+msgstr "My Active Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/active_projects.php:50
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/awaiting_completion.php:55
@@ -3165,19 +3165,19 @@ msgstr "There are no projects yet."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/awaiting_completion.php:16
 msgid "Awaiting Completion"
-msgstr "Current Projects"
+msgstr "Awaiting Completion"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/awaiting_payments.php:30
 msgid "Awaiting Payments"
-msgstr "Awaiting Payment"
+msgstr "Awaiting Payments"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/bid_projects.php:26
 msgid "Projects I Bid"
-msgstr "My Bids"
+msgstr "Projects I Bid"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/closed_projects.php:28
 msgid "My Closed Projects"
-msgstr "Expired Posts"
+msgstr "My Closed Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/delete_project.php:18
 msgid "Delete Project"
@@ -3531,7 +3531,7 @@ msgstr "My Latest Closed Projects"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/my_account.php:169
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/outstanding_project.php:29
 msgid "Outstanding Projects"
-msgstr "Current Projects"
+msgstr "Outstanding Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/my_account.php:220
 msgid "My Latest Bids"
@@ -3543,7 +3543,7 @@ msgstr "My Latest Won Projects"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/outstanding_payments.php:26
 msgid "Projects I need to pay"
-msgstr "Awaiting Payment"
+msgstr "Projects I need to pay"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/pay_for_project.php:29
 #, php-format
@@ -3910,7 +3910,7 @@ msgstr "Deposit money by Moneybookers"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/payments.php:1035
 msgid "Payment Transactions"
-msgstr "Transaction History"
+msgstr "Payment Transactions"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/payments.php:1044
 msgid "No activity yet."
@@ -3931,7 +3931,7 @@ msgstr "Your password was changed. Redirecting to login page..."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/personal_information.php:199
 msgid "Personal Information"
-msgstr "Profile"
+msgstr "Personal Information"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/personal_information.php:224
 msgid "City"
@@ -3997,7 +3997,7 @@ msgstr ""
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:40
 msgid "Messaging Home"
-msgstr "Private Messages"
+msgstr "Messaging Home"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:41
 msgid "Send New Message"
@@ -4013,7 +4013,7 @@ msgstr "Sent Items"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:70
 msgid "Latest Received Messages"
-msgstr "Inbox"
+msgstr "Latest Received Messages"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:101
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:156
@@ -4031,7 +4031,7 @@ msgstr "No messages here."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:124
 msgid "Latest Sent Items"
-msgstr "Sent Items"
+msgstr "Latest Sent Items"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/private_messages.php:192
 msgid "Private Messages: Inbox"
@@ -4389,7 +4389,7 @@ msgstr "User Profile"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:31
 msgid "No personal info defined."
-msgstr "No profile defined."
+msgstr "No personal info defined."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:73
 #, php-format

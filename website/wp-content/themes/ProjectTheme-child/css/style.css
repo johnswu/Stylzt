@@ -50,6 +50,7 @@ a {
 }
 a:hover {
   color: #16a085;
+  text-decoration: none;
 }
 h1,
 h2,
@@ -1671,6 +1672,7 @@ a.list-group-item.active:focus {
 .nav-pills li {
   position: relative;
   font-size: 14px;
+  margin-bottom: 15px;
 }
 .nav-pills li {
   display: inline-block;

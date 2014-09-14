@@ -41,19 +41,19 @@ function ProjectTheme_my_account_private_messages_area_function()
 		
 	
 		?>
-           
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url(); ?>" class="btn btn-lg btn-default"><?php _e("Messaging Home","ProjectTheme"); ?></a>&nbsp;&nbsp;&nbsp;
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('inbox'); ?>" class="btn btn-lg btn-default"><?php _e("Inbox","ProjectTheme");
+			<ul class="nav nav-pills">
+                <!--<li><a href="<?php echo ProjectTheme_get_priv_mess_page_url(); ?>" class="btn btn-lg btn-default"><?php _e("Messaging Home","ProjectTheme"); ?></a></li>-->
+                <li><a href="<?php echo ProjectTheme_get_priv_mess_page_url('inbox'); ?>" class="btn btn-lg btn-default"><?php _e("Inbox","ProjectTheme");
 				
 				global $current_user;
 				get_currentuserinfo();
 				$rd = projectTheme_get_unread_number_messages($current_user->ID);
 				if($rd > 0) echo ' ('.$rd.')';
 				
-				 ?></a>&nbsp;&nbsp;&nbsp;
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('sent-items'); ?>" class="btn btn-lg btn-default"><?php _e("Sent Items","ProjectTheme"); ?></a>&nbsp;&nbsp;&nbsp;
-                <a href="<?php echo ProjectTheme_get_priv_mess_page_url('send'); ?>" class="btn btn-lg btn-default"><?php _e("Send New Message","ProjectTheme"); ?></a>
-             
+				 ?></a></li>
+                <li><a href="<?php echo ProjectTheme_get_priv_mess_page_url('sent-items'); ?>" class="btn btn-lg btn-default"><?php _e("Sent Items","ProjectTheme"); ?></a></li>
+                <li><a href="<?php echo ProjectTheme_get_priv_mess_page_url('send'); ?>" class="btn btn-lg btn-default"><?php _e("Send New Message","ProjectTheme"); ?></a></li>
+			</ul>
         <?php
 		
 			if($third_page == 'home') {
@@ -66,7 +66,6 @@ function ProjectTheme_my_account_private_messages_area_function()
         
 		<!-- page content here -->	
 			
-            	<br/><br/><br/>
             	<h3><?php _e("Latest Received Messages","ProjectTheme"); ?></h3>
                 <?php
 				global $wpdb; $uidsss = $current_user->ID;

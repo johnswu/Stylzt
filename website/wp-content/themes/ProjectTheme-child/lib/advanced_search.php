@@ -198,7 +198,7 @@ function ProjectTheme_advanced_search_area_main_function()
                 </div><!-- end input group -->
 				<div style="clear:both;"></div>
 				<br/>
-				<ul class="nav navbar-nav filter-portfolio">
+				<ul class="nav navbar-nav">
 					<!--
 					<li class="title">
 						<?php _e('Filter Options','ProjectTheme'); ?>
