@@ -204,7 +204,7 @@ function my_jquery_enqueue() {
 **************************************************************/
 function ProjectTheme_1_mail_from() 
 {
-	$emailaddress = 'wordpress@wordpress.org';
+	$emailaddress = 'admin@stylzt.com';
 	$opt = get_option('ProjectTheme_email_addr_from');
 	if(!empty($opt)) $emailaddress = $opt;	
 	return $emailaddress;
@@ -216,7 +216,7 @@ function ProjectTheme_1_mail_from()
 **************************************************************/
 function ProjectTheme_1_mail_from_name() 
 {
- 	$sendername = 'WordPress';
+ 	$sendername = 'STYLZT';
 	$opt = get_option('ProjectTheme_email_name_from');
 	if(!empty($opt)) $sendername = $opt;
 	return $sendername;
