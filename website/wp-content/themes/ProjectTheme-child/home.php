@@ -5,7 +5,7 @@ Template Name: Home
 ?>
 <?php
 // redirect for now
-header("Location: http://www.stylzt.com/advanced-search/");
+header("Location: http://www.stylzt.com/service-provider-search/");
 
 
 get_header();
