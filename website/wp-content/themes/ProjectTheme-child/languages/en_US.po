@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ProjectTheme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-27 02:11-0800\n"
-"PO-Revision-Date: 2014-09-18 01:46-0800\n"
+"PO-Revision-Date: 2014-09-18 02:28-0800\n"
 "Last-Translator: John Wu <john@johnwu.me>\n"
 "Language-Team: Stylzt <john@johnwu.me>\n"
 "Language: en_US\n"
@@ -3434,7 +3434,7 @@ msgstr "Rate User"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:298
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:433
 msgid "There are no reviews to be awarded."
-msgstr "There are no reviews to be awarded."
+msgstr "No feedback received."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/feedbacks.php:81
 msgid "Reviews I am waiting "
