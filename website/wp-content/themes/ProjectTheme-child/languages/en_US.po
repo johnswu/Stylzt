@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ProjectTheme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-27 02:11-0800\n"
-"PO-Revision-Date: 2014-09-14 04:44-0800\n"
+"PO-Revision-Date: 2014-09-18 01:46-0800\n"
 "Last-Translator: John Wu <john@johnwu.me>\n"
 "Language-Team: Stylzt <john@johnwu.me>\n"
 "Language: en_US\n"
@@ -462,7 +462,7 @@ msgstr "Private Messages %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2457
 msgid "Personal Info"
-msgstr "Profile"
+msgstr "Profile Settings"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2458
 #, php-format

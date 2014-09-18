@@ -832,6 +832,7 @@ function ProjectTheme_add_theme_styles()
 	wp_register_style( 'bootstrap_gal', 	get_stylesheet_directory_uri().'/css/bootstrap_gal.css', array(), '20120822', 'all' );
 	wp_register_style( 'fileupload_ui', 	get_stylesheet_directory_uri().'/css/fileupload_ui.css', array(), '20120822', 'all' );
 	wp_register_style( 'mega_menu_thing', 	get_stylesheet_directory_uri().'/css/menu.css', array(), '20120822', 'all' );
+	wp_register_style( 'lightbox_style', 	get_stylesheet_directory_uri().'/css/lightbox/colorbox-1.css', array(), '20120822', 'all' );
 	wp_register_style( 'uploadify_css', 	get_stylesheet_directory_uri().'/lib/uploadify/uploadify.css', array(), '20120822', 'all' );
 	wp_register_script( 'social_pr', get_stylesheet_directory_uri().'/js/connect.js');
 	
@@ -855,6 +856,9 @@ function ProjectTheme_add_theme_styles()
 	wp_register_script( 'main_thing', get_stylesheet_directory_uri().'/js/main.js');
 	wp_register_script( 'uploadify_js', get_stylesheet_directory_uri().'/lib/uploadify/jquery.uploadify-3.1.js');
 	
+	wp_register_script( 'custom-js-1', get_stylesheet_directory_uri().'/js/lightbox/jquery.colorbox-min.js');
+	wp_register_script( 'colorbox-js', get_stylesheet_directory_uri().'/js/lightbox/custom.js');	
+	
 	wp_register_script( 'rebound', get_stylesheet_directory_uri().'/js/rebound.js');
 	wp_register_script( 'isotope', get_stylesheet_directory_uri().'/js/jquery.isotope.min.js');
 	wp_register_script( 'stylzt', get_stylesheet_directory_uri().'/js/stylzt.js');
@@ -868,11 +872,14 @@ function ProjectTheme_add_theme_styles()
 	wp_enqueue_script( 'social_pr' );
 	
 	wp_enqueue_style( 'bx_styles' );
+	wp_enqueue_style( 'lightbox_style' );
 	wp_enqueue_script( 'easing' );
 	wp_enqueue_script( 'placeholder' );
 	wp_enqueue_script( 'bx_slider' );
 	wp_enqueue_script( 'jqueryhoverintent' );
 	wp_enqueue_script( 'dcjqmegamenu' );
+	wp_enqueue_script( 'colorbox-js' );
+	wp_enqueue_script( 'custom-js-1' );
 	wp_enqueue_script( 'bootstrap' );
 	//wp_enqueue_script( 'isotope' ); this messes up pagination right now
 	wp_enqueue_script( 'rebound' );

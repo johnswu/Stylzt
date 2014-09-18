@@ -11,7 +11,7 @@
 	function sitemile_filter_ttl($title){return __("User Profile",'ProjectTheme')." - ";}
 	add_filter( 'wp_title', 'sitemile_filter_ttl', 10, 3 );	
 	
-get_header( 'leftbar' );
+	get_header( 'leftbar' );
 ?>
 
           <div class="page">
