@@ -332,20 +332,19 @@
 
 //-------------------------------------
 
-	get_header();
+	get_header('leftbar');
 	do_action('ProjectTheme_happen_here_on_edit_proj');
 	
 ?>
-
-
-	<div id="content" >
-        	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php _e("Edit Project", "ProjectTheme"); ?></div>
-                <div class="box_content"> 
-            	
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php _e("Edit Project", "ProjectTheme"); ?></h1>
+					<p class="lead"><?php echo (empty($_POST['project_title']) ? 
+			($post->post_title == "draft project" ? "" : $post->post_title) : $_POST['project_title']); ?></p>
+				  </div><!-- end page-header -->
+				  <div class="row">
+					<div class="col-md-12">
                 
                  <!-- ########################################### -->
                 <?php
@@ -504,25 +503,26 @@
 				if($ProjectTheme_enable_images_in_projects == "yes"):
 				
 				?>
+	<h3>Project Images:</h3>
     <form id="fileupload" action="<?php bloginfo('siteurl'); ?>/?uploady_thing=1&pid=<?php echo $pid; ?>" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="pid" value="<?php echo $pid; ?>">
     <input type="hidden" name="cid" value="<?php echo $cid; ?>">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar">
+        <div class="fileupload-buttonbar">
             <div class="span7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
+                    <i class="fa fa-plus"></i>
                     <span><?php _e('Add Images','ProjectTheme'); ?></span>
                     <input type="file" name="files[]" multiple>
                 </span>
              
                 <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
+                    <i class="fa fa-ban"></i>
                     <span><?php _e('Cancel upload','ProjectTheme'); ?></span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
+                    <i class="fa fa-trash-o"></i>
                     <span><?php _e('Delete','ProjectTheme'); ?></span>
                 </button>
                 <input type="checkbox" class="toggle">
@@ -628,19 +628,19 @@
 					?>
             
         <div class="clear10"></div>         
-    <ul class="post-new3">
+    <ul class="post-new">
             <li>
-        	<h2><?php echo __('Your project title','ProjectTheme'); ?>:</h2>
-        	<p><input type="text" size="50" class="do_input" name="project_title" 
+        	<h3><?php echo __('Your project title','ProjectTheme'); ?>:</h3>
+        	<p><input type="text" size="50" class="form-control" name="project_title" 
             value="<?php echo (empty($_POST['project_title']) ? 
 			($post->post_title == "draft project" ? "" : $post->post_title) : $_POST['project_title']); ?>" /></p>
         </li>
         
         <li>
-        	<h2><?php echo __('Category','ProjectTheme'); ?>:</h2>
+        	<h3><?php echo __('Category','ProjectTheme'); ?>:</h3>
         	<p><?php	echo ProjectTheme_get_categories("project_cat",  
 			!isset($_POST['project_cat_cat']) ? (is_array($cat) ? $cat[0]->term_id : "") : $_POST['project_cat_cat']
-			, __("Select Category","ProjectTheme"), "do_input"); ?></p>
+			, __("Select Category","ProjectTheme"), "form-control"); ?></p>
         </li>
         
         <?php
@@ -651,7 +651,7 @@
         
         
          <li>
-        <h2>
+        <h3>
         
         
   
@@ -676,8 +676,8 @@
 	   
 	   ?>
         
-       <?php _e("Project Ending On",'ProjectTheme'); ?>:</h2>
-       <p><input type="text" name="ending" id="ending" class="do_input" value="<?php echo $dt; ?>"  /></p>
+       <?php _e("Project Ending On",'ProjectTheme'); ?>:</h3>
+       <p><input type="text" name="ending" id="ending" class="form-control" value="<?php echo $dt; ?>"  /></p>
        </li>
         
  		<script>
@@ -731,7 +731,7 @@
 						   ?>
 
 		<li>
-        <h2><?php _e("Project Files",'ProjectTheme'); ?>:</h2>
+        <h3><?php _e("Project Files",'ProjectTheme'); ?>:</h3>
         <p>
 
 	
@@ -836,12 +836,12 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
         <?php if($bids_number == 0): ?>
         
         <li>
-        	<h2><?php echo __('Price Range','ProjectTheme'); ?>:</h2>
+        	<h3><?php echo __('Price Range','ProjectTheme'); ?>:</h3>
         <p>
          <?php
 	  
 	  $sel = get_post_meta($pid, 'budgets', true);
-	  echo ProjecTheme_get_budgets_dropdown($sel, 'do_input');
+	  echo ProjecTheme_get_budgets_dropdown($sel, 'form-control');
 	  
 	  ?>
         </p>
@@ -858,14 +858,14 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		?>
         
         <li>
-        	<h2><?php echo __('Location','ProjectTheme'); ?>:</h2>
+        	<h3><?php echo __('Location','ProjectTheme'); ?>:</h3>
         <p><?php	echo ProjectTheme_get_categories("project_location", 
-		empty($_POST['project_location_cat']) ? (is_array($location) ? $location[0]->term_id : "") : $_POST['project_location_cat'], __("Select Location","ProjectTheme"), "do_input"); ?></p>
+		empty($_POST['project_location_cat']) ? (is_array($location) ? $location[0]->term_id : "") : $_POST['project_location_cat'], __("Select Location","ProjectTheme"), "form-control"); ?></p>
         </li>
         
         <li>
-        	<h2><?php echo __('Address','ProjectTheme'); ?>:</h2>
-        <p><input type="text" size="50" class="do_input"  name="project_location_addr" value="<?php echo !isset($_POST['project_location_addr']) ? 
+        	<h3><?php echo __('Address','ProjectTheme'); ?>:</h3>
+        <p><input type="text" size="50" class="form-control"  name="project_location_addr" value="<?php echo !isset($_POST['project_location_addr']) ? 
 		get_post_meta($pid, 'Location', true) : $_POST['project_location_addr']; ?>" /> </p>
         </li>
         
@@ -879,10 +879,10 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 						   ?>
         
         <li>
-        <h2><?php _e("Feature project?",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="featured" value="1" 
+        <h3><?php _e("Feature project?",'ProjectTheme'); ?>:</h3>
+        <input type="checkbox" class="form-control" name="featured" value="1" 
 		<?php $feature = get_post_meta($pid, 'featured', true); echo ($feature == "1" ? "checked='checked'" : ""); ?> /> 
-        <?php _e("By clicking this checkbox you mark your project as featured. Extra fee is applied.", 'ProjectTheme'); ?></p>
+        <!--<?php _e("By clicking this checkbox you mark your project as featured. Extra fee is applied.", 'ProjectTheme'); ?>-->
         </li>
         <?php endif; ?>
         
@@ -894,10 +894,10 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 						   
 						   ?>
         <li>
-        <h2><?php _e("Sealed Bidding?",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="private_bids" value="1"
+        <h3><?php _e("Sealed Bidding?",'ProjectTheme'); ?>:</h3>
+        <p><input type="checkbox" class="form-control" name="private_bids" value="1"
         <?php $private_bids = get_post_meta($pid, 'private_bids', true); echo ($private_bids == "1" ? "checked='checked'" : ""); ?> /> 
-        <?php _e("By clicking this checkbox you hide your project's bids. Extra fee is applied.", 'ProjectTheme'); ?></p>
+        <!--<?php _e("By clicking this checkbox you hide your project's bids. Extra fee is applied.", 'ProjectTheme'); ?>--></p>
         </li>
         <?php endif; ?>
         
@@ -909,8 +909,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 						   
 						   ?> 
         <li>
-        <h2><?php _e("Hide from search engines",'ProjectTheme'); ?>:</h2>
-        <p><input type="checkbox" class="do_input" name="hide_project" value="1" 
+        <h3><?php _e("Hide from search engines",'ProjectTheme'); ?>:</h3>
+        <p><input type="checkbox" class="form-control" name="hide_project" value="1" 
         <?php $hide_project = get_post_meta($pid, 'hide_project', true); echo ($hide_project == "1" ? "checked='checked'" : ""); ?>/> 
         <?php _e("By clicking this checkbox you hide your project from search engines. Extra fee is applied.", 'ProjectTheme'); ?></p>
         </li>
@@ -922,8 +922,8 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
         
         
         <li>
-        	<h2><?php echo __('Description','ProjectTheme'); ?>:</h2>
-        <p><textarea rows="6" cols="60" class="do_input description_edit"  name="project_description"><?php 
+        	<h3><?php echo __('Description','ProjectTheme'); ?>:</h3>
+        <p><textarea rows="6" cols="60" class="form-control description_edit"  name="project_description"><?php 
 		echo empty($_POST['project_description']) ? str_replace("<br />", "", $post->post_content) : $_POST['project_description']; ?></textarea></p>
         </li>
 
@@ -962,26 +962,23 @@ $('#thumbnails').append('<div class="div_div" id="image_ss'+bar[1]+'" > ' + bar[
 		
 		?>
 		<li>
-        	<h2><?php echo __('Tags', 'ProjectTheme'); ?>:</h2>
-        <p><input type="text" size="50" class="do_input"  name="project_tags" value="<?php echo $project_tags; ?>" /> </p>
+        	<h3><?php echo __('Tags', 'ProjectTheme'); ?>:</h3>
+        <p><input type="text" size="50" class="form-control"  name="project_tags" value="<?php echo $project_tags; ?>" /> </p>
         </li>
         
         <li>
-        <h2>&nbsp;</h2>
-        <p><input type="submit" name="save-project" value="<?php _e("Save Project",'ProjectTheme'); ?>" /></p>
+        <h3>&nbsp;</h3>
+        <p style="text-align:center;"><input type="submit" name="save-project" value="<?php _e("Save Project",'ProjectTheme'); ?>" class="btn btn-primary" /></p>
         </li>
     
 
 
 		</ul>
-          </form>     
-                
-                
-                </div>
-                </div>
-                </div>
-                </div>
-                
-	<?php ProjectTheme_get_users_links(); ?>
+          </form>
+		  
+          </div>
+		</div>
+      </article>
+	</div>
 
-<?php get_footer(); ?>
+<?php get_footer('leftbar'); ?>

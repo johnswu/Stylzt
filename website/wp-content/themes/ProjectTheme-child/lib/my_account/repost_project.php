@@ -215,7 +215,7 @@ $cid = $uid;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-	get_header();
+	get_header('leftbar');
 	
 	
 	$post 		= get_post($pid);
@@ -683,6 +683,4 @@ $(document).ready(function() {
                 </div>
                 </div>
                 
-	<?php ProjectTheme_get_users_links(); ?>
-
-<?php get_footer(); ?>
+<?php get_footer('leftbar'); ?>

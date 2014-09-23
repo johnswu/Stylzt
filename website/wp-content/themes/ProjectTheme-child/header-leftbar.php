@@ -8,11 +8,11 @@ Template Name: Stylzt Page Template
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php wp_title(  ); ?></title>
+    <title>STYLZT <?php wp_title(  ); ?></title>
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rebound - Responsive Portfolio Theme for Twitter Bootstrap. Responsive HTML5, CSS3 and jQuery.">
-    <meta name="author" content="Pukeko Design Studio">
+    <meta name="description" content="STYLZT - Independent filmmakers, gigs, cast and crew.">
+    <meta name="author" content="Venia Studios">
     
     <!-- Le styles -->
     <link href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +62,7 @@ Template Name: Stylzt Page Template
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
               <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo-gray-beta.png" style="width:100%;" /></a>
-              <p class="brand-text">The Simple and Trusted Way to Book Photo and Video Shoots</p>
+              <p class="brand-text">Independent filmmakers, gigs, cast and crew</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav" style="margin-bottom:30px;">

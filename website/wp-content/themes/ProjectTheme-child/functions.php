@@ -4726,11 +4726,11 @@ function projectTheme_get_post_main_function( $arr = '')
                 <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php 
 						
 						do_action('ProjectTheme_regular_proj_title_before');
-                        the_title(); 
+                        echo the_title_shorten(38, '...'); 
 						do_action('ProjectTheme_regular_proj_title_after');
                         
                         ?></a></h2>
-                <p><?php echo substr(get_the_excerpt(),0,100); ?></p>
+                <p><?php echo substr(get_the_excerpt(),0,100).'...'; ?></p>
                 <p><a href="<?php the_permalink(); ?>">Read More</a></p>
               </div><!-- end card-body -->
               <div class="card-footer">
@@ -6707,7 +6707,7 @@ function ProjectTheme_get_users_category_fields($catid, $pid = '')
 		
 		$teka = !empty($pid) ? get_user_meta($pid, 'custom_field_ID_'.$ids, true) : "" ;
 	
-		$arr[$i]['value']  = '<input class="do_input" type="text" size="30" name="custom_field_value_'.$ids.'" 
+		$arr[$i]['value']  = '<input class="form-control" type="text" size="30" name="custom_field_value_'.$ids.'" 
 		value="'.(isset($_POST['custom_field_value_'.$ids]) ? $_POST['custom_field_value_'.$ids] : $teka ).'" />';
 		
 		}
@@ -6718,7 +6718,7 @@ function ProjectTheme_get_users_category_fields($catid, $pid = '')
 			$teka 	= !empty($pid) ? get_user_meta($pid, 'custom_field_ID_'.$ids, true) : "" ;
 			$value 	= isset($_POST['custom_field_value_'.$ids]) ? $_POST['custom_field_value_'.$ids] : $teka;
 			
-			$arr[$i]['value']  = '<textarea class="do_input" rows="5" cols="40" name="custom_field_value_'.$ids.'">'.$value.'</textarea>';
+			$arr[$i]['value']  = '<textarea class="form-control" rows="5" cols="40" name="custom_field_value_'.$ids.'">'.$value.'</textarea>';
 		
 		}
 		
@@ -6747,7 +6747,7 @@ function ProjectTheme_get_users_category_fields($catid, $pid = '')
 					}				
 					else $value = '';
 					
-					$arr[$i]['value']  .= '<input class="do_input" type="radio" '.$value.' value="'.$row2->valval.'" name="custom_field_value_'.$ids.'"> '.$row2->valval.'<br/>';
+					$arr[$i]['value']  .= '<input class="form-control" type="radio" '.$value.' value="'.$row2->valval.'" name="custom_field_value_'.$ids.'"> '.$row2->valval.'<br/>';
 				}
 		}
 		
@@ -6780,13 +6780,13 @@ function ProjectTheme_get_users_category_fields($catid, $pid = '')
 					
 					$value 	= isset($_POST['custom_field_value_'.$ids]) ? "checked='checked'" : $tekao;
 					
-					$arr[$i]['value']  .= '<input class="do_input" '.$value.' type="checkbox" value="'.$row2->valval.'" name="custom_field_value_'.$ids.'[]"> '.$row2->valval.'<br/>';
+					$arr[$i]['value']  .= '<input class="form-control" '.$value.' type="checkbox" value="'.$row2->valval.'" name="custom_field_value_'.$ids.'[]"> '.$row2->valval.'<br/>';
 				}
 		}
 		
 		if($tp == 2) //select
 		{
-			$arr[$i]['value']  = '<select class="do_input" name="custom_field_value_'.$ids.'" />';
+			$arr[$i]['value']  = '<select class="form-control" name="custom_field_value_'.$ids.'" />';
 			
 				$s2 = "select * from ".$wpdb->prefix."project_user_custom_options where custid='$ids' order by ordr ASC ";
 				$r2 = $wpdb->get_results($s2);
@@ -8445,5 +8445,18 @@ function ProjectTheme_project_clear_table($colspan = '')
 		}
 		
 	
+//function to call and print shortened post title
+function the_title_shorten($len,$rep='...') {
+	$title = the_title('','',false);
+	$shortened_title = textLimit($title, $len, $rep);
+	print $shortened_title;
+}
+
+//shorten without cutting full words (Thank You Serzh 'http://us2.php.net/manual/en/function.substr.php#83585')
+function textLimit($string, $length, $replacer) {
+	if(strlen($string) > $length)
+	return (preg_match('/^(.*)\W.*$/', substr($string, 0, $length+1), $matches) ? $matches[1] : substr($string, 0, $length)) . $replacer;
+	return $string;
+}
 	
 ?>

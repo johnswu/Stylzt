@@ -332,16 +332,21 @@ function ProjectTheme_my_account_personal_info_function()
 		$k = 0;
 		$arr = ProjectTheme_get_users_category_fields($catid, $uid);
 		$exf = '';
+		$subFieldName = '';
 		
 		for($i=0;$i<count($arr);$i++)
 		{
+			if ($arr[$i]['field_name'] == 'Demo Reel') {
+				$subFieldName = ' (paste YouTube or Vimeo URL)';
+			}
+		
+			$exf .= '';
+			$exf .= '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].$subFieldName.':</h3>';
+			$exf .= '<p>'.$arr[$i]['value'].'</p>';
+			$exf .= '';
 			
-			        $exf .= '';
-					$exf .= '<h3>'.$arr[$i]['field_name'].$arr[$i]['id'].':</h3>';
-					$exf .= '<p>'.$arr[$i]['value'].'</p>';
-					$exf .= '';
-					
-					$k++;
+			$subFieldName = '';
+			$k++;
 			
 		}	
 		

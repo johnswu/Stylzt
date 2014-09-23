@@ -8,7 +8,7 @@
 	$user = get_userdata($uid);
 	$username = $user->user_login;
 
-	function sitemile_filter_ttl($title){return __("User Profile",'ProjectTheme')." - ";}
+	function sitemile_filter_ttl($title){return __("Member Profile",'ProjectTheme')." - ";}
 	add_filter( 'wp_title', 'sitemile_filter_ttl', 10, 3 );	
 	
 	get_header( 'leftbar' );
@@ -117,15 +117,38 @@
 				<div class="col-md-12">
                     <?php
 						$arrms = ProjectTheme_get_user_fields_values($uid);
+						$fieldValue = '';
+						$videoID = '';
 						
 						if(count($arrms) > 0) 
 							for($i=0;$i<count($arrms);$i++)
 							{
+								if ($arrms[$i]['field_name'] == 'Demo Reel')
+								{
+									if (strpos($arrms[$i]['field_value'], 'youtu')) {
+										if (strpos($arrms[$i]['field_value'], 'v=')) {
+											$videoID = substr($arrms[$i]['field_value'], strpos($arrms[$i]['field_value'], 'v=') + 2, 11); 
+										} else {
+											$videoID = substr($arrms[$i]['field_value'], strpos($arrms[$i]['field_value'], 'youtu.be/') + 9, 11); 
+										}
+										
+										$fieldValue = "<div class='aspect-ratio'><iframe width='560' height='315' src='//www.youtube.com/embed/".$videoID."' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
+									} else if (strpos($arrms[$i]['field_value'], 'vimeo')) {
+										$videoID = substr($arrms[$i]['field_value'], 17, 8); 
+										
+										$fieldValue = "<div class='aspect-ratio'><iframe src='//player.vimeo.com/video/".$videoID."' width='500' height='281' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>";
+									} else {
+										$fieldValue = "Unrecognized URL format.";
+									}
+																			
+								} else {
+									$fieldValue = $arrms[$i]['field_value'];
+								}
 					?>
 					<h3><?php echo $arrms[$i]['field_name'];?></h3>
-					<p><?php echo $arrms[$i]['field_value'];?></p>
+					<p><?php echo $fieldValue;?></p>
 
-					<?php } ?>
+					<?php 	} ?>
 					</ul>
 					<h3><?php _e("Portfolio Pictures",'ProjectTheme'); ?></h3>
 					<ul class="portfolioPicturesList">

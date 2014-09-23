@@ -74,7 +74,8 @@ function ProjectTheme_display_provider_search_page_disp()
 			
 			
 			// prepare arguments
-			$args['orderby']  = 'display_name';
+			$args['orderby']  = 'ID';
+			$args['order']  = 'DESC';
 			$arr_aray = array();
 			
 			

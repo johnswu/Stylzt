@@ -432,6 +432,23 @@ jQuery(document).ready(function(){
 						<a class="avatar-posted-by-username" href="<?php bloginfo('siteurl'); ?>/?p_action=user_profile&post_author=<?php echo $post->post_author; ?>"><?php the_author() ?></a><br/>
 						<a href="<?php echo ProjectTheme_get_user_feedback_link($post->post_author); ?>"><?php echo ProjectTheme_project_get_star_rating2($post->post_author); ?></a>
 					</li>
+				<?php
+				if(ProjectTheme_is_owner_of_post())
+				{
+					
+				?>
+					<li style="text-align:center;">
+						<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=edit_project&pid=<?php the_ID(); ?>" class="btn btn-default"><?php _e("Edit",'ProjectTheme'); ?></a> 
+					<!--
+					<li style="text-align:center;">
+						<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=repost_project&pid=<?php the_ID(); ?>" class="btn btn-default"><?php _e("Repost",'ProjectTheme'); ?></a> 
+					</li>
+					-->&nbsp;
+						<a href="<?php echo get_bloginfo('siteurl'); ?>/?p_action=delete_project&pid=<?php the_ID(); ?>" class="btn btn-danger"><?php _e("Delete",'ProjectTheme'); ?></a>
+					</li>
+			
+			<?php } else {?>
+			
                     <li style="text-align:center;"><a href="<?php
                             	
 								$post = get_post(get_the_ID());
@@ -441,14 +458,16 @@ jQuery(document).ready(function(){
 								echo ProjectTheme_get_priv_mess_page_url('send', '', '&uid='.$post->post_author.'&pid='.get_the_ID());
 							
 							?>" class="btn btn-default project-owner-contact" rel="<?php the_ID(); ?>"><?php _e('Contact Project Owner','ProjectTheme') ?></a></li>
-					
+                    <li style="text-align:center;"><a href="#" class="btn btn-primary post_bid_btn_new" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a></li>
+				
+                <?php } ?>
+				
 					<li><span class="fa fa-calendar"></span><?php the_time("jS F Y g:i A"); ?></li>
 					<li><span class="fa fa-list"></span><?php echo __("Proposals",'ProjectTheme'); ?>: <?php echo projectTheme_number_of_bid(get_the_ID()); ?></li>
 					<li><span class="fa fa-usd"></span><?php echo __("Average Bid",'ProjectTheme'); ?>: <?php echo ProjectTheme_average_bid(get_the_ID()); ?></li>
 					<li><span class="fa fa-clock-o"></span><?php echo __("Time Left",'ProjectTheme'); ?>: <?php echo ($closed == "0" ? ProjectTheme_prepare_seconds_to_words($ending - current_time('timestamp',0)) 
 								: __("Expired/Closed",'ProjectTheme')); ?></li>
                     <!-- <li style="text-align:center;"><a href="#" class="btn btn-primary message_brd_cls" rel="<?php the_ID(); ?>"><?php _e('Project Message Board','ProjectTheme') ?></a></li> -->
-                    <li style="text-align:center;"><a href="#" class="btn btn-primary post_bid_btn_new" id='submit-proposal-id' rel="<?php the_ID(); ?>"><?php _e('Submit a Proposal','ProjectTheme'); ?></a></li>
                   </ul><!-- end post-meta -->
                 </div><!-- end col -->
                 <div class="col-md-8">

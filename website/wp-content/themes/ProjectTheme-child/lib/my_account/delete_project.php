@@ -36,18 +36,17 @@
 
 //-------------------------------------
 
-	get_header();
+	get_header('leftbar');
 ?>
-
-
-	<div id="content" >
-        	
-            <div class="my_box3">
-            	<div class="padd10">
-            
-            	<div class="box_title"><?php printf(__("Delete Project - %s", "ProjectTheme"), $post->post_title); ?></div>
-                <div class="box_content"> 
-            	
+			<div class="page">
+				<article>
+				  <div class="page-header">
+					<h1><?php printf(__("Delete Project - %s", "ProjectTheme"), ''); ?></h1>
+					<p class="lead"><?php echo (empty($_POST['project_title']) ? 
+			($post->post_title == "draft project" ? "" : $post->post_title) : $_POST['project_title']); ?></p>
+				  </div><!-- end page-header -->
+				  <div class="row">
+					<div class="col-md-12">
                 
                 <?php
 				
@@ -62,18 +61,18 @@
 				?>
                 
                     <form method="post" enctype="application/x-www-form-urlencoded">
-                    <?php _e("Are you sure you want to delete this project?",'ProjectTheme'); ?><br/><br/>
-                    <input type="submit" name="are_you_sure" value="<?php _e("Confirm Deletion",'ProjectTheme'); ?>"  />
+                    <h3><?php _e("Are you sure you want to delete this project?",'ProjectTheme'); ?></h3><br/>
+					<p style="text-align:center;">
+						<input type="submit" name="are_you_sure" value="<?php _e("Confirm Deletion",'ProjectTheme'); ?>" class="btn btn-primary" />
+					</p>
                     </form>
                   
                  <?php } ?>              
                 
                 
-                </div>
-                </div>
-                </div>
-                </div>
+          </div>
+		</div>
+      </article>
+	</div>
                 
-	<?php ProjectTheme_get_users_links(); ?>
-
-<?php get_footer(); ?>
+<?php get_footer('leftbar'); ?>
