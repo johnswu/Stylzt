@@ -21,12 +21,14 @@
         
         var container = jQuery('.portfolio-wrapper');
         
+		/* removing for now, seems to want to use masonry
         container.imagesLoaded( function(){
           container.isotope({
             itemSelector : '.card',
             layoutMode : 'fitRows'
           });
         });
+		*/
         
         // Needed functions
         var getColWidth = function() {

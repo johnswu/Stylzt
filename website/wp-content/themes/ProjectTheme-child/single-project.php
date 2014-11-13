@@ -14,9 +14,9 @@
 	function projectTheme_colorbox_stuff()
 	{	
 	
-		echo '<link media="screen" rel="stylesheet" href="'.get_bloginfo('template_url').'/css/colorbox.css" />';
-		echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>'; 
-		echo '<script src="'.get_bloginfo('template_url').'/js/jquery.colorbox.js"></script>';
+		/* echo '<link media="screen" rel="stylesheet" href="'.get_bloginfo('template_url').'/css/colorbox.css" />';
+		echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>';
+		echo '<script src="'.get_bloginfo('template_url').'/js/jquery.colorbox.js"></script>'; */
 		
 		$get_bidding_panel = 'get_bidding_panel';
 		$get_bidding_panel = apply_filters('ProjectTheme_get_bidding_panel_string', $get_bidding_panel) ;

@@ -8,10 +8,10 @@ Template Name: Stylzt Page Template
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>STYLZT <?php wp_title(  ); ?></title>
+    <title>WeddingProposals.us <?php wp_title(  ); ?></title>
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="STYLZT - Independent filmmakers, gigs, cast and crew.">
+    <meta name="description" content="WeddingProposals.us - Wedding vendors and jobs">
     <meta name="author" content="Venia Studios">
     
     <!-- Le styles -->
@@ -61,8 +61,8 @@ Template Name: Stylzt Page Template
           <div class="navbar" role="navigation">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
-              <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo-gray-beta.png" style="width:100%;" /></a>
-              <p class="brand-text">Independent filmmakers, gigs, cast and crew</p>
+              <a href="/" class="navbar-brand"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/wedding-logo-gray.png" style="width:100%;" /></a>
+              <p class="brand-text">Proposals from wedding vendors to you</p>
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav" style="margin-bottom:30px;">

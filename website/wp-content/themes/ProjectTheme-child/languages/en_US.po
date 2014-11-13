@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ProjectTheme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-27 02:11-0800\n"
-"PO-Revision-Date: 2014-09-23 00:14-0800\n"
+"PO-Revision-Date: 2014-11-12 01:17-0800\n"
 "Last-Translator: John Wu <john@johnwu.me>\n"
 "Language-Team: Stylzt <john@johnwu.me>\n"
 "Language: en_US\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: C:\\Users\\johnwu\\Documents\\GitHub\\Stylzt\\website\\wp-"
 "content\\themes\\ProjectTheme\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SearchPath-0: C:\\Users\\johnwu\\Documents\\GitHub\\Stylzt\\website"
 "\\wp-content\\themes\\ProjectTheme\n"
 
@@ -33,13 +33,13 @@ msgstr ""
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/all-posted-projects.php:28
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/taxonomy.php:91
 msgid "All Posted Projects"
-msgstr "All Posted Projects"
+msgstr "All Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/archive-project.php:91
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/taxonomy.php:92
 #, php-format
 msgid "Latest Posted Projects in %s"
-msgstr "Latest Posted Projects in %s"
+msgstr "Latest Wedding Jobs in %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/archive-project.php:111
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/advanced_search.php:300
@@ -47,7 +47,7 @@ msgstr "Latest Posted Projects in %s"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:347
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/taxonomy.php:121
 msgid "No projects posted."
-msgstr "No projects posted."
+msgstr "No wedding jobs posted."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/archive.php:44
 #, php-format
@@ -155,7 +155,7 @@ msgstr "not defined"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:257
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/user-profile.php:392
 msgid "Project Title"
-msgstr "Project Title"
+msgstr "Wedding Title"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1136
 msgid "Author"
@@ -264,11 +264,11 @@ msgstr "Sealed Bids"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1351
 msgid "Feature this project"
-msgstr "Feature this project"
+msgstr "Feature this wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1357
 msgid "Hide this project"
-msgstr "Hide this project"
+msgstr "Hide this wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1363
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4488
@@ -288,7 +288,7 @@ msgstr "Address"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/repost_project.php:526
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/post_new.php:143
 msgid "Project Ending On"
-msgstr "Project Ending On"
+msgstr "Wedding Planning Ending On"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1599
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/bidding-panel.php:178
@@ -296,7 +296,7 @@ msgstr "Project Ending On"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/repost_project.php:424
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/post_new.php:503
 msgid "Select Project Files"
-msgstr "Select Project Files"
+msgstr "Select Wedding Files"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1736
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/admin_menu.php:3023
@@ -342,23 +342,23 @@ msgstr "No bids placed yet."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1948
 msgid "Projects"
-msgstr "Projects"
+msgstr "Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1949
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/admin_menu.php:1903
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/admin_menu.php:1983
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/payments.php:364
 msgid "Project"
-msgstr "Project"
+msgstr "Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1950
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1953
 msgid "Add New Project"
-msgstr "Add New Project"
+msgstr "Add New Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1951
 msgid "New Project"
-msgstr "New Project"
+msgstr "New Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1952
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4426
@@ -366,11 +366,11 @@ msgstr "New Project"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/edit_project.php:18
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/edit_project.php:346
 msgid "Edit Project"
-msgstr "Edit Project"
+msgstr "Edit Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1954
 msgid "Search Projects"
-msgstr "Search Projects"
+msgstr "Search Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1975
 msgid "Add New Location"
@@ -382,7 +382,7 @@ msgstr "Search Locations"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1978
 msgid "Project Categories"
-msgstr "Project Categories"
+msgstr "Wedding Categories"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1980
 msgid "Locations"
@@ -392,13 +392,13 @@ msgstr "Locations"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/choose_user_tp.php:66
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/login_register/register.php:130
 msgid "Service Provider"
-msgstr "Service Provider"
+msgstr "I'm a Wedding Vendor"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:1996
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/choose_user_tp.php:67
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/login_register/register.php:131
 msgid "Service Contractor"
-msgstr "Service Contractor"
+msgstr "I'm Planning a Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2266
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/admin_menu.php:1715
@@ -440,7 +440,7 @@ msgstr "Read More"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2365
 msgid "Featured Projects of the Day"
-msgstr "Featured Projects of the Day"
+msgstr "Featured Wedding Jobs of the Day"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2444
 msgid "My Account Menu"
@@ -471,29 +471,29 @@ msgstr "Reviews %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2474
 msgid "Service Contractor Menu"
-msgstr "Hiring Menu"
+msgstr "Wedding Planning Menu"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2532
 msgid "Post New Project"
-msgstr "Post a New Project"
+msgstr "Post a Wedding Job"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2533
 msgid "Active Projects"
-msgstr "Active Posts"
+msgstr "Active Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2534
 msgid "Closed Projects"
-msgstr "Expired Posts"
+msgstr "Expired Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2535
 #, php-format
 msgid "Unpublished Projects %s"
-msgstr "Unpublished Projects %s"
+msgstr "Unpublished Wedding Jobs %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2536
 #, php-format
 msgid "Awaiting Completion %s"
-msgstr "Current Projects %s"
+msgstr "Current Wedding Jobs %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2537
 #, php-format
@@ -503,20 +503,20 @@ msgstr "Awaiting Payment %s"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2538
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/completed_projects.php:27
 msgid "Completed Payments"
-msgstr "Finished/Paid Projects"
+msgstr "Finished/Paid Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2554
 msgid "Service Provider Menu"
-msgstr "Work Menu"
+msgstr "Wedding Vendor Menu"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2607
 msgid "Won Projects"
-msgstr "Won Projects"
+msgstr "Won Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2608
 #, php-format
 msgid "Outstanding Projects %s"
-msgstr "Current Projects %s"
+msgstr "Current Wedding Jobs %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2609
 #, php-format
@@ -525,11 +525,11 @@ msgstr "Awaiting Payment %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2610
 msgid "Delivered & Paid Projects"
-msgstr "Delivered & Paid Projects"
+msgstr "Delivered & Paid Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:2613
 msgid "Projects I bid"
-msgstr "My Bids"
+msgstr "My Proposals"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4193
 msgid "(No rating)"
@@ -556,7 +556,7 @@ msgstr "Publish"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/repost_project.php:18
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/my_account/repost_project.php:232
 msgid "Repost Project"
-msgstr "Repost Project"
+msgstr "Repost Wedding"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4443
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4666
@@ -591,7 +591,7 @@ msgstr "Bids Posted"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4610
 msgid "Your project is awaiting moderation."
-msgstr "Your project is awaiting moderation."
+msgstr "Your wedding is awaiting moderation."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4684
 msgid "Budget:"
@@ -631,7 +631,7 @@ msgstr "Make Escrow"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4982
 msgid "Escrow was made for this project."
-msgstr "Escrow was made for this project."
+msgstr "Escrow was made for this wedding."
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4992
 #, php-format
@@ -640,7 +640,7 @@ msgstr "Marked as delivered on: %s"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4993
 msgid "Accept this project and: "
-msgstr "Accept this project and: "
+msgstr "Accept this wedding and: "
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/functions.php:4995
 msgid "Mark Completed"
@@ -890,11 +890,11 @@ msgstr "Log In"
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:323
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/lib/advanced_search.php:194
 msgid "Project Search"
-msgstr "Find Projects"
+msgstr "Find Wedding Jobs"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:334
 msgid "Provider Search"
-msgstr "Browse Members"
+msgstr "Browse Wedding Vendors"
 
 #: C:\Users\johnwu\Documents\GitHub\Stylzt\website\wp-content\themes\ProjectTheme/header.php:345
 msgid "All Projects"

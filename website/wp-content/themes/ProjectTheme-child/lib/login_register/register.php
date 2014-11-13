@@ -135,8 +135,8 @@
 						if($enbl):
 				?>                           
 				
-				<p>							 
-				<label for="register-email"><?php _e('User Type:',$current_theme_locale_name) ?></label>
+				<p style="margin-left:30px;">							 
+				<label for="register-email"><?php _e('User Type:',$current_theme_locale_name) ?></label><br/>
 				<input type="radio" class="do_input" name="user_tp" id="user_tp" value="service_provider" checked="checked" /> <?php _e('Service Provider',$current_theme_locale_name); ?><br/>
 				<input type="radio" class="do_input" name="user_tp" id="user_tp" value="business_owner" /> <?php _e('Service Contractor',$current_theme_locale_name); ?><br/>
 				</p>
